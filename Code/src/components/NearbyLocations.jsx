@@ -96,7 +96,7 @@ const MOCK_LOCATIONS = [
   },
   {
     id: 8,
-    name: 'EcoWaste Jaipur',
+    name: 'E-Scarpe Mart Jaipur',
     distance: 3.5,
     rating: 4.6,
     reviews: 267,

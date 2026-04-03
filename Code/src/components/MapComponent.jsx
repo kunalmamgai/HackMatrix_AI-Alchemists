@@ -24,15 +24,15 @@ const selectedShoeIcon = new L.DivIcon({
 });
 
 export default function MapComponent({ locations, selectedLocation, onSelectLocation, darkMode }) {
-  // Center of all locations (average)
-  const centerLat = locations.reduce((sum, loc) => sum + loc.coordinates.lat, 0) / locations.length;
-  const centerLng = locations.reduce((sum, loc) => sum + loc.coordinates.lng, 0) / locations.length;
+  // Keep a consistent India-first starting viewport.
+  const initialCenter = [22.5937, 78.9629];
+  const initialZoom = 5;
 
   return (
     <div className="w-full h-full rounded-2xl overflow-hidden shadow-xl">
       <MapContainer
-        center={[centerLat, centerLng]}
-        zoom={13}
+        center={initialCenter}
+        zoom={initialZoom}
         style={{ height: '100%', width: '100%' }}
         className="rounded-2xl"
       >
