@@ -102,36 +102,6 @@ const DISPOSABLES = [
     condition: 'Excellent',
     stock: 2,
   },
-  {
-    id: 10,
-    name: 'Google Pixel 6',
-    category: 'Smartphone',
-    price: '₹540',
-    icon: Smartphone,
-    color: 'from-orange-400 to-amber-600',
-    condition: 'Very Good',
-    stock: 7,
-  },
-  {
-    id: 11,
-    name: 'LG 27" Monitor',
-    category: 'Monitor',
-    price: '₹1,600',
-    icon: Monitor,
-    color: 'from-teal-400 to-teal-600',
-    condition: 'Good',
-    stock: 3,
-  },
-  {
-    id: 12,
-    name: 'Lenovo ThinkPad',
-    category: 'Laptop',
-    price: '₹2,250',
-    icon: Laptop,
-    color: 'from-slate-400 to-slate-600',
-    condition: 'Like New',
-    stock: 1,
-  },
 ];
 
 export default function DisposablesPage({ darkMode }) {
@@ -228,7 +198,7 @@ export default function DisposablesPage({ darkMode }) {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {filteredProducts.map((product, index) => {
             const Icon = product.icon;
