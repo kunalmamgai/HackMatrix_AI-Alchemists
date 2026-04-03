@@ -1,3 +1,5 @@
+![E-Scrape Mart Home Preview](Code/src/assets/hero.png)
+
 # E-Scrape Mart
 
 E-Scrape Mart is a full-stack e-waste management platform that helps users:
