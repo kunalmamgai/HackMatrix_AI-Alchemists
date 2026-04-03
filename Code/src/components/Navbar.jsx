@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Menu, X, Leaf, Moon, Sun, LogIn } from 'lucide-react';
+import { Menu, X, Leaf, Moon, Sun, LogIn, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Navbar({ darkMode, setDarkMode }) {
+export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -15,6 +15,12 @@ export default function Navbar({ darkMode, setDarkMode }) {
     { label: 'Disposables', href: '/disposables' },
     { label: 'About', href: '/circular-economy' },
   ];
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
+    navigate('/');
+  };
 
   return (
     <nav className={`fixed w-full top-0 z-50 ${darkMode ? 'bg-gray-900/95 backdrop-blur-md border-b border-gray-700' : 'bg-white/95 backdrop-blur-md border-b border-gray-200'} shadow-lg`}>
@@ -51,17 +57,27 @@ export default function Navbar({ darkMode, setDarkMode }) {
 
           {/* Theme Toggle and Mobile Menu */}
           <div className="flex items-center space-x-4">
-            <motion.button
-              onClick={() => navigate('/login')}
-              className="hidden md:inline-flex px-4 py-2 rounded-lg font-semibold text-white bg-gradient-eco hover:shadow-glow transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <LogIn size={18} className="mr-2" />
-              Login
-            </motion.button>
-
-            <motion.button
+            {isLoggedIn ? (
+              <motion.button
+                onClick={handleLogout}
+                className="hidden md:inline-flex px-4 py-2 rounded-lg font-semibold text-white bg-red-500 hover:bg-red-600 transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <LogOut size={18} className="mr-2" />
+                Logout
+              </motion.button>
+            ) : (
+              <motion.button
+                onClick={() => navigate('/login')}
+                className="hidden md:inline-flex px-4 py-2 rounded-lg font-semibold text-white bg-gradient-eco hover:shadow-glow transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <LogIn size={18} className="mr-2" />
+                Login
+              </motion.button>
+            )}
               onClick={() => setDarkMode(!darkMode)}
               className={`p-2 rounded-lg transition-colors ${darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-700'}`}
               whileHover={{ scale: 1.1 }}
@@ -93,16 +109,29 @@ export default function Navbar({ darkMode, setDarkMode }) {
           className={`md:hidden border-t ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'}`}
         >
           <div className="px-4 pt-2 pb-3 space-y-1">
-            <motion.button
-              onClick={() => {
-                navigate('/login');
-                setIsOpen(false);
-              }}
-              className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 bg-gradient-eco text-white hover:opacity-90"
-            >
-              <LogIn size={18} />
-              <span>Login</span>
-            </motion.button>
+            {isLoggedIn ? (
+              <motion.button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 bg-red-500 text-white hover:opacity-90"
+              >
+                <LogOut size={18} />
+                <span>Logout</span>
+              </motion.button>
+            ) : (
+              <motion.button
+                onClick={() => {
+                  navigate('/login');
+                  setIsOpen(false);
+                }}
+                className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 bg-gradient-eco text-white hover:opacity-90"
+              >
+                <LogIn size={18} />
+                <span>Login</span>
+              </motion.button>
+            )}
             {navItems.map((item, index) => (
               <Link
                 key={index}
