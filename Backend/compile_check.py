@@ -1,4 +1,6 @@
-import py_compile, os, sys
+import py_compile
+import os
+import sys
 
 errors = False
 for root, dirs, files in os.walk('Backend'):

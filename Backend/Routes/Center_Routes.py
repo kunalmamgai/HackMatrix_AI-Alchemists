@@ -4,9 +4,11 @@ from Services.Center_Services import get_centers, add_center
 
 router = APIRouter()
 
+
 @router.get("/")
 def fetch_centers():
     return get_centers()
+
 
 @router.post("/")
 def create_center(center: Center):
