@@ -1,84 +1,249 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Navigation, Phone, Clock, Star, Filter } from 'lucide-react';
+import MapComponent from './MapComponent';
+import 'leaflet/dist/leaflet.css';
 
 const MOCK_LOCATIONS = [
   {
     id: 1,
-    name: 'GreenTech Recycling Center',
+    name: 'Green Cycle Delhi',
     distance: 0.8,
     rating: 4.8,
     reviews: 342,
-    address: '123 Eco Street, Green City, GC 12345',
-    phone: '+1 (555) 123-4567',
+    address: 'Holambi Kalan, Delhi',
+    phone: '+91 (120) 456-7890',
     hours: 'Mon-Sat: 9AM-6PM',
-    services: ['Drop-off', 'Bulk Pickup', 'Certified Recycling'],
-    coordinates: { lat: 40.7128, lng: -74.0060 },
+    services: ['Drop-off', 'Dismantling', 'Refurbishing', 'Component Testing', 'Plastic Recovery', 'Second-hand Electronics Market'],
+    coordinates: { lat: 28.5921, lng: 77.3693 },
+    image: 'https://images.news18.com/ibnlive/uploads/2025/06/Delhi-eco-park-2025-06-3a0fa58fc26fffe73108773502cfb9d3.jpg',
+    description: "India's first state-of-the-art E-Waste Eco Park at Holambi Kalan, spanning 11.4 acres with Rs 150 crore investment. Processes 51,000 metric tonnes of e-waste annually covering all 106 categories under E-Waste Management Rules 2022. Features dedicated zones for dismantling, refurbishing, component testing, plastic recovery, and second-hand electronics market. Includes skilling centers to train thousands of informal workers. Expected to generate Rs 350 crore in revenue and create thousands of green jobs. PPP model with 18-month construction timeline.",
   },
   {
     id: 2,
-    name: 'Earth Renewal Hub',
+    name: 'Tech Recycle Mumbai',
     distance: 2.3,
     rating: 4.6,
     reviews: 218,
-    address: '456 Sustainability Ave, Eco Town, ET 54321',
-    phone: '+1 (555) 234-5678',
+    address: '123 Innovation Avenue, GIDC, Thane (W), Maharashtra 400601',
+    phone: '+91 (022) 6789-0123',
     hours: 'Tue-Sun: 10AM-7PM',
     services: ['Drop-off', 'Repair Program', 'Data Destruction'],
-    coordinates: { lat: 40.7580, lng: -73.9855 },
+    coordinates: { lat: 19.2183, lng: 72.9781 },
   },
   {
     id: 3,
-    name: 'CircularEarth E-Waste Solutions',
+    name: 'E-Waste Solutions Bangalore',
     distance: 1.2,
     rating: 4.9,
     reviews: 567,
-    address: '789 Planet Avenue, Waste-Free Zone, WZ 67890',
-    phone: '+1 (555) 345-6789',
+    address: '678 Tech Park, Outer Ring Road, Bangalore, Karnataka 560103',
+    phone: '+91 (080) 4123-5678',
     hours: 'Mon-Fri: 8AM-8PM',
     services: ['Drop-off', 'Scheduled Pickup', 'Bulk Business Accounts'],
-    coordinates: { lat: 40.7489, lng: -73.9680 },
+    coordinates: { lat: 12.9716, lng: 77.5946 },
+    tabImage: 'https://content.jdmagicbox.com/comp/def_content/e-waste-recycling/ap-18344325082660-e-waste-recycling-2-z16rw.jpg',
+    image: 'https://content.jdmagicbox.com/comp/def_content/e-waste-recycling/ap-18344325082660-e-waste-recycling-2-z16rw.jpg',
   },
   {
     id: 4,
-    name: 'Tech Recycle Pro',
+    name: 'Eco Mind Hyderabad',
     distance: 3.1,
     rating: 4.5,
     reviews: 156,
-    address: '321 Innovation Blvd, Tech City, TC 11111',
-    phone: '+1 (555) 456-7890',
+    address: '234 Green Street, Hitec City, Hyderabad, Telangana 500081',
+    phone: '+91 (040) 3456-7890',
     hours: 'Mon-Sun: 9AM-9PM',
     services: ['Drop-off', 'Free Assessment', 'Buy Used Electronics'],
-    coordinates: { lat: 40.7614, lng: -73.9776 },
+    coordinates: { lat: 17.3850, lng: 78.4867 },
   },
   {
     id: 5,
-    name: 'Sustainable Materials Collective',
+    name: 'Sustainable Chennai',
     distance: 4.5,
     rating: 4.7,
     reviews: 289,
-    address: '654 Resource St, Reuse City, RC 22222',
-    phone: '+1 (555) 567-8901',
+    address: '456 Industrial Estate, Guindy, Chennai, Tamil Nadu 600032',
+    phone: '+91 (044) 5678-9012',
     hours: 'Tue-Sat: 11AM-6PM',
     services: ['Drop-off', 'Refurbishment Services', 'Community Programs'],
-    coordinates: { lat: 40.7505, lng: -73.9934 },
+    coordinates: { lat: 13.0827, lng: 80.2707 },
   },
   {
     id: 6,
-    name: 'Future Forward Recycling',
+    name: 'Green Future Kolkata',
     distance: 5.8,
     rating: 4.4,
     reviews: 194,
-    address: '987 Tomorrow Lane, Innovative District, ID 33333',
-    phone: '+1 (555) 678-9012',
+    address: '789 Tech Lane, Salt Lake, Kolkata, West Bengal 700091',
+    phone: '+91 (033) 7890-1234',
     hours: 'Wed-Mon: 10AM-5PM',
     services: ['Drop-off', 'Data Secure Destruction', 'Environmental Reports'],
-    coordinates: { lat: 40.7549, lng: -73.9840 },
+    coordinates: { lat: 22.5726, lng: 88.3639 },
+  },
+  {
+    id: 7,
+    name: 'Circular Pune',
+    distance: 2.1,
+    rating: 4.7,
+    reviews: 423,
+    address: '567 Tech Lane, Hinjawadi, Pune, Maharashtra 411057',
+    phone: '+91 (020) 2890-3456',
+    hours: 'Mon-Sat: 8AM-7PM',
+    services: ['Drop-off', 'Scheduled Pickup', 'Refurbishment Services'],
+    coordinates: { lat: 18.5904, lng: 73.8129 },
+  },
+  {
+    id: 8,
+    name: 'EcoWaste Jaipur',
+    distance: 3.5,
+    rating: 4.6,
+    reviews: 267,
+    address: '321 Green Boulevard, Industrial Area, Jaipur, Rajasthan 302013',
+    phone: '+91 (141) 4567-8901',
+    hours: 'Tue-Sun: 9AM-6PM',
+    services: ['Drop-off', 'Free Assessment', 'Data Destruction'],
+    coordinates: { lat: 26.9124, lng: 75.7873 },
+  },
+  {
+    id: 9,
+    name: 'Green Ahmedabad Hub',
+    distance: 1.9,
+    rating: 4.8,
+    reviews: 356,
+    address: '234 Eco Park, GIDC Vatva, Ahmedabad, Gujarat 382445',
+    phone: '+91 (079) 6789-2345',
+    hours: 'Mon-Fri: 8AM-7PM',
+    services: ['Drop-off', 'Bulk Pickup', 'Certified Recycling'],
+    coordinates: { lat: 23.0225, lng: 72.5714 },
+  },
+  {
+    id: 10,
+    name: 'TechCycle Lucknow',
+    distance: 4.2,
+    rating: 4.5,
+    reviews: 198,
+    address: '890 Industrial Zone, Kanpur Road, Lucknow, Uttar Pradesh 226004',
+    phone: '+91 (522) 1234-5678',
+    hours: 'Mon-Sat: 9AM-6PM',
+    services: ['Drop-off', 'Repair Program', 'Community Programs'],
+    coordinates: { lat: 26.8467, lng: 80.9462 },
+  },
+  {
+    id: 11,
+    name: 'Sustainable Kochi',
+    distance: 2.8,
+    rating: 4.6,
+    reviews: 245,
+    address: '456 Tech Street, Infopark, Kochi, Kerala 682042',
+    phone: '+91 (484) 3456-7890',
+    hours: 'Tue-Sun: 10AM-7PM',
+    services: ['Drop-off', 'Refurbishment Services', 'Data Destruction'],
+    coordinates: { lat: 9.9312, lng: 76.2673 },
+  },
+  {
+    id: 12,
+    name: 'Green Surat',
+    distance: 3.7,
+    rating: 4.7,
+    reviews: 312,
+    address: '678 Industrial Circle, GIDC Piplaj, Surat, Gujarat 395007',
+    phone: '+91 (261) 5678-9012',
+    hours: 'Mon-Fri: 9AM-8PM',
+    services: ['Drop-off', 'Bulk Pickup', 'Free Assessment'],
+    coordinates: { lat: 21.1458, lng: 72.8336 },
+  },
+  {
+    id: 13,
+    name: 'EcoCircle Indore',
+    distance: 3.3,
+    rating: 4.7,
+    reviews: 301,
+    address: '890 Industrial Road, EPIP Zone, Indore, Madhya Pradesh 452010',
+    phone: '+91 (731) 4567-8901',
+    hours: 'Mon-Sat: 8AM-7PM',
+    services: ['Drop-off', 'Scheduled Pickup', 'Bulk Business Accounts'],
+    coordinates: { lat: 22.7196, lng: 75.8577 },
+  },
+  {
+    id: 14,
+    name: 'Green Bhopal Center',
+    distance: 4.8,
+    rating: 4.6,
+    reviews: 234,
+    address: '123 Eco Lane, BHEL Nagar, Bhopal, Madhya Pradesh 462022',
+    phone: '+91 (755) 5678-9012',
+    hours: 'Tue-Sun: 9AM-6PM',
+    services: ['Drop-off', 'Free Assessment', 'Repair Program'],
+    coordinates: { lat: 23.1815, lng: 79.9864 },
+  },
+  {
+    id: 15,
+    name: 'TechWaste Raipur',
+    distance: 2.9,
+    rating: 4.5,
+    reviews: 189,
+    address: '567 Green Street, Durg Road, Raipur, Chhattisgarh 492001',
+    phone: '+91 (771) 3456-7890',
+    hours: 'Mon-Fri: 8AM-7PM',
+    services: ['Drop-off', 'Data Destruction', 'Community Programs'],
+    coordinates: { lat: 21.2514, lng: 81.6296 },
+  },
+  {
+    id: 16,
+    name: 'Sustainable Jamshedpur',
+    distance: 3.4,
+    rating: 4.6,
+    reviews: 267,
+    address: '234 Industrial Complex, Mango (South), Jamshedpur, Jharkhand 831003',
+    phone: '+91 (657) 6789-0123',
+    hours: 'Mon-Sat: 9AM-6PM',
+    services: ['Drop-off', 'Bulk Pickup', 'Refurbishment Services'],
+    coordinates: { lat: 22.8047, lng: 84.3330 },
+  },
+  {
+    id: 17,
+    name: 'Green Ranchi Hub',
+    distance: 4.1,
+    rating: 4.7,
+    reviews: 298,
+    address: '890 Tech Lane, Hehal, Ranchi, Jharkhand 834004',
+    phone: '+91 (651) 2345-6789',
+    hours: 'Tue-Sun: 10AM-7PM',
+    services: ['Drop-off', 'Scheduled Pickup', 'Data Destruction'],
+    coordinates: { lat: 23.3645, lng: 85.3340 },
   },
 ];
 
 export default function NearbyLocations({ darkMode }) {
   const [selectedLocation, setSelectedLocation] = useState(null);
+  const detailsRef = useRef(null);
+
+  useEffect(() => {
+    if (selectedLocation) {
+      // debug log to check selected object in browser console
+      // eslint-disable-next-line no-console
+      console.log('Selected location:', selectedLocation);
+      if (detailsRef.current) {
+        detailsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [selectedLocation]);
+  const navigate = useNavigate();
+
+  const handleGetDirections = () => {
+    if (!selectedLocation) return;
+    const { coordinates, address } = selectedLocation;
+    const dest = coordinates ? `${coordinates.lat},${coordinates.lng}` : encodeURIComponent(address || '');
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${dest}`;
+    window.open(url, '_blank');
+  };
+
+  const handleRequestPickup = () => {
+    if (!selectedLocation) return;
+    navigate('/pickup-network', { state: { locationId: selectedLocation.id } });
+  };
   const [sortBy, setSortBy] = useState('distance');
   const [filterService, setFilterService] = useState('All');
 
@@ -104,26 +269,6 @@ export default function NearbyLocations({ darkMode }) {
     );
   });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
-
   return (
     <section
       id="locations"
@@ -144,79 +289,20 @@ export default function NearbyLocations({ darkMode }) {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Map Placeholder */}
+          {/* Real Map */}
           <motion.div
             className={`lg:col-span-2 rounded-2xl overflow-hidden shadow-xl ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="relative h-96 lg:h-full min-h-96 bg-gradient-to-br from-eco-100 to-ocean-100 flex items-center justify-center overflow-hidden">
-              {/* Interactive Map Background */}
-              <div className="absolute inset-0 opacity-20">
-                <svg className="w-full h-full" viewBox="0 0 400 400">
-                  <defs>
-                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" />
-                    </pattern>
-                  </defs>
-                  <rect width="400" height="400" fill="url(#grid)" />
-                </svg>
-              </div>
-
-              {/* Location Pins */}
-              <motion.div
-                className="relative w-full h-full"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {filteredLocations.map((location, index) => (
-                  <motion.button
-                    key={location.id}
-                    onClick={() => setSelectedLocation(location)}
-                    className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all ${
-                      selectedLocation?.id === location.id
-                        ? 'scale-150'
-                        : 'hover:scale-125'
-                    }`}
-                    style={{
-                      left: `${30 + (index % 3) * 35}%`,
-                      top: `${20 + Math.floor(index / 3) * 40}%`,
-                    }}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.3 }}
-                  >
-                    <div className={`w-10 h-10 rounded-full shadow-lg flex items-center justify-center transform transition-all ${
-                      selectedLocation?.id === location.id
-                        ? 'bg-eco-500 text-white'
-                        : 'bg-white text-eco-600 hover:bg-eco-100'
-                    }`}>
-                      <MapPin size={20} />
-                    </div>
-                    {selectedLocation?.id === location.id && (
-                      <motion.div
-                        className="absolute top-full mt-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap text-sm font-semibold text-eco-600 bg-white px-3 py-1 rounded-lg shadow-lg"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                      >
-                        {location.name}
-                      </motion.div>
-                    )}
-                  </motion.button>
-                ))}
-              </motion.div>
-
-              {/* Map Legend */}
-              <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md rounded-lg p-3 shadow-lg">
-                <p className="text-xs font-semibold text-gray-700 mb-2">Legend</p>
-                <div className="flex items-center space-x-2 text-xs">
-                  <div className="w-3 h-3 rounded-full bg-eco-500" />
-                  <span className="text-gray-600">Selected center</span>
-                </div>
-              </div>
+            transition={{ duration: 0.6 }}>
+            <div className="relative h-96 lg:h-full min-h-96">
+              <MapComponent
+                locations={filteredLocations}
+                selectedLocation={selectedLocation}
+                onSelectLocation={setSelectedLocation}
+                darkMode={darkMode}
+              />
             </div>
           </motion.div>
 
@@ -282,7 +368,7 @@ export default function NearbyLocations({ darkMode }) {
                 <motion.button
                   key={location.id}
                   onClick={() => setSelectedLocation(location)}
-                  className={`w-full text-left p-4 rounded-xl transition-all transform ${
+                  className={`w-full text-left overflow-hidden rounded-xl transition-all transform ${
                     selectedLocation?.id === location.id
                       ? darkMode
                         ? 'bg-eco-600/20 border-2 border-eco-500 scale-105 shadow-lg'
@@ -297,42 +383,53 @@ export default function NearbyLocations({ darkMode }) {
                   transition={{ delay: index * 0.05 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="flex items-start justify-between mb-2">
-                    <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                      {location.name}
-                    </h4>
-                    <span className={`text-xs font-semibold px-2 py-1 rounded-lg ${
-                      selectedLocation?.id === location.id
-                        ? 'bg-eco-500 text-white'
-                        : 'bg-eco-100 text-eco-700'
-                    }`}>
-                      {location.distance} km
-                    </span>
-                  </div>
-
-                  {/* Rating */}
-                  <div className="flex items-center space-x-1 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={14}
-                        className={i < Math.floor(location.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}
+                  {location.image && (
+                    <div className="w-full h-32 overflow-hidden">
+                      <img
+                        src={location.image}
+                        alt={location.name}
+                        className="w-full h-full object-cover"
                       />
-                    ))}
-                    <span className={`text-xs ml-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {location.rating} ({location.reviews})
-                    </span>
-                  </div>
-
-                  {/* Details */}
-                  <div className={`grid grid-cols-2 gap-2 text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    <div className="flex items-center space-x-1">
-                      <MapPin size={14} />
-                      <span className="truncate">Near you</span>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock size={14} />
-                      <span>Open hours</span>
+                  )}
+                  <div className="p-4">
+                    <div className="flex items-start justify-between mb-2">
+                      <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                        {location.name}
+                      </h4>
+                      <span className={`text-xs font-semibold px-2 py-1 rounded-lg ${
+                        selectedLocation?.id === location.id
+                          ? 'bg-eco-500 text-white'
+                          : 'bg-eco-100 text-eco-700'
+                      }`}>
+                        {location.distance} km
+                      </span>
+                    </div>
+
+                    {/* Rating */}
+                    <div className="flex items-center space-x-1 mb-2">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          size={14}
+                          className={i < Math.floor(location.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}
+                        />
+                      ))}
+                      <span className={`text-xs ml-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {location.rating} ({location.reviews})
+                      </span>
+                    </div>
+
+                    {/* Details */}
+                    <div className={`grid grid-cols-2 gap-2 text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <div className="flex items-center space-x-1">
+                        <MapPin size={14} />
+                        <span className="truncate">Near you</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Clock size={14} />
+                        <span>Open hours</span>
+                      </div>
                     </div>
                   </div>
                 </motion.button>
@@ -344,17 +441,35 @@ export default function NearbyLocations({ darkMode }) {
         {/* Selected Location Details */}
         {selectedLocation && (
           <motion.div
-            className={`mt-8 p-6 rounded-2xl shadow-xl ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+            ref={detailsRef}
+            className={`mt-8 rounded-2xl shadow-xl overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
           >
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            {(selectedLocation.tabImage || selectedLocation.image) && (
+              <div className="w-full h-80 overflow-hidden">
+                <img
+                  src={selectedLocation.tabImage || selectedLocation.image}
+                  alt={selectedLocation.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div className="p-6">
+              <div className="mb-4">
+                <h3 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                   {selectedLocation.name}
                 </h3>
-                <div className="space-y-3">
+                {selectedLocation.description && (
+                  <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {selectedLocation.description}
+                  </p>
+                )}
+              </div>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <div className="space-y-3">
                   <div className="flex items-start space-x-3">
                     <MapPin className="w-5 h-5 text-eco-500 flex-shrink-0 mt-0.5" />
                     <div>
@@ -378,10 +493,10 @@ export default function NearbyLocations({ darkMode }) {
                       <p className={darkMode ? 'text-white' : 'text-gray-900'}>{selectedLocation.hours}</p>
                     </div>
                   </div>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <h4 className={`font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Services Offered</h4>
+                <div>
+                  <h4 className={`font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Services Offered</h4>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {selectedLocation.services.map((service, index) => (
                     <motion.span
@@ -396,11 +511,12 @@ export default function NearbyLocations({ darkMode }) {
                   ))}
                 </div>
                 <div className="flex gap-3">
-                  <button className="btn-primary flex-1 flex items-center justify-center space-x-2">
+                  <button onClick={handleGetDirections} className="btn-primary flex-1 flex items-center justify-center space-x-2">
                     <Navigation size={18} />
                     <span>Get Directions</span>
                   </button>
-                  <button className="btn-secondary flex-1">Request Pickup</button>
+                  <button onClick={handleRequestPickup} className="btn-secondary flex-1">Request Pickup</button>
+                </div>
                 </div>
               </div>
             </div>
