@@ -12,6 +12,7 @@ export default function Navbar({ darkMode, setDarkMode }) {
     { label: 'Device Guide', href: '/device-search' },
     { label: 'Locations', href: '/nearby-locations' },
     { label: 'Pickup', href: '/pickup-network' },
+    { label: 'Disposables', href: '/disposables' },
     { label: 'About', href: '/circular-economy' },
   ];
 

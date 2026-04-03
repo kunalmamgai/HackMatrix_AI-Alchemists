@@ -11,6 +11,7 @@ import DeviceSearchPage from './pages/DeviceSearchPage';
 import NearbyLocationsPage from './pages/NearbyLocationsPage';
 import PickupNetworkPage from './pages/PickupNetworkPage';
 import CircularEconomyPage from './pages/CircularEconomyPage';
+import DisposablesPage from './pages/DisposablesPage';
 
 import './index.css';
 
@@ -66,6 +67,7 @@ function AppContent() {
           <Route path="/nearby-locations" element={<NearbyLocationsPage darkMode={darkMode} />} />
           <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />
           <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
+          <Route path="/disposables" element={<DisposablesPage darkMode={darkMode} />} />
         </Routes>
       </motion.div>
 
