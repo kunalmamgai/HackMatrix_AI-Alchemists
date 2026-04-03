@@ -94,7 +94,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title mb-4">Pickup & Reuse Network</h2>
+          <h2 className="section-title mb-4 text-yellow-300">Pickup & Reuse Network</h2>
           <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
             Schedule a convenient pickup for your used devices and connect with verified recyclers or repair enthusiasts
           </p>
