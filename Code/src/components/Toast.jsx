@@ -21,10 +21,15 @@ export default function Toast({ message, type = 'success', onClose }) {
           transition={{ duration: 0.3 }}
         >
           <div className={`${bgColor} text-white rounded-lg shadow-lg p-4 flex items-center space-x-3 max-w-sm`}>
-            {motion.create(icon, {
-              animate: { scale: [1, 1.1, 1] },
-              transition: { duration: 0.5 },
-            })}
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 0.5 }}
+            >
+              {(() => {
+                const Icon = icon;
+                return <Icon size={20} />;
+              })()}
+            </motion.div>
             <span className="font-medium flex-1">{message}</span>
             <button
               onClick={onClose}

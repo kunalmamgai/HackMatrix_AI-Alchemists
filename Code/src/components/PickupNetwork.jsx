@@ -1,9 +1,45 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Truck, User, Shield, CheckCircle, ArrowRight, AlertCircle } from 'lucide-react';
+import { Truck, User, Shield, CheckCircle, ArrowRight, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const DEVICE_TYPES = ['Smartphone', 'Laptop', 'Tablet', 'Monitor', 'Battery', 'Headphones', 'Other'];
 const CONDITIONS = ['Like New', 'Good', 'Fair', 'Poor', 'For Parts'];
+
+const PARTNERS = [
+  {
+    id: 'recycler',
+    title: 'Verified Recycler',
+    icon: Truck,
+    description: 'Professional certified e-waste recycling facility with government certifications',
+    features: [
+      'Certified & insured',
+      'Data destruction guarantee',
+      'Eco-friendly processes'
+    ]
+  },
+  {
+    id: 'repairer',
+    title: 'Repair Enthusiast',
+    icon: User,
+    description: 'Community members skilled in repair and refurbishment of used electronics',
+    features: [
+      'Expert community members',
+      'Give devices new life',
+      'Fair pricing & transparency'
+    ]
+  },
+  {
+    id: 'trust',
+    title: 'Trust & Safety',
+    icon: Shield,
+    description: 'All partners are verified with ratings, reviews, and security certifications',
+    features: [
+      'Verified members only',
+      'Real reviews & ratings',
+      '24/7 support available'
+    ]
+  }
+];
 
 export default function PickupNetwork({ darkMode, onNotification }) {
   const [formData, setFormData] = useState({
@@ -13,11 +49,12 @@ export default function PickupNetwork({ darkMode, onNotification }) {
     address: '',
     name: '',
     phone: '',
-    pickupType: 'recycler',
+    pickupType: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [carouselIndex, setCarouselIndex] = useState(0);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,11 +78,24 @@ export default function PickupNetwork({ darkMode, onNotification }) {
         address: '',
         name: '',
         phone: '',
-        pickupType: 'recycler',
+        pickupType: '',
       });
       setSubmitted(false);
       setCurrentStep(1);
+      setCarouselIndex(0);
     }, 3000);
+  };
+
+  const handleCarouselPrev = () => {
+    setCarouselIndex((prev) => (prev - 1 + PARTNERS.length) % PARTNERS.length);
+  };
+
+  const handleCarouselNext = () => {
+    setCarouselIndex((prev) => (prev + 1) % PARTNERS.length);
+  };
+
+  const selectPartnerFromCarousel = (partnerId) => {
+    setFormData({ ...formData, pickupType: partnerId });
   };
 
   const isStepComplete = (step) => {
@@ -100,18 +150,17 @@ export default function PickupNetwork({ darkMode, onNotification }) {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid lg:grid-cols-3 gap-8 mb-12 hidden lg:grid">
           {/* Recycler Card */}
           <motion.div
-            className={`rounded-2xl p-8 transition-all cursor-pointer transform ${
-              formData.pickupType === 'recycler'
+            className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'recycler'
                 ? darkMode
                   ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
                   : 'bg-eco-50 border-2 border-eco-500 scale-105 shadow-lg'
                 : darkMode
-                ? 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
-                : 'bg-gray-50 border-2 border-gray-200 hover:border-eco-400'
-            }`}
+                  ? 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
+                  : 'bg-gray-50 border-2 border-gray-200 hover:border-eco-400'
+              }`}
             onClick={() => setFormData({ ...formData, pickupType: 'recycler' })}
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
@@ -143,15 +192,14 @@ export default function PickupNetwork({ darkMode, onNotification }) {
 
           {/* Repair Enthusiast Card */}
           <motion.div
-            className={`rounded-2xl p-8 transition-all cursor-pointer transform ${
-              formData.pickupType === 'repairer'
+            className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'repairer'
                 ? darkMode
-                ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
-                : 'bg-eco-50 border-2 border-eco-500 scale-105 shadow-lg'
+                  ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
+                  : 'bg-eco-50 border-2 border-eco-500 scale-105 shadow-lg'
                 : darkMode
-                ? 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
-                : 'bg-gray-50 border-2 border-gray-200 hover:border-eco-400'
-            }`}
+                  ? 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
+                  : 'bg-gray-50 border-2 border-gray-200 hover:border-eco-400'
+              }`}
             onClick={() => setFormData({ ...formData, pickupType: 'repairer' })}
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
@@ -247,22 +295,20 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                     type="button"
                     onClick={() => setCurrentStep(step)}
                     disabled={!isStepComplete(step - 1) && step > 1}
-                    className={`flex flex-col items-center ${
-                      step <= currentStep
+                    className={`flex flex-col items-center ${step <= currentStep
                         ? 'opacity-100 cursor-pointer'
                         : step > currentStep
-                        ? 'opacity-40 cursor-not-allowed'
-                        : 'opacity-60'
-                    }`}
+                          ? 'opacity-40 cursor-not-allowed'
+                          : 'opacity-60'
+                      }`}
                   >
                     <motion.div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 ${
-                        step <= currentStep
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 ${step <= currentStep
                           ? 'bg-eco-500 text-white'
                           : darkMode
-                          ? 'bg-gray-600 text-gray-300'
-                          : 'bg-gray-300 text-gray-500'
-                      }`}
+                            ? 'bg-gray-600 text-gray-300'
+                            : 'bg-gray-300 text-gray-500'
+                        }`}
                       whileHover={step <= currentStep ? { scale: 1.1 } : {}}
                     >
                       {step}
@@ -309,13 +355,12 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                               key={type}
                               type="button"
                               onClick={() => setFormData({ ...formData, deviceType: type })}
-                              className={`p-3 rounded-lg transition-all ${
-                                formData.deviceType === type
+                              className={`p-3 rounded-lg transition-all ${formData.deviceType === type
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
                                   : darkMode
-                                  ? 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
-                                  : 'bg-gray-100 text-gray-700 border-2 border-gray-300 hover:border-eco-400'
-                              }`}
+                                    ? 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
+                                    : 'bg-gray-100 text-gray-700 border-2 border-gray-300 hover:border-eco-400'
+                                }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
@@ -335,13 +380,12 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                               key={condition}
                               type="button"
                               onClick={() => setFormData({ ...formData, condition })}
-                              className={`p-3 rounded-lg transition-all ${
-                                formData.condition === condition
+                              className={`p-3 rounded-lg transition-all ${formData.condition === condition
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
                                   : darkMode
-                                  ? 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
-                                  : 'bg-gray-100 text-gray-700 border-2 border-gray-300 hover:border-eco-400'
-                              }`}
+                                    ? 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
+                                    : 'bg-gray-100 text-gray-700 border-2 border-gray-300 hover:border-eco-400'
+                                }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
                             >
@@ -368,32 +412,92 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                     </motion.div>
                   )}
 
-                  {/* Step 2: Partner Selection */}
+                  {/* Step 2: Partner Selection - 3 Slides Side by Side */}
                   {currentStep === 2 && (
                     <motion.div
                       key="step2"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      className="space-y-4"
+                      className="space-y-6"
                     >
                       <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                         Choose your pickup partner
                       </h3>
-                      <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                        Selected: <span className="font-semibold">{formData.pickupType === 'recycler' ? 'Verified Recycler' : 'Repair Enthusiast'}</span>
-                      </p>
 
-                      <div className={`p-4 rounded-lg border-2 border-yellow-400 ${darkMode ? 'bg-yellow-900/20' : 'bg-yellow-50'}`}>
-                        <div className="flex items-start space-x-2">
-                          <AlertCircle size={18} className="text-yellow-600 flex-shrink-0 mt-0.5" />
-                          <p className={`text-sm ${darkMode ? 'text-yellow-300' : 'text-yellow-800'}`}>
-                            {formData.pickupType === 'recycler'
-                              ? 'Certified recyclers follow strict environmental and data protection standards'
-                              : 'Repair enthusiasts are community members dedicated to extending device lifespans'}
-                          </p>
-                        </div>
+                      {/* 3 Partner Cards Side by Side */}
+                      <div className="grid grid-cols-3 gap-6">
+                        {PARTNERS.map((partner) => (
+                          <motion.div
+                            key={partner.id}
+                            className={`rounded-2xl p-6 transition-all border-2 flex flex-col h-full ${formData.pickupType === partner.id
+                                ? darkMode
+                                  ? 'bg-gradient-eco/20 border-eco-500 shadow-glow'
+                                  : 'bg-eco-50 border-eco-500 shadow-glow'
+                                : darkMode
+                                  ? 'bg-gray-700 border-gray-600'
+                                  : 'bg-gray-50 border-gray-200'
+                              }`}
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
+                              {(() => {
+                                const IconComponent = partner.icon;
+                                return <IconComponent className="w-8 h-8 text-white" />;
+                              })()}
+                            </div>
+
+                            <h4 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                              {partner.title}
+                            </h4>
+
+                            <p className={`text-sm mb-4 leading-relaxed flex-grow ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                              {partner.description}
+                            </p>
+
+                            <ul className={`space-y-3 mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                              {partner.features.map((feature, idx) => (
+                                <li key={idx} className="flex items-center space-x-3">
+                                  <CheckCircle size={18} className="text-eco-500 flex-shrink-0" />
+                                  <span className="text-sm">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+
+                            <motion.button
+                              type="button"
+                              onClick={() => selectPartnerFromCarousel(partner.id)}
+                              className={`w-full py-3 px-4 rounded-lg font-semibold transition-all ${formData.pickupType === partner.id
+                                  ? 'bg-eco-500 text-white shadow-glow'
+                                  : darkMode
+                                    ? 'bg-gray-600 text-gray-100 hover:bg-eco-500 hover:text-white'
+                                    : 'bg-gray-200 text-gray-900 hover:bg-eco-500 hover:text-white'
+                                }`}
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              {formData.pickupType === partner.id ? '✓ Selected' : 'Select'}
+                            </motion.button>
+                          </motion.div>
+                        ))}
                       </div>
+
+                      {/* Selected Partner Info */}
+                      {formData.pickupType && (
+                        <motion.div
+                          className={`p-4 rounded-lg border-2 border-eco-400 ${darkMode ? 'bg-eco-900/20' : 'bg-eco-50'}`}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          <div className="flex items-start space-x-2">
+                            <CheckCircle size={18} className="text-eco-500 flex-shrink-0 mt-0.5" />
+                            <p className={`text-sm ${darkMode ? 'text-eco-300' : 'text-eco-800'}`}>
+                              <span className="font-semibold">Selected: </span>
+                              {PARTNERS.find(p => p.id === formData.pickupType)?.title}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
                     </motion.div>
                   )}
 
@@ -465,13 +569,12 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                   type="button"
                   onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
                   disabled={currentStep === 1}
-                  className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                    currentStep === 1
+                  className={`px-6 py-2 rounded-lg font-medium transition-all ${currentStep === 1
                       ? 'opacity-50 cursor-not-allowed'
                       : darkMode
-                      ? 'bg-gray-600 text-white hover:bg-gray-500'
-                      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
-                  }`}
+                        ? 'bg-gray-600 text-white hover:bg-gray-500'
+                        : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+                    }`}
                   whileHover={currentStep !== 1 ? { scale: 1.05 } : {}}
                   whileTap={currentStep !== 1 ? { scale: 0.95 } : {}}
                 >
@@ -481,13 +584,16 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                 {currentStep !== 3 ? (
                   <motion.button
                     type="button"
-                    onClick={() => isStepComplete(currentStep) && setCurrentStep(currentStep + 1)}
+                    onClick={() => {
+                      if (isStepComplete(currentStep)) {
+                        setCurrentStep(currentStep + 1);
+                      }
+                    }}
                     disabled={!isStepComplete(currentStep)}
-                    className={`px-6 py-2 rounded-lg font-medium flex items-center space-x-2 transition-all ${
-                      isStepComplete(currentStep)
+                    className={`px-6 py-2 rounded-lg font-medium flex items-center space-x-2 transition-all ${isStepComplete(currentStep)
                         ? 'bg-gradient-eco text-white hover:shadow-glow'
                         : 'opacity-50 cursor-not-allowed bg-gray-400 text-white'
-                    }`}
+                      }`}
                     whileHover={isStepComplete(currentStep) ? { scale: 1.05 } : {}}
                     whileTap={isStepComplete(currentStep) ? { scale: 0.95 } : {}}
                   >
