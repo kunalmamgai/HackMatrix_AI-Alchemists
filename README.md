@@ -1,4 +1,4 @@
-![E-Scrape Mart Home Preview](Code/src/assets/hero.png)
+![E-Scrape Mart Home Preview](Code/src/assets/page.png)
 
 # E-Scrape Mart
 
@@ -13,7 +13,7 @@ The project combines a modern React frontend with a FastAPI backend and MongoDB 
 
 ## Product Preview
 
-![E-Scrape Mart Home Preview](Code/src/assets/hero.png)
+![E-Scrape Mart Home Preview](Code/src/assets/page.png)
 
 ## Why This Project Exists
 
