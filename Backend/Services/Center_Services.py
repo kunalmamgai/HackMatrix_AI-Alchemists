@@ -1,5 +1,5 @@
-from Configrations.mongoDB import center_collection
-from Schemes.Center_Schemes import center_serializer
+from config.db import center_collection
+from schemas.center_schema import center_serializer
 
 def get_centers():
     centers = center_collection.find()

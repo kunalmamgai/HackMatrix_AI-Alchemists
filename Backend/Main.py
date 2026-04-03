@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from Routes import Server_Routes as device_routes, Center_Routes as center_routes
+from routes import device_routes, center_routes
 
 app = FastAPI(title="E-Scrape Mart API")
 

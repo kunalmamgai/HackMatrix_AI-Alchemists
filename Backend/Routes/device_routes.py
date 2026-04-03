@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from models.device_model import Device
-from services.device_service import get_all_devices, add_device
+from Models.Devices_Models import Device
+from Services.Device_Services import get_all_devices, add_device
 
 router = APIRouter()
 

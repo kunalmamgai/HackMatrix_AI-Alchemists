@@ -1,5 +1,5 @@
-from Configrations.mongoDB import device_collection
-from Schemes.Device_Schemes import device_serializer
+from config.db import device_collection
+from schemas.device_schema import device_serializer
 
 def get_all_devices():
     devices = device_collection.find()
