@@ -298,18 +298,43 @@ export default function DeviceSearch({ darkMode }) {
       className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="section-title mb-4">Device Disposal Guide</h2>
-          <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
-            Search for your device to get personalized disposal instructions and safety tips
-          </p>
-        </motion.div>
+        <div className={`rounded-[2rem] p-8 md:p-16 mb-12 mt-4 text-center shadow-xl ${darkMode ? 'bg-gray-800/80 border border-gray-700' : 'bg-[#1a2332] border border-[#2a3441]'} relative overflow-hidden`}>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative z-10"
+          >
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+              Device <span className="text-[#34d399]">Disposal Guide</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
+              Search your device to unlock tailored disposal steps, crucial safety tips, and maximum recycling value.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="relative max-w-3xl mx-auto z-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
+                <Search className="h-6 w-6 text-gray-400 group-focus-within:text-[#34d399] transition-colors" />
+              </div>
+              <input
+                type="text"
+                placeholder="Search device (e.g., iPhone, Laptop, Battery)..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="block w-full pl-16 pr-6 py-5 border border-gray-600/50 rounded-2xl leading-5 bg-[#222b3b]/90 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#34d399]/50 focus:border-[#34d399] transition-all text-lg shadow-inner"
+              />
+            </div>
+          </motion.div>
+        </div>
 
         {selectedDevice && (
           <motion.div
@@ -428,26 +453,6 @@ export default function DeviceSearch({ darkMode }) {
             </div>
           </motion.div>
         )}
-
-        {/* Search Bar */}
-        <motion.div
-          className="mb-8 relative max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search device (e.g., iPhone, Laptop, Battery)..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className={`w-full pl-12 pr-4 py-4 rounded-xl border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 ${darkMode ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
-            />
-          </div>
-        </motion.div>
 
         {/* Search Results */}
         <AnimatePresence mode="wait">
