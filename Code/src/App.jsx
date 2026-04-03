@@ -1,16 +1,20 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import DeviceSearch from './components/DeviceSearch';
-import NearbyLocations from './components/NearbyLocations';
-import PickupNetwork from './components/PickupNetwork';
-import CircularEconomy from './components/CircularEconomy';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
+
+// Pages
+import Home from './pages/Home';
+import DeviceSearchPage from './pages/DeviceSearchPage';
+import NearbyLocationsPage from './pages/NearbyLocationsPage';
+import PickupNetworkPage from './pages/PickupNetworkPage';
+import CircularEconomyPage from './pages/CircularEconomyPage';
+
 import './index.css';
 
-function App() {
+function AppContent() {
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
     return saved ? JSON.parse(saved) : false;
@@ -18,6 +22,7 @@ function App() {
 
   const [notification, setNotification] = useState(null);
   const [notificationType, setNotificationType] = useState('success');
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
@@ -43,24 +48,26 @@ function App() {
   };
 
   const handleSearchClick = () => {
-    document.getElementById('device-search')?.scrollIntoView({ behavior: 'smooth' });
+    navigate('/device-search');
   };
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
       <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <motion.main
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Hero onSearchClick={handleSearchClick} darkMode={darkMode} />
-        <DeviceSearch darkMode={darkMode} />
-        <NearbyLocations darkMode={darkMode} />
-        <PickupNetwork darkMode={darkMode} onNotification={handleNotification} />
-        <CircularEconomy darkMode={darkMode} />
-      </motion.main>
+        <Routes>
+          <Route path="/" element={<Home darkMode={darkMode} onSearchClick={handleSearchClick} />} />
+          <Route path="/device-search" element={<DeviceSearchPage darkMode={darkMode} />} />
+          <Route path="/nearby-locations" element={<NearbyLocationsPage darkMode={darkMode} />} />
+          <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />
+          <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
+        </Routes>
+      </motion.div>
 
       <Footer darkMode={darkMode} />
 
@@ -73,4 +80,13 @@ function App() {
   );
 }
 
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
+
 export default App;
+
