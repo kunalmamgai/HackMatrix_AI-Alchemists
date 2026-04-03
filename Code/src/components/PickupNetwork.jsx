@@ -103,7 +103,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
       case 1:
         return formData.deviceType && formData.condition && formData.quantity;
       case 2:
-        return formData.pickupType;
+        return formData.pickupType && ['recycler', 'repairer', 'trust'].includes(formData.pickupType);
       case 3:
         return formData.name && formData.phone && formData.address;
       default:
@@ -293,7 +293,10 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                   <motion.button
                     key={step}
                     type="button"
-                    onClick={() => setCurrentStep(step)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentStep(step);
+                    }}
                     disabled={!isStepComplete(step - 1) && step > 1}
                     className={`flex flex-col items-center ${step <= currentStep
                         ? 'opacity-100 cursor-pointer'
@@ -354,7 +357,10 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                             <motion.button
                               key={type}
                               type="button"
-                              onClick={() => setFormData({ ...formData, deviceType: type })}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setFormData({ ...formData, deviceType: type });
+                              }}
                               className={`p-3 rounded-lg transition-all ${formData.deviceType === type
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
                                   : darkMode
@@ -379,7 +385,10 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                             <motion.button
                               key={condition}
                               type="button"
-                              onClick={() => setFormData({ ...formData, condition })}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                setFormData({ ...formData, condition });
+                              }}
                               className={`p-3 rounded-lg transition-all ${formData.condition === condition
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
                                   : darkMode
@@ -466,7 +475,10 @@ export default function PickupNetwork({ darkMode, onNotification }) {
 
                             <motion.button
                               type="button"
-                              onClick={() => selectPartnerFromCarousel(partner.id)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                selectPartnerFromCarousel(partner.id);
+                              }}
                               className={`w-full py-3 px-4 rounded-lg font-semibold transition-all ${formData.pickupType === partner.id
                                   ? 'bg-eco-500 text-white shadow-glow'
                                   : darkMode
@@ -567,7 +579,10 @@ export default function PickupNetwork({ darkMode, onNotification }) {
               <div className="flex justify-between pt-8 border-t border-gray-300">
                 <motion.button
                   type="button"
-                  onClick={() => setCurrentStep(Math.max(1, currentStep - 1))}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setCurrentStep(Math.max(1, currentStep - 1));
+                  }}
                   disabled={currentStep === 1}
                   className={`px-6 py-2 rounded-lg font-medium transition-all ${currentStep === 1
                       ? 'opacity-50 cursor-not-allowed'
@@ -584,10 +599,9 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                 {currentStep !== 3 ? (
                   <motion.button
                     type="button"
-                    onClick={() => {
-                      if (isStepComplete(currentStep)) {
-                        setCurrentStep(currentStep + 1);
-                      }
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCurrentStep(currentStep + 1);
                     }}
                     disabled={!isStepComplete(currentStep)}
                     className={`px-6 py-2 rounded-lg font-medium flex items-center space-x-2 transition-all ${isStepComplete(currentStep)
