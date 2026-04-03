@@ -104,9 +104,9 @@ export default function Footer({ darkMode }) {
           viewport={{ once: true }}
         >
           {[
-            { icon: Mail, title: 'Email', content: 'contact@ecowaste.com' },
-            { icon: Phone, title: 'Phone', content: '+1 (555) 123-4567' },
-            { icon: MapPin, title: 'Address', content: '123 Green St, Earth City, EC 12345' },
+            { icon: Mail, title: 'Email', content: 'kunalmamgai@gmail.com' },
+            { icon: Phone, title: 'Phone', content: '+918077827990' },
+            { icon: MapPin, title: 'Address', content: 'Delhi Headquarters, India' },
           ].map((contact, index) => (
             <motion.div
               key={index}

@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Minimize2, RotateCcw, RotateCw, Leaf, Zap, Droplet, Trophy, Lightbulb, Heart } from 'lucide-react';
 
 export default function CircularEconomy({ darkMode }) {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -280,6 +283,7 @@ export default function CircularEconomy({ darkMode }) {
           </p>
           <motion.button
             className="btn-primary"
+            onClick={() => navigate('/')}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

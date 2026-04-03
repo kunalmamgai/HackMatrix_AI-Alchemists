@@ -97,7 +97,7 @@ const DISPOSABLES = [
     id: 9,
     name: 'AirPods Max',
     category: 'Headphones',
-    price: '₹,260',
+    price: '₹260',
     icon: Headphones,
     image: 'https://beebom.com/wp-content/uploads/2019/11/AirPods-Pro-Repair-website.jpg?w=750&quality=75',
     color: 'from-red-400 to-rose-600',
