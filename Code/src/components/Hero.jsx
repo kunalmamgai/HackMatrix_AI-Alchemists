@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Search, Zap } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero({ onSearchClick, darkMode, transparentBackground = false }) {
+  const navigate = useNavigate();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -122,6 +125,7 @@ export default function Hero({ onSearchClick, darkMode, transparentBackground = 
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </motion.button>
             <motion.button
+              onClick={() => navigate('/pickup-network')}
               className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 border-2 ${darkMode ? 'border-eco-600 text-eco-400 hover:bg-eco-600/20' : 'border-eco-600 text-eco-600 hover:bg-eco-50'}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Leaf, Moon, Sun } from 'lucide-react';
+import { Menu, X, Leaf, Moon, Sun, LogIn } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -51,6 +51,16 @@ export default function Navbar({ darkMode, setDarkMode }) {
           {/* Theme Toggle and Mobile Menu */}
           <div className="flex items-center space-x-4">
             <motion.button
+              onClick={() => navigate('/login')}
+              className="hidden md:inline-flex px-4 py-2 rounded-lg font-semibold text-white bg-gradient-eco hover:shadow-glow transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <LogIn size={18} className="mr-2" />
+              Login
+            </motion.button>
+
+            <motion.button
               onClick={() => setDarkMode(!darkMode)}
               className={`p-2 rounded-lg transition-colors ${darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-700'}`}
               whileHover={{ scale: 1.1 }}
@@ -82,6 +92,16 @@ export default function Navbar({ darkMode, setDarkMode }) {
           className={`md:hidden border-t ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'}`}
         >
           <div className="px-4 pt-2 pb-3 space-y-1">
+            <motion.button
+              onClick={() => {
+                navigate('/login');
+                setIsOpen(false);
+              }}
+              className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 bg-gradient-eco text-white hover:opacity-90"
+            >
+              <LogIn size={18} />
+              <span>Login</span>
+            </motion.button>
             {navItems.map((item, index) => (
               <Link
                 key={index}
