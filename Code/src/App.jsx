@@ -20,10 +20,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import './index.css';
 
 function AppContent() {
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : false;
-  });
+  const [darkMode] = useState(true);
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem('isLoggedIn') === 'true';
@@ -34,13 +31,9 @@ function AppContent() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
+    localStorage.setItem('darkMode', 'true');
+    document.documentElement.classList.add('dark');
+  }, []);
 
   useEffect(() => {
     if (notification) {
@@ -61,8 +54,8 @@ function AppContent() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+    <div className="min-h-screen bg-gray-900 text-white transition-colors duration-300 dark">
+      <Navbar darkMode={true} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <motion.div
         initial={{ opacity: 0 }}

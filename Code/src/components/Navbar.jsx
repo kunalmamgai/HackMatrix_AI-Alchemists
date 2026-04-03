@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Menu, X, Leaf, Moon, Sun, LogIn, LogOut } from 'lucide-react';
+import { Menu, X, Leaf, LogIn, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedIn }) {
+export default function Navbar({ darkMode, isLoggedIn, setIsLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedI
   };
 
   return (
-    <nav className={`fixed w-full top-0 z-50 ${darkMode ? 'bg-gray-900/95 backdrop-blur-md border-b border-gray-700' : 'bg-white/95 backdrop-blur-md border-b border-gray-200'} shadow-lg`}>
+    <nav className="fixed w-full top-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-700 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
@@ -37,7 +37,7 @@ export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedI
               <div className="w-10 h-10 bg-gradient-eco rounded-xl flex items-center justify-center">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
-              <span className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>EcoWaste</span>
+              <span className="text-xl font-bold text-white">EcoWaste</span>
             </motion.div>
           </Link>
 
@@ -46,7 +46,7 @@ export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedI
             {navItems.map((item, index) => (
               <Link key={index} to={item.href}>
                 <motion.div
-                  className={`font-medium transition-colors hover:text-eco-500 ${darkMode ? 'text-gray-300 hover:text-eco-400' : 'text-gray-700'}`}
+                  className="font-medium text-gray-300 transition-colors hover:text-eco-400"
                   whileHover={{ scale: 1.05 }}
                 >
                   {item.label}
@@ -79,23 +79,14 @@ export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedI
               </motion.button>
             )}
 
-            <motion.button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-lg transition-colors ${darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-700'}`}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {darkMode ? <Sun size={20} /> : <Moon size={20} />}
-            </motion.button>
-
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden p-2"
             >
               {isOpen ? (
-                <X className={darkMode ? 'text-white' : 'text-gray-900'} size={24} />
+                <X className="text-white" size={24} />
               ) : (
-                <Menu className={darkMode ? 'text-white' : 'text-gray-900'} size={24} />
+                <Menu className="text-white" size={24} />
               )}
             </button>
           </div>
@@ -108,7 +99,7 @@ export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedI
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className={`md:hidden border-t ${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'}`}
+          className="md:hidden border-t bg-gray-800 border-gray-700"
         >
           <div className="px-4 pt-2 pb-3 space-y-1">
             {isLoggedIn ? (
