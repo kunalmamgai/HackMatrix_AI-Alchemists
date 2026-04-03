@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-MONGO_URI = "mongodb://localhost:27017"
+MONGO_URI = "mongodb+srv://<heritage_user>:<Team_Neural>@hackmatrix.hr0cabu.mongodb.net/?appName=HackMatrix"
 
 client = MongoClient(MONGO_URI)
 db = client["ewaste_db"]

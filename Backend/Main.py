@@ -1,9 +1,5 @@
-from fastapi import FastAPI
-<<<<<<< HEAD
-from routes import device_routes, center_routes
-=======
+﻿from fastapi import FastAPI
 from Routes import Device_Routes, Center_Routes
->>>>>>> 063a5b8e2a3c2b451ed52efdebb025942cfd6883
 
 app = FastAPI(title="E-Scrape Mart API")
 
