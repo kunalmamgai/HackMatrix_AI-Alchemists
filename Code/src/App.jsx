@@ -4,10 +4,18 @@ import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
+import ChatBot from './components/ChatBot';
 import { CartProvider } from './context/CartContext';
+
+// Pages
+import Home from './pages/Home';
+import DeviceSearchPage from './pages/DeviceSearchPage';
+import NearbyLocationsPage from './pages/NearbyLocationsPage';
+import PickupNetworkPage from './pages/PickupNetworkPage';
 import CircularEconomyPage from './pages/CircularEconomyPage';
 import DisposablesPage from './pages/DisposablesPage';
 import LoginPage from './pages/LoginPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 import './index.css';
 
@@ -69,10 +77,13 @@ function AppContent() {
           <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
           <Route path="/disposables" element={<DisposablesPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
           <Route path="/login" element={<LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/checkout" element={isLoggedIn ? <CheckoutPage darkMode={darkMode} /> : <LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
       </motion.div>
 
       <Footer darkMode={darkMode} />
+
+      <ChatBot darkMode={darkMode} />
 
       <Toast
         message={notification}
@@ -86,7 +97,9 @@ function AppContent() {
 function App() {
   return (
     <BrowserRouter>
-      <AppContent />
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
     </BrowserRouter>
   );
 }
