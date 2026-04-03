@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Smartphone, Laptop, Battery, Headphones, TabletSmartphone, Monitor, ShoppingCart, Heart } from 'lucide-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
 const DISPOSABLES = [
   {
