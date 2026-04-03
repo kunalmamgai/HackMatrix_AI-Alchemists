@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, AlertCircle, Zap, Smartphone, Battery, Laptop, Headphones, TabletSmartphone, Trash2, RotateCcw, X, Upload, Trash } from 'lucide-react';
 
@@ -150,6 +151,7 @@ export default function DeviceSearch({ darkMode }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [filteredDevices, setFilteredDevices] = useState([]);
+  const navigate = useNavigate();
   const [deviceImages, setDeviceImages] = useState(() => {
     const saved = localStorage.getItem('deviceImages');
     return saved ? JSON.parse(saved) : {};
@@ -304,7 +306,7 @@ export default function DeviceSearch({ darkMode }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title mb-4">Device Disposal Guide</h2>
-          <p className="section-subtitle">
+          <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
             Search for your device to get personalized disposal instructions and safety tips
           </p>
         </motion.div>
@@ -504,8 +506,8 @@ export default function DeviceSearch({ darkMode }) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <button className="btn-primary flex-1">Find Recycling Centers</button>
-                <button className="btn-secondary flex-1">Schedule Pickup</button>
+                <button onClick={() => navigate('/nearby-locations')} className="btn-primary flex-1">Find Recycling Centers</button>
+                <button onClick={() => navigate('/pickup-network')} className="btn-secondary flex-1">Schedule Pickup</button>
               </motion.div>
             </motion.div>
           ) : searchTerm ? (

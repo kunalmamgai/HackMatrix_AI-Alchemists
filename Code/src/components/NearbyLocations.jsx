@@ -283,7 +283,7 @@ export default function NearbyLocations({ darkMode }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title mb-4">Find Nearby Recycling Centers</h2>
-          <p className="section-subtitle">
+          <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
             Locate certified e-waste recycling centers near you with real-time information
           </p>
         </motion.div>

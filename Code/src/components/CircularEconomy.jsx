@@ -73,7 +73,7 @@ export default function CircularEconomy({ darkMode }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title mb-4">The Circular Economy in Action</h2>
-          <p className="section-subtitle">
+          <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
             Understanding how we transform e-waste into value through a sustainable circular model
           </p>
         </motion.div>
