@@ -53,7 +53,7 @@ export default function Footer({ darkMode }) {
           {/* Brand Column */}
           <motion.div variants={itemVariants}>
             <div className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              🌍 E-Scarpe Mart
+              🌍 E-Scrape Mart
             </div>
             <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
               Making e-waste disposal smart, accessible, and sustainable for everyone.
@@ -138,7 +138,7 @@ export default function Footer({ darkMode }) {
           viewport={{ once: true }}
         >
           <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            © {currentYear} E-Scarpe Mart. All rights reserved. | Our Mission: Dispose Smarter. Reuse Better. Save the Planet.
+            © {currentYear} E-Scrape Mart. All rights reserved. | Our Mission: Dispose Smarter. Reuse Better. Save the Planet.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className={`text-sm hover:text-eco-500 transition-colors ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>

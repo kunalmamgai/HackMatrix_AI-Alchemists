@@ -96,7 +96,7 @@ const MOCK_LOCATIONS = [
   },
   {
     id: 8,
-    name: 'E-Scarpe Mart Jaipur',
+    name: 'E-Scrape Mart Jaipur',
     distance: 3.5,
     rating: 4.6,
     reviews: 267,
