@@ -78,6 +78,8 @@ export default function Navbar({ darkMode, setDarkMode, isLoggedIn, setIsLoggedI
                 Login
               </motion.button>
             )}
+
+            <motion.button
               onClick={() => setDarkMode(!darkMode)}
               className={`p-2 rounded-lg transition-colors ${darkMode ? 'bg-gray-800 text-yellow-400' : 'bg-gray-100 text-gray-700'}`}
               whileHover={{ scale: 1.1 }}
