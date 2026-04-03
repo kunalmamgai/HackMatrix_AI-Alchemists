@@ -5,9 +5,14 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
 import { CartProvider } from './context/CartContext';
+import Home from './pages/Home';
+import DeviceSearchPage from './pages/DeviceSearchPage';
+import NearbyLocationsPage from './pages/NearbyLocationsPage';
+import PickupNetworkPage from './pages/PickupNetworkPage';
 import CircularEconomyPage from './pages/CircularEconomyPage';
 import DisposablesPage from './pages/DisposablesPage';
 import LoginPage from './pages/LoginPage';
+import CheckoutPage from './pages/CheckoutPage';
 
 import './index.css';
 
@@ -68,6 +73,7 @@ function AppContent() {
           <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />
           <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
           <Route path="/disposables" element={<DisposablesPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
+          <Route path="/checkout" element={<CheckoutPage darkMode={darkMode} />} />
           <Route path="/login" element={<LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
       </motion.div>
@@ -86,7 +92,9 @@ function AppContent() {
 function App() {
   return (
     <BrowserRouter>
-      <AppContent />
+      <CartProvider>
+        <AppContent />
+      </CartProvider>
     </BrowserRouter>
   );
 }

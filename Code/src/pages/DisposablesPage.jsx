@@ -109,6 +109,8 @@ const DISPOSABLES = [
 export default function DisposablesPage({ darkMode }) {
   const [wishlist, setWishlist] = useState(new Set());
   const [filter, setFilter] = useState('All');
+  const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const categories = ['All', 'Smartphone', 'Laptop', 'Headphones', 'Monitor', 'Battery', 'Tablet'];
 
@@ -124,6 +126,11 @@ export default function DisposablesPage({ darkMode }) {
       newWishlist.add(id);
     }
     setWishlist(newWishlist);
+  };
+
+  const handleBuy = (product) => {
+    addToCart(product);
+    navigate('/checkout');
   };
 
   const containerVariants = {
@@ -283,6 +290,7 @@ export default function DisposablesPage({ darkMode }) {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        onClick={() => handleBuy(product)}
                         className="flex-1 bg-gradient-eco text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
                       >
                         <ShoppingCart size={18} />
