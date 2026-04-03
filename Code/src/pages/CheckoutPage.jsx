@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ArrowLeft, CreditCard, HelpCircle, Check } from 'lucide-react';
 
-export default function CheckoutPage({ darkMode }) {
+export default function CheckoutPage({ darkMode, isLoggedIn }) {
   const navigate = useNavigate();
   const { cartItems, removeFromCart, updateQuantity, clearCart, getTotalPrice } = useCart();
   const [paymentMethod, setPaymentMethod] = useState('card');
@@ -34,6 +34,32 @@ export default function CheckoutPage({ darkMode }) {
       navigate('/disposables');
     }, 3000);
   };
+
+  if (!isLoggedIn) {
+    return (
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className={`min-h-screen flex items-center justify-center pt-20 px-4 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+      >
+        <div className={`text-center p-8 rounded-2xl shadow-xl max-w-md ${darkMode ? 'bg-gray-800' : 'bg-white'}`}>
+          <h2 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            Login Required
+          </h2>
+          <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-6`}>
+            Please login first to continue with checkout.
+          </p>
+          <button
+            onClick={() => navigate('/login')}
+            className="bg-gradient-eco text-white font-semibold py-2.5 px-5 rounded-lg hover:shadow-lg transition-all"
+          >
+            Go to Login
+          </button>
+        </div>
+      </motion.main>
+    );
+  }
 
   if (orderPlaced) {
     return (

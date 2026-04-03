@@ -106,7 +106,7 @@ const DISPOSABLES = [
   },
 ];
 
-export default function DisposablesPage({ darkMode }) {
+export default function DisposablesPage({ darkMode, isLoggedIn }) {
   const [wishlist, setWishlist] = useState(new Set());
   const [filter, setFilter] = useState('All');
   const navigate = useNavigate();
@@ -129,6 +129,11 @@ export default function DisposablesPage({ darkMode }) {
   };
 
   const handleBuy = (product) => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
     addToCart(product);
     navigate('/checkout');
   };
@@ -294,7 +299,7 @@ export default function DisposablesPage({ darkMode }) {
                         className="flex-1 bg-gradient-eco text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
                       >
                         <ShoppingCart size={18} />
-                        <span className="hidden sm:inline">Buy</span>
+                        <span className="hidden sm:inline">{isLoggedIn ? 'Buy' : 'Login to Buy'}</span>
                       </motion.button>
                     </div>
                   </div>

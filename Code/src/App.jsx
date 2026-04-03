@@ -73,7 +73,7 @@ function AppContent() {
           <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />
           <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
           <Route path="/disposables" element={<DisposablesPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
-          <Route path="/checkout" element={<CheckoutPage darkMode={darkMode} />} />
+          <Route path="/checkout" element={<CheckoutPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
           <Route path="/login" element={<LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
       </motion.div>
