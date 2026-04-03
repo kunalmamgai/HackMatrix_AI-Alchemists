@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
-import { Smartphone, Laptop, Battery, Headphones, TabletSmartphone, Monitor, ShoppingCart, Heart } from 'lucide-react';
-import { useState } from 'react';
+import { Smartphone, Laptop, Battery, Headphones, TabletSmartphone, Monitor, ShoppingCart, Heart, Trash2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const DISPOSABLES = [
   {
@@ -125,15 +125,46 @@ const DISPOSABLES = [
   },
 ];
 
+const CUSTOM_DISPOSABLES_KEY = 'customDisposables';
+
+const iconByCategory = {
+  Smartphone,
+  Laptop,
+  Battery,
+  Headphones,
+  Tablet: TabletSmartphone,
+  Monitor,
+};
+
+const getCategoryIcon = (category) => iconByCategory[category] || Smartphone;
+
 export default function DisposablesPage({ darkMode }) {
   const [wishlist, setWishlist] = useState(new Set());
   const [filter, setFilter] = useState('All');
+  const [customDisposables, setCustomDisposables] = useState([]);
 
-  const categories = ['All', 'Smartphone', 'Laptop', 'Headphones', 'Monitor', 'Battery', 'Tablet'];
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem(CUSTOM_DISPOSABLES_KEY) || '[]');
+    setCustomDisposables(Array.isArray(stored) ? stored : []);
+  }, []);
+
+  const allDisposables = [
+    ...customDisposables.map((item) => ({
+      ...item,
+      icon: getCategoryIcon(item.category),
+      color: item.color || 'from-eco-500 to-ocean-500',
+      stock: Number(item.stock) || 1,
+      condition: item.condition || 'Good',
+      isCustom: true,
+    })),
+    ...DISPOSABLES,
+  ];
+
+  const categories = ['All', ...new Set(allDisposables.map((item) => item.category))];
 
   const filteredProducts = filter === 'All' 
-    ? DISPOSABLES 
-    : DISPOSABLES.filter(item => item.category === filter);
+    ? allDisposables 
+    : allDisposables.filter(item => item.category === filter);
 
   const toggleWishlist = (id) => {
     const newWishlist = new Set(wishlist);
@@ -143,6 +174,18 @@ export default function DisposablesPage({ darkMode }) {
       newWishlist.add(id);
     }
     setWishlist(newWishlist);
+  };
+
+  const handleRemoveCustomDisposable = (id) => {
+    const updated = customDisposables.filter((item) => item.id !== id);
+    setCustomDisposables(updated);
+    localStorage.setItem(CUSTOM_DISPOSABLES_KEY, JSON.stringify(updated));
+
+    setWishlist((prev) => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
   };
 
   const containerVariants = {
@@ -222,7 +265,7 @@ export default function DisposablesPage({ darkMode }) {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
         >
           {filteredProducts.map((product, index) => {
-            const Icon = product.icon;
+            const Icon = product.icon || getCategoryIcon(product.category);
             const isWishlisted = wishlist.has(product.id);
 
             return (
@@ -236,9 +279,14 @@ export default function DisposablesPage({ darkMode }) {
                     darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
                   }`}
                 >
-                  {/* Icon Background */}
-                  <div className={`h-40 bg-gradient-to-br ${product.color} flex items-center justify-center relative overflow-hidden`}>
-                    <Icon className="w-16 h-16 text-white opacity-80" />
+                  <div className={`h-40 relative overflow-hidden ${!product.image ? `bg-gradient-to-br ${product.color}` : ''}`}>
+                    {product.image ? (
+                      <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="h-full w-full flex items-center justify-center">
+                        <Icon className="w-16 h-16 text-white opacity-80" />
+                      </div>
+                    )}
 
                     {/* Stock Badge */}
                     <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold text-gray-900">
@@ -289,14 +337,26 @@ export default function DisposablesPage({ darkMode }) {
                     {/* Price and Button */}
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-2xl font-bold text-eco-500">{product.price}</span>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex-1 bg-gradient-eco text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
-                      >
-                        <ShoppingCart size={18} />
-                        <span className="hidden sm:inline">Buy</span>
-                      </motion.button>
+                      {product.isCustom ? (
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => handleRemoveCustomDisposable(product.id)}
+                          className="flex-1 bg-red-500 text-white font-semibold py-2 px-3 rounded-lg hover:bg-red-600 transition-all flex items-center justify-center gap-2"
+                        >
+                          <Trash2 size={18} />
+                          <span className="hidden sm:inline">Remove</span>
+                        </motion.button>
+                      ) : (
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="flex-1 bg-gradient-eco text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                        >
+                          <ShoppingCart size={18} />
+                          <span className="hidden sm:inline">Buy</span>
+                        </motion.button>
+                      )}
                     </div>
                   </div>
                 </div>

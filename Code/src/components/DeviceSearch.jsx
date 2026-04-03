@@ -144,6 +144,8 @@ const DEVICE_DATABASE = [
   },
 ];
 
+const CUSTOM_DISPOSABLES_KEY = 'customDisposables';
+
 export default function DeviceSearch({ darkMode }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDevice, setSelectedDevice] = useState(null);
@@ -152,7 +154,17 @@ export default function DeviceSearch({ darkMode }) {
     const saved = localStorage.getItem('deviceImages');
     return saved ? JSON.parse(saved) : {};
   });
+  const [newDisposable, setNewDisposable] = useState({
+    name: '',
+    category: 'Smartphone',
+    price: '',
+    condition: 'Good',
+    stock: '1',
+  });
+  const [newDisposableImage, setNewDisposableImage] = useState('');
+  const [addStatus, setAddStatus] = useState('');
   const fileInputRef = useRef(null);
+  const addFileInputRef = useRef(null);
 
   useEffect(() => {
     if (searchTerm.trim() === '') {
@@ -198,6 +210,86 @@ export default function DeviceSearch({ darkMode }) {
     }
   };
 
+  const formatInrPrice = (value) => {
+    const amount = Number(value);
+    if (!Number.isFinite(amount) || amount <= 0) {
+      return '';
+    }
+
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0,
+    }).format(amount);
+  };
+
+  const handleNewDisposableChange = (field, value) => {
+    setNewDisposable((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleNewDisposableImageUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const base64 = event.target?.result;
+      if (typeof base64 === 'string') {
+        setNewDisposableImage(base64);
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleRemoveNewDisposableImage = () => {
+    setNewDisposableImage('');
+    if (addFileInputRef.current) {
+      addFileInputRef.current.value = '';
+    }
+  };
+
+  const handleAddDisposable = () => {
+    if (!newDisposable.name.trim() || !newDisposable.price) {
+      setAddStatus('Please provide at least a device name and price.');
+      return;
+    }
+
+    const formattedPrice = formatInrPrice(newDisposable.price);
+    if (!formattedPrice) {
+      setAddStatus('Please enter a valid price in rupees.');
+      return;
+    }
+
+    const nextItem = {
+      id: Date.now(),
+      name: newDisposable.name.trim(),
+      category: newDisposable.category,
+      price: formattedPrice,
+      condition: newDisposable.condition,
+      stock: Math.max(1, Number(newDisposable.stock) || 1),
+      image: newDisposableImage,
+      color: 'from-eco-500 to-ocean-500',
+    };
+
+    const existing = JSON.parse(localStorage.getItem(CUSTOM_DISPOSABLES_KEY) || '[]');
+    localStorage.setItem(CUSTOM_DISPOSABLES_KEY, JSON.stringify([nextItem, ...existing]));
+
+    setNewDisposable({
+      name: '',
+      category: 'Smartphone',
+      price: '',
+      condition: 'Good',
+      stock: '1',
+    });
+    setNewDisposableImage('');
+    if (addFileInputRef.current) {
+      addFileInputRef.current.value = '';
+    }
+    setAddStatus('Device added to Disposables tab successfully.');
+  };
+
   return (
     <section
       id="device-search"
@@ -216,6 +308,124 @@ export default function DeviceSearch({ darkMode }) {
             Search for your device to get personalized disposal instructions and safety tips
           </p>
         </motion.div>
+
+        {selectedDevice && (
+          <motion.div
+            className={`mb-12 card ${darkMode ? 'bg-gray-700' : ''}`}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+          <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            Add Device To Disposables
+          </h3>
+          <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            Add product information and upload an image. It will appear in the Disposables tab.
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Device Name"
+              value={newDisposable.name}
+              onChange={(e) => handleNewDisposableChange('name', e.target.value)}
+              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+            />
+
+            <input
+              type="number"
+              min="1"
+              placeholder="Price in Rupees (e.g. 12000)"
+              value={newDisposable.price}
+              onChange={(e) => handleNewDisposableChange('price', e.target.value)}
+              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+            />
+
+            <select
+              value={newDisposable.category}
+              onChange={(e) => handleNewDisposableChange('category', e.target.value)}
+              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+            >
+              <option value="Smartphone">Smartphone</option>
+              <option value="Laptop">Laptop</option>
+              <option value="Battery">Battery</option>
+              <option value="Headphones">Headphones</option>
+              <option value="Tablet">Tablet</option>
+              <option value="Monitor">Monitor</option>
+            </select>
+
+            <select
+              value={newDisposable.condition}
+              onChange={(e) => handleNewDisposableChange('condition', e.target.value)}
+              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+            >
+              <option value="Excellent">Excellent</option>
+              <option value="Like New">Like New</option>
+              <option value="Very Good">Very Good</option>
+              <option value="Good">Good</option>
+              <option value="Fair">Fair</option>
+            </select>
+
+            <input
+              type="number"
+              min="1"
+              placeholder="Stock"
+              value={newDisposable.stock}
+              onChange={(e) => handleNewDisposableChange('stock', e.target.value)}
+              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+            />
+
+            <div>
+              <motion.button
+                type="button"
+                onClick={() => addFileInputRef.current?.click()}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={`w-full py-3 rounded-lg border-2 border-dashed font-semibold transition-colors ${
+                  darkMode
+                    ? 'border-eco-500 text-eco-300 hover:bg-gray-600'
+                    : 'border-eco-500 text-eco-700 hover:bg-eco-50'
+                }`}
+              >
+                {newDisposableImage ? 'Change Uploaded Image' : 'Upload Product Image'}
+              </motion.button>
+              <input
+                ref={addFileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleNewDisposableImageUpload}
+                className="hidden"
+              />
+            </div>
+          </div>
+
+          {newDisposableImage && (
+            <div className="mt-4 relative rounded-lg overflow-hidden max-w-xs">
+              <img src={newDisposableImage} alt="New disposable" className="w-full h-40 object-cover" />
+              <button
+                type="button"
+                onClick={handleRemoveNewDisposableImage}
+                className="absolute top-2 right-2 bg-black/70 text-white p-1.5 rounded-full hover:bg-black/85 transition-colors"
+                aria-label="Remove uploaded image"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          )}
+
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:items-center">
+              <button onClick={handleAddDisposable} className="btn-primary">
+                Add To Disposables
+              </button>
+              {addStatus && (
+                <p className={`text-sm ${addStatus.includes('successfully') ? 'text-eco-500' : 'text-red-500'}`}>
+                  {addStatus}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        )}
 
         {/* Search Bar */}
         <motion.div
@@ -254,133 +464,6 @@ export default function DeviceSearch({ darkMode }) {
                 <X size={18} />
                 <span>Back to search</span>
               </button>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                {/* Device Info Card with Image Upload */}
-                <motion.div
-                  className={`card ${darkMode ? 'bg-gray-700' : ''}`}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    {deviceImages[selectedDevice.id] || selectedDevice.image ? (
-                      <div className={`w-14 h-14 rounded-xl overflow-hidden ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
-                        <img
-                          src={deviceImages[selectedDevice.id] || selectedDevice.image}
-                          alt={selectedDevice.name}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="p-3 rounded-xl bg-gradient-eco">
-                        <selectedDevice.icon className="w-8 h-8 text-white" />
-                      </div>
-                    )}
-                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      selectedDevice.disposal.type === 'Hazardous'
-                        ? 'bg-red-100 text-red-700'
-                        : selectedDevice.disposal.type === 'Reuse/Recycle'
-                        ? 'bg-blue-100 text-blue-700'
-                        : 'bg-eco-100 text-eco-700'
-                    }`}>
-                      {selectedDevice.disposal.type}
-                    </span>
-                  </div>
-                  <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                    {selectedDevice.name}
-                  </h3>
-                  <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    Category: {selectedDevice.category}
-                  </p>
-
-                  {/* Image Upload Area */}
-                  <div className="mb-4">
-                    {deviceImages[selectedDevice.id] || selectedDevice.image ? (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className={`relative rounded-lg overflow-hidden mb-3 ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}
-                      >
-                        <img
-                          src={deviceImages[selectedDevice.id] || selectedDevice.image}
-                          alt={selectedDevice.name}
-                          className="w-full h-48 object-cover"
-                        />
-                        {deviceImages[selectedDevice.id] && (
-                          <motion.button
-                            onClick={handleRemoveImage}
-                            className="absolute top-2 right-2 p-2 rounded-lg bg-red-500 hover:bg-red-600 text-white transition-colors"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Trash size={18} />
-                          </motion.button>
-                        )}
-                      </motion.div>
-                    ) : null}
-
-                    <motion.button
-                      onClick={() => fileInputRef.current?.click()}
-                      className={`w-full py-3 rounded-lg border-2 border-dashed transition-colors flex items-center justify-center gap-2 font-semibold ${
-                        deviceImages[selectedDevice.id]
-                          ? darkMode
-                            ? 'border-gray-500 text-gray-400 hover:border-eco-500 hover:text-eco-400'
-                            : 'border-gray-300 text-gray-600 hover:border-eco-500 hover:text-eco-500'
-                          : darkMode
-                          ? 'border-eco-500 text-eco-400 hover:bg-gray-600'
-                          : 'border-eco-500 text-eco-600 hover:bg-eco-50'
-                      }`}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <Upload size={18} />
-                      {deviceImages[selectedDevice.id] ? 'Change Image' : 'Upload Device Image'}
-                    </motion.button>
-
-                    <input
-                      ref={fileInputRef}
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      className="hidden"
-                    />
-                  </div>
-
-                  <div className={`p-3 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-eco-50'}`}>
-                    <p className={`text-sm font-semibold ${darkMode ? 'text-eco-300' : 'text-eco-700'}`}>
-                      💰 {selectedDevice.disposal.value}
-                    </p>
-                  </div>
-                </motion.div>
-
-                {/* Safety Tips */}
-                <motion.div
-                  className={`card ${darkMode ? 'bg-gray-700' : ''}`}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                  <div className="flex items-center space-x-2 mb-4">
-                    <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0" />
-                    <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Safety Tips</h4>
-                  </div>
-                  <ul className="space-y-2">
-                    {selectedDevice.disposal.safety.map((tip, index) => (
-                      <motion.li
-                        key={index}
-                        className={`text-sm flex items-start space-x-2 ${darkMode ? 'text-gray-400' : 'text-gray-700'}`}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <span className="text-amber-500 font-bold mt-0.5">•</span>
-                        <span>{tip}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </div>
 
               {/* Disposal Steps */}
               <motion.div
@@ -524,6 +607,7 @@ export default function DeviceSearch({ darkMode }) {
             </motion.div>
           )}
         </AnimatePresence>
+
       </div>
     </section>
   );
