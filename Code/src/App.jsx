@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -28,7 +28,6 @@ function AppContent() {
 
   const [notification, setNotification] = useState(null);
   const [notificationType, setNotificationType] = useState('success');
-  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem('darkMode', 'true');
@@ -49,10 +48,6 @@ function AppContent() {
     setNotificationType(type);
   };
 
-  const handleSearchClick = () => {
-    navigate('/device-search');
-  };
-
   return (
     <div className="min-h-screen bg-gray-900 text-white transition-colors duration-300 dark">
       <Navbar darkMode={true} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
@@ -63,7 +58,7 @@ function AppContent() {
         transition={{ duration: 0.5 }}
       >
         <Routes>
-          <Route path="/" element={<Home darkMode={darkMode} onSearchClick={handleSearchClick} />} />
+          <Route path="/" element={<Home darkMode={darkMode} />} />
           <Route path="/device-search" element={<DeviceSearchPage darkMode={darkMode} />} />
           <Route path="/nearby-locations" element={<NearbyLocationsPage darkMode={darkMode} />} />
           <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />

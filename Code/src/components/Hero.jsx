@@ -1,9 +1,40 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Search, Zap } from 'lucide-react';
+import { Search, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { devices } from '../data/devices';
 
-export default function Hero({ onSearchClick, darkMode, transparentBackground = false }) {
+export default function Hero({ darkMode, transparentBackground = false }) {
   const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  const trimmedQuery = query.trim().toLowerCase();
+  const suggestions = trimmedQuery
+    ? devices
+        .filter(
+          (device) =>
+            device.name.toLowerCase().includes(trimmedQuery) ||
+            device.category.toLowerCase().includes(trimmedQuery)
+        )
+        .slice(0, 5)
+    : [];
+
+  const handleSelectDevice = (device) => {
+    setShowSuggestions(false);
+    setQuery('');
+    navigate(`/device-search?q=${encodeURIComponent(device.name)}`);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && trimmedQuery) {
+      e.preventDefault();
+      setShowSuggestions(false);
+      navigate(`/device-search?q=${encodeURIComponent(trimmedQuery)}`);
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false);
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -112,18 +143,47 @@ export default function Hero({ onSearchClick, darkMode, transparentBackground = 
             Join millions in responsible e-waste disposal. Find recycling centers, schedule pickups, and participate in our circular economy network.
           </motion.p>
 
-          {/* CTA Buttons */}
-          <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-4 justify-center mb-12">
-            <motion.button
-              onClick={onSearchClick}
-              className="btn-primary flex items-center justify-center space-x-2 group"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Search size={20} />
-              <span>Search Device</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+          {/* Quick Search + CTA */}
+          <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
+            <div className="relative w-full md:w-[420px]">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Search size={20} className="text-gray-400" />
+              </div>
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+                onKeyDown={handleKeyDown}
+                placeholder="Search a device, e.g. Laptop, Battery..."
+                aria-label="Search the device disposal guide"
+                className="w-full pl-12 pr-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 bg-white/95 backdrop-blur border-2 border-eco-500/60 focus:outline-none focus:ring-2 focus:ring-eco-400 shadow-lg"
+              />
+
+              {showSuggestions && suggestions.length > 0 && (
+                <motion.ul
+                  initial={{ opacity: 0, y: -6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute z-20 mt-2 w-full bg-gray-800/95 backdrop-blur-md border border-gray-600 rounded-xl shadow-2xl overflow-hidden text-left"
+                >
+                  {suggestions.map((device) => (
+                    <li key={device.id}>
+                      <button
+                        type="button"
+                        onMouseDown={() => handleSelectDevice(device)}
+                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-700 transition-colors text-left"
+                      >
+                        <device.icon className="w-4 h-4 text-eco-400 flex-shrink-0" />
+                        <span className="text-sm text-white">{device.name}</span>
+                        <span className="ml-auto text-xs text-gray-400">{device.category}</span>
+                      </button>
+                    </li>
+                  ))}
+                </motion.ul>
+              )}
+            </div>
+
             <motion.button
               onClick={() => navigate('/pickup-network')}
               className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 border-2 ${darkMode ? 'border-eco-600 text-eco-400 hover:bg-eco-600/20' : 'border-eco-600 text-eco-600 hover:bg-eco-50'}`}

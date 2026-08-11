@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
 import DeviceSearch from '../components/DeviceSearch';
 
 export default function DeviceSearchPage({ darkMode }) {
+  const [searchParams] = useSearchParams();
+  const initialQuery = searchParams.get('q') || '';
+
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -9,7 +13,7 @@ export default function DeviceSearchPage({ darkMode }) {
       transition={{ duration: 0.5 }}
     >
       <div className="pt-20">
-        <DeviceSearch darkMode={darkMode} />
+        <DeviceSearch key={initialQuery} darkMode={darkMode} initialQuery={initialQuery} />
       </div>
     </motion.main>
   );

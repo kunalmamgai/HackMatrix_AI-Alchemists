@@ -1,75 +1,11 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Smartphone, Laptop, Battery, Headphones, TabletSmartphone, Monitor } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
-
-const DISPOSABLES = [
-  {
-    id: 1,
-    name: 'iPhone 12',
-    category: 'Smartphone',
-    price: '$450',
-    icon: Smartphone,
-    color: 'from-blue-400 to-blue-600',
-  },
-  {
-    id: 2,
-    name: 'MacBook Pro 2020',
-    category: 'Laptop',
-    price: '$1,200',
-    icon: Laptop,
-    color: 'from-gray-400 to-gray-600',
-  },
-  {
-    id: 3,
-    name: 'Used Battery Pack',
-    category: 'Battery',
-    price: '$25',
-    icon: Battery,
-    color: 'from-yellow-400 to-yellow-600',
-  },
-  {
-    id: 4,
-    name: 'Sony Headphones',
-    category: 'Headphones',
-    price: '$180',
-    icon: Headphones,
-    color: 'from-purple-400 to-purple-600',
-  },
-  {
-    id: 5,
-    name: 'iPad Air 2022',
-    category: 'Tablet',
-    price: '$350',
-    icon: TabletSmartphone,
-    color: 'from-pink-400 to-pink-600',
-  },
-  {
-    id: 6,
-    name: 'Dell Monitor 4K',
-    category: 'Monitor',
-    price: '$280',
-    icon: Monitor,
-    color: 'from-green-400 to-green-600',
-  },
-  {
-    id: 7,
-    name: 'Samsung Phone',
-    category: 'Smartphone',
-    price: '$320',
-    icon: Smartphone,
-    color: 'from-blue-500 to-cyan-500',
-  },
-  {
-    id: 8,
-    name: 'HP Laptop',
-    category: 'Laptop',
-    price: '$600',
-    icon: Laptop,
-    color: 'from-indigo-400 to-indigo-600',
-  },
-];
+import { useNavigate } from 'react-router-dom';
+import { products } from '../data/products';
 
 export default function DisposablesBar({ darkMode }) {
+  const navigate = useNavigate();
   const scrollContainerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -109,9 +45,17 @@ export default function DisposablesBar({ darkMode }) {
       } backdrop-blur-md`}
     >
       <div className="max-w-7xl mx-auto">
-        <h3 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-          💚 Available Disposables
-        </h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            💚 Available Disposables
+          </h3>
+          <button
+            onClick={() => navigate('/disposables')}
+            className={`text-sm font-semibold transition-colors ${darkMode ? 'text-eco-400 hover:text-eco-300' : 'text-eco-600 hover:text-eco-700'}`}
+          >
+            View All →
+          </button>
+        </div>
 
         <div className="relative group">
           {/* Left Scroll Button */}
@@ -136,52 +80,60 @@ export default function DisposablesBar({ darkMode }) {
             style={{ scrollBehavior: 'smooth', scrollbarWidth: 'none' }}
           >
             <div className="flex gap-4 pb-2">
-              {DISPOSABLES.map((item, index) => {
-                const Icon = item.icon;
-                return (
+              {products.map((item, index) => (
+                <motion.div
+                  key={item.id}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  className="flex-shrink-0"
+                >
                   <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.05 }}
-                    className="flex-shrink-0"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    onClick={() => navigate('/disposables')}
+                    className={`w-48 p-4 rounded-xl cursor-pointer transition-all ${
+                      darkMode ? 'bg-gray-700/50 border border-gray-600' : 'bg-white border border-gray-300'
+                    }`}
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      className={`w-48 p-4 rounded-xl cursor-pointer transition-all ${
-                        darkMode ? 'bg-gray-700/50 border border-gray-600' : 'bg-white border border-gray-300'
-                      }`}
-                    >
-                      {/* Icon Background */}
+                    {/* Image or Icon */}
+                    {item.image ? (
+                      <div className="w-12 h-12 rounded-lg overflow-hidden mb-3">
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+                      </div>
+                    ) : (
                       <div
                         className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-3`}
                       >
-                        <Icon className="w-6 h-6 text-white" />
+                        <item.icon className="w-6 h-6 text-white" />
                       </div>
+                    )}
 
-                      {/* Product Info */}
-                      <h4 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                        {item.name}
-                      </h4>
-                      <p className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                        {item.category}
-                      </p>
+                    {/* Product Info */}
+                    <h4 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      {item.name}
+                    </h4>
+                    <p className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      {item.category}
+                    </p>
 
-                      {/* Price */}
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg font-bold text-eco-500">{item.price}</span>
-                        <motion.button
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="px-2 py-1 text-xs rounded bg-eco-500 text-white hover:bg-eco-600 transition-colors"
-                        >
-                          View
-                        </motion.button>
-                      </div>
-                    </motion.div>
+                    {/* Price */}
+                    <div className="flex items-center justify-between">
+                      <span className="text-lg font-bold text-eco-500">{item.price}</span>
+                      <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate('/disposables');
+                        }}
+                        className="px-2 py-1 text-xs rounded bg-eco-500 text-white hover:bg-eco-600 transition-colors"
+                      >
+                        View
+                      </motion.button>
+                    </div>
                   </motion.div>
-                );
-              })}
+                </motion.div>
+              ))}
             </div>
           </div>
 
