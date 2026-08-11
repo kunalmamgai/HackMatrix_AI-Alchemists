@@ -1,5 +1,11 @@
-from Configrations.mongoDB import device_collection, center_collection
+from Configrations.mongoDB import get_device_collection, get_center_collection
+
 
 class db:
-    device_collection = device_collection
-    center_collection = center_collection
+    @property
+    def device_collection(self):
+        return get_device_collection()
+
+    @property
+    def center_collection(self):
+        return get_center_collection()

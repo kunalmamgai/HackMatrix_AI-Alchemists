@@ -252,15 +252,35 @@ Backend will run at `http://127.0.0.1:8000`.
 
 ### 3) Database Configuration
 
-The MongoDB connection is configured in `Backend/Configrations/mongoDB.py`.
+The MongoDB connection is read from the `MONGO_URI` environment variable in `Backend/Configrations/mongoDB.py`.
 
-Replace placeholder credentials in the `MONGO_URI` string with valid values before production use.
+- **Locally:** if `MONGO_URI` is not set, the code falls back to the placeholder URI in that file.
+- **In production (Vercel):** set `MONGO_URI` in Project → Settings → Environment Variables; never commit real credentials.
 
 ## Run Both Together
 
 1. Start backend server.
 2. Start frontend dev server.
 3. Open frontend URL and use the UI; frontend and backend can evolve independently.
+
+## Deploying to Vercel
+
+The repo ships a root `vercel.json` that builds **both** apps in one project:
+
+- `Code/package.json` → `@vercel/static-build` (Vite frontend, `dist/` output).
+- `Backend/Main.py` → `@vercel/python` (FastAPI, served as an ASGI function).
+- Routes: `/devices/*` and `/centers/*` go to the API; everything else is rewritten to the SPA's `index.html`.
+
+Steps:
+
+1. Push the repo to GitHub and import it in Vercel (Root Directory stays `/`).
+2. In Project → Settings → Environment Variables, add `MONGO_URI` with your real Atlas connection string.
+3. Deploy. The API lives at `/devices/` and `/centers/` on the same origin as the frontend.
+
+Notes:
+
+- `Backend/Main.py` adds its own directory to `sys.path` so absolute imports (`Routes`, `Services`, `config`, …) work however Vercel loads the file.
+- The Mongo connection is lazy (`get_device_collection()` / `get_center_collection()` in `Configrations/mongoDB.py`), so a cold start never fails just because the database is unreachable.
 
 ## End-to-End User Flow
 
