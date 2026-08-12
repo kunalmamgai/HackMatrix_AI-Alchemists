@@ -72,6 +72,20 @@ h1, h2, h3, h4, h5 {
 }
 
 /* Animation keyframes */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.text-gradient-shimmer {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;

@@ -7,7 +7,7 @@ import DisposablesBar from '../components/DisposablesBar';
 import CircularEconomyTeaser from '../components/CircularEconomyTeaser';
 import DrawerEstimator from '../components/DrawerEstimator';
 import HomeCta from '../components/HomeCta';
-import homeVideo from '../assets/home.mp4';
+import HeroAurora from '../components/HeroAurora';
 
 // MapTeaser pulls in Leaflet (~150 KB) — keep it out of the first paint
 // by loading it as its own chunk once the page mounts.
@@ -38,16 +38,9 @@ export default function Home() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Hero with video background */}
-      <div className="relative min-h-screen overflow-hidden">
-        <video
-          className="absolute inset-0 h-full w-full scale-105 object-cover blur-[2px] md:blur-[3px] brightness-[0.72] saturate-[0.9]"
-          src={homeVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-        />
+      {/* Hero with WebGL aurora background */}
+      <div className="relative min-h-screen overflow-hidden bg-forest-900">
+        <HeroAurora />
 
         <div
           className="absolute inset-0 bg-gradient-hero"

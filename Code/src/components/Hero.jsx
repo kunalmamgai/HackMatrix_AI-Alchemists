@@ -1,12 +1,43 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
+import { motion, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Search, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { devices } from '../data/devices';
 
 export default function Hero({ transparentBackground = false }) {
   const navigate = useNavigate();
+  const sectionRef = useRef(null);
   const [query, setQuery] = useState('');
+
+  // Scroll parallax — the hero drifts up and fades as it scrolls past.
+  // Driven by a motion value (no re-renders, no framer-motion container warning)
+  // and mapped across the hero's own height so the effect is 0→1 per viewport.
+  const rawProgress = useMotionValue(0);
+  const contentY = useTransform(rawProgress, [0, 1], [0, -90]);
+  const contentOpacity = useTransform(rawProgress, [0, 0.75], [1, 0]);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const rect = el.getBoundingClientRect();
+      const height = rect.height || 1;
+      rawProgress.set(Math.min(1, Math.max(0, -rect.top / height)));
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [rawProgress]);
+
+  // Cursor-follow glow
+  const glowX = useMotionValue(-500);
+  const glowY = useMotionValue(-500);
+  const springX = useSpring(glowX, { stiffness: 45, damping: 18, mass: 0.6 });
+  const springY = useSpring(glowY, { stiffness: 45, damping: 18, mass: 0.6 });
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const trimmedQuery = query.trim().toLowerCase();
@@ -74,40 +105,35 @@ export default function Hero({ transparentBackground = false }) {
     },
   };
 
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    glowX.set(e.clientX - rect.left - 220);
+    glowY.set(e.clientY - rect.top - 220);
+  };
+
   return (
-    <section 
+    <section
+      ref={sectionRef}
       id="hero"
+      onMouseMove={handleMouseMove}
       className={`relative min-h-screen flex items-center justify-center pt-20 overflow-hidden ${transparentBackground ? 'bg-transparent' : 'bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50'}`}
     >
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Animated gradient orbs */}
-        <motion.div
-          className="absolute top-10 left-10 w-72 h-72 bg-gradient-eco rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-          animate={{
-            x: [0, 50, -50, 0],
-            y: [0, 50, -50, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-        <motion.div
-          className="absolute bottom-10 right-10 w-72 h-72 bg-gradient-to-r from-ocean-400 to-eco-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-          animate={{
-            x: [0, -50, 50, 0],
-            y: [0, -50, 50, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: 'linear',
-          }}
-        />
-      </div>
+      {/* Cursor-follow glow above the aurora, below the content */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 z-[5] h-[440px] w-[440px] rounded-full opacity-25 blur-3xl mix-blend-screen"
+        style={{
+          x: springX,
+          y: springY,
+          background: 'radial-gradient(circle, rgba(224,165,39,0.6) 0%, rgba(46,93,70,0.4) 45%, transparent 70%)',
+        }}
+      />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <motion.div
+        style={{ y: contentY, opacity: contentOpacity }}
+        className="relative z-10 w-full"
+      >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div
           className="text-center"
           variants={containerVariants}
@@ -128,7 +154,7 @@ export default function Hero({ transparentBackground = false }) {
             className={`text-5xl md:text-7xl font-bold mb-6 leading-tight text-white`}
           >
             Dispose Smarter. <br />
-            <span className="bg-gradient-to-r from-eco-300 to-ocean-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-eco-300 to-ocean-300 bg-clip-text text-transparent text-gradient-shimmer">
               Reuse Better.
             </span>
             <br />
@@ -194,31 +220,6 @@ export default function Hero({ transparentBackground = false }) {
             </motion.button>
           </motion.div>
 
-          {/* Featured Stats */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-3 gap-4 max-w-2xl mx-auto"
-          >
-            {[
-              { number: '5000+', label: 'Recycling Centers' },
-              { number: '2M+', label: 'Devices Recycled' },
-              { number: '500K', label: 'Active Users' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className={`p-4 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md`}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="text-2xl md:text-3xl font-bold text-eco-500 mb-1">
-                  {stat.number}
-                </div>
-                <div className={`text-sm text-ink-500`}>
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
           {/* Floating Illustration */}
           <motion.div
             variants={floatingVariants}
@@ -249,9 +250,35 @@ export default function Hero({ transparentBackground = false }) {
               />
             </div>
           </motion.div>
+
+          {/* Featured Stats */}
+          <motion.div
+            variants={itemVariants}
+            className="grid grid-cols-3 gap-4 max-w-2xl mx-auto"
+          >
+            {[
+              { number: '5000+', label: 'Recycling Centers' },
+              { number: '2M+', label: 'Devices Recycled' },
+              { number: '500K', label: 'Active Users' },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                className={`p-4 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md`}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="text-2xl md:text-3xl font-bold text-eco-500 mb-1">
+                  {stat.number}
+                </div>
+                <div className={`text-sm text-ink-500`}>
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
         </motion.div>
       </div>
-
+      </motion.div>
     </section>
   );
 }

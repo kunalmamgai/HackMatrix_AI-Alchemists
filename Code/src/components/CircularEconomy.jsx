@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { Minimize2, RotateCcw, RotateCw, Leaf, Zap, Droplet, Trophy, Lightbulb, Heart } from 'lucide-react';
+import { Minimize2, RotateCcw, RotateCw, Leaf, Zap, Droplet, Trophy } from 'lucide-react';
 
 export default function CircularEconomy() {
   const navigate = useNavigate();
@@ -54,12 +54,6 @@ export default function CircularEconomy() {
     { icon: Zap, value: '80%', label: 'Energy Saved' },
     { icon: Droplet, value: '250M', label: 'Liters Water Saved' },
     { icon: Trophy, value: '1000+', label: 'Devices Renewed' },
-  ];
-
-  const environmentalBenefit = [
-    { icon: Lightbulb, label: 'Innovation' },
-    { icon: Heart, label: 'Community' },
-    { icon: Leaf, label: 'Nature' },
   ];
 
   return (
