@@ -1,32 +1,9 @@
-import { motion, animate, useInView } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import { MapPin, BookOpen, Package, Recycle } from 'lucide-react';
+import CountUp from './CountUp';
 import { centers } from '../data/centers';
 import { devices } from '../data/devices';
 import { products } from '../data/products';
-
-function CountUp({ target, suffix = '' }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-60px' });
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    if (!inView) return;
-    const controls = animate(0, target, {
-      duration: 1.8,
-      ease: 'easeOut',
-      onUpdate: (v) => setDisplay(Math.round(v)),
-    });
-    return () => controls.stop();
-  }, [inView, target]);
-
-  return (
-    <span ref={ref}>
-      {display.toLocaleString('en-IN')}
-      {suffix}
-    </span>
-  );
-}
 
 export default function ImpactStats({ darkMode }) {
   const stats = [

@@ -5,6 +5,7 @@ import HomeFeatures from '../components/HomeFeatures';
 import ImpactStats from '../components/ImpactStats';
 import DisposablesBar from '../components/DisposablesBar';
 import CircularEconomyTeaser from '../components/CircularEconomyTeaser';
+import DrawerEstimator from '../components/DrawerEstimator';
 import HomeCta from '../components/HomeCta';
 import homeVideo from '../assets/home.mp4';
 
@@ -67,6 +68,7 @@ export default function Home({ darkMode }) {
       </Suspense>
       <DisposablesBar darkMode={darkMode} />
       <CircularEconomyTeaser darkMode={darkMode} />
+      <DrawerEstimator darkMode={darkMode} />
       <HomeCta darkMode={darkMode} />
     </motion.main>
   );
