@@ -14,7 +14,7 @@ export default function ImpactStats() {
   ];
 
   return (
-    <section id="impact" className={`py-20 bg-gray-900`}>
+    <section id="impact" className={`py-20 bg-cream-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -23,10 +23,10 @@ export default function ImpactStats() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
             Impact in <span className="text-eco-500">Numbers</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-gray-400`}>
+          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
             Real numbers from our network — and the scale of the e-waste challenge we are up against.
           </p>
         </motion.div>
@@ -35,7 +35,7 @@ export default function ImpactStats() {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-gray-800 border-gray-700`}
+              className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-white border-sage-200`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -45,11 +45,11 @@ export default function ImpactStats() {
               <div className="p-4 rounded-xl bg-gradient-eco w-fit mx-auto mb-4">
                 <stat.icon className="w-7 h-7 text-white" />
               </div>
-              <div className={`text-4xl font-bold mb-2 text-eco-300`}>
+              <div className={`text-4xl font-bold mb-2 text-eco-600`}>
                 <CountUp target={stat.target} suffix={stat.suffix} />
               </div>
-              <p className={`font-semibold mb-1 text-white`}>{stat.label}</p>
-              <p className={`text-sm text-gray-400`}>{stat.note}</p>
+              <p className={`font-semibold mb-1 text-ink-900`}>{stat.label}</p>
+              <p className={`text-sm text-ink-500`}>{stat.note}</p>
             </motion.div>
           ))}
         </div>

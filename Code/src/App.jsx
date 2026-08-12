@@ -58,7 +58,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white transition-colors duration-300 dark">
+    <div className="min-h-screen bg-cream-50 text-ink-900 transition-colors duration-300 dark">
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <motion.div

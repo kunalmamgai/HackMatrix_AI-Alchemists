@@ -60,7 +60,7 @@ export default function DisposablesPage({ isLoggedIn }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen pt-20 pb-12 bg-gray-900`}
+      className={`min-h-screen pt-20 pb-12 bg-cream-50`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -70,10 +70,10 @@ export default function DisposablesPage({ isLoggedIn }) {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
             💚 Available Disposables
           </h1>
-          <p className={`text-lg text-gray-400`}>
+          <p className={`text-lg text-ink-500`}>
             Browse our collection of refurbished electronics at great prices
           </p>
         </motion.div>
@@ -94,7 +94,7 @@ export default function DisposablesPage({ isLoggedIn }) {
               className={`px-4 py-2 rounded-full font-semibold transition-all ${
                 filter === category
                   ? 'bg-eco-500 text-white shadow-lg'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  : 'bg-white text-ink-700 hover:bg-sage-100'
               }`}
             >
               {category}
@@ -120,7 +120,7 @@ export default function DisposablesPage({ isLoggedIn }) {
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
                 <div
-                  className={`h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all bg-gray-800 border border-gray-700`}
+                  className={`h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all bg-white border border-sage-200`}
                 >
                   {/* Icon Background */}
                   <div className={`h-40 bg-gradient-to-br ${product.color} flex items-center justify-center relative overflow-hidden`}>
@@ -137,7 +137,7 @@ export default function DisposablesPage({ isLoggedIn }) {
                     )}
 
                     {/* Stock Badge */}
-                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold text-gray-900 z-20">
+                    <div className="absolute top-3 right-3 bg-sage-100/90 backdrop-blur px-3 py-1 rounded-full text-sm font-semibold text-ink-900 z-20">
                       {product.stock} left
                     </div>
 
@@ -146,11 +146,11 @@ export default function DisposablesPage({ isLoggedIn }) {
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => toggleWishlist(product.id)}
-                      className="absolute top-3 left-3 p-2 bg-white/90 backdrop-blur rounded-full hover:bg-white transition-colors z-20"
+                      className="absolute top-3 left-3 p-2 bg-sage-100/90 backdrop-blur rounded-full hover:bg-white transition-colors z-20"
                     >
                       <Heart
                         size={20}
-                        className={isWishlisted ? 'fill-eco-500 text-eco-500' : 'text-gray-400'}
+                        className={isWishlisted ? 'fill-eco-500 text-eco-500' : 'text-ink-500'}
                       />
                     </motion.button>
                   </div>
@@ -162,10 +162,10 @@ export default function DisposablesPage({ isLoggedIn }) {
                       <span
                         className={`text-xs font-bold px-3 py-1 rounded-full ${
                           product.condition === 'Excellent' || product.condition === 'Like New'
-                            ? 'bg-green-100 text-green-700'
+                            ? 'bg-green-100 text-forest-700'
                             : product.condition === 'Very Good'
                             ? 'bg-blue-100 text-blue-700'
-                            : 'bg-yellow-100 text-yellow-700'
+                            : 'bg-gold-100 text-gold-700'
                         }`}
                       >
                         {product.condition}
@@ -173,12 +173,12 @@ export default function DisposablesPage({ isLoggedIn }) {
                     </motion.div>
 
                     {/* Product Name */}
-                    <h3 className={`font-bold text-lg mb-1 line-clamp-2 text-white`}>
+                    <h3 className={`font-bold text-lg mb-1 line-clamp-2 text-ink-900`}>
                       {product.name}
                     </h3>
 
                     {/* Category */}
-                    <p className={`text-sm mb-4 text-gray-400`}>
+                    <p className={`text-sm mb-4 text-ink-500`}>
                       {product.category}
                     </p>
 
@@ -209,7 +209,7 @@ export default function DisposablesPage({ isLoggedIn }) {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <p className={`text-lg text-gray-400`}>
+            <p className={`text-lg text-ink-500`}>
               No products found in this category
             </p>
           </motion.div>

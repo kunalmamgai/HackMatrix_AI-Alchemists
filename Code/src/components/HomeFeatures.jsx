@@ -39,7 +39,7 @@ export default function HomeFeatures() {
   const navigate = useNavigate();
 
   return (
-    <section id="features" className={`py-20 bg-gray-800`}>
+    <section id="features" className={`py-20 bg-white`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -48,10 +48,10 @@ export default function HomeFeatures() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
             Everything You Need to <span className="text-eco-500">Go Circular</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-gray-400`}>
+          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
             One platform for the whole e-waste journey — from finding a recycler to buying a second-life device.
           </p>
         </motion.div>
@@ -61,7 +61,7 @@ export default function HomeFeatures() {
             <motion.button
               key={feature.title}
               onClick={() => navigate(feature.href)}
-              className={`text-left rounded-2xl p-8 shadow-lg border-2 transition-all bg-gray-900 border-gray-700 hover:border-eco-500`}
+              className={`text-left rounded-2xl p-8 shadow-lg border-2 transition-all bg-cream-50 border-sage-200 hover:border-eco-500`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -71,13 +71,13 @@ export default function HomeFeatures() {
               <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-5">
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className={`text-xl font-bold mb-2 text-white`}>
+              <h3 className={`text-xl font-bold mb-2 text-ink-900`}>
                 {feature.title}
               </h3>
-              <p className={`text-sm mb-4 text-gray-400`}>
+              <p className={`text-sm mb-4 text-ink-500`}>
                 {feature.description}
               </p>
-              <span className={`inline-flex items-center gap-1 text-sm font-semibold text-eco-400`}>
+              <span className={`inline-flex items-center gap-1 text-sm font-semibold text-eco-600`}>
                 Explore <ArrowRight size={16} />
               </span>
             </motion.button>

@@ -32,17 +32,17 @@ export default function LoginPage({ setIsLoggedIn }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 bg-gray-900`}
+      className={`min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 bg-cream-50`}
     >
-      <div className={`max-w-md w-full space-y-8 p-10 rounded-3xl shadow-2xl bg-gray-800 border border-gray-700`}>
+      <div className={`max-w-md w-full space-y-8 p-10 rounded-3xl shadow-2xl bg-white border border-sage-200`}>
         <div className="text-center">
           <div className="mx-auto w-16 h-16 bg-gradient-eco rounded-2xl flex items-center justify-center shadow-lg mb-6">
             <LogIn className="w-8 h-8 text-white" />
           </div>
-          <h2 className={`text-3xl font-extrabold text-white`}>
+          <h2 className={`text-3xl font-extrabold text-ink-900`}>
             Welcome Back
           </h2>
-          <p className={`mt-2 text-sm text-gray-400`}>
+          <p className={`mt-2 text-sm text-ink-500`}>
             Sign in to access your account and make purchases.
           </p>
         </div>
@@ -56,36 +56,36 @@ export default function LoginPage({ setIsLoggedIn }) {
 
           <div className="space-y-4">
             <div>
-              <label className={`block text-sm font-medium mb-1 text-gray-300`}>
+              <label className={`block text-sm font-medium mb-1 text-ink-700`}>
                 Email Address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className={`h-5 w-5 text-gray-500`} />
+                  <User className={`h-5 w-5 text-ink-400`} />
                 </div>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); setError(''); }}
-                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors border-gray-600 text-white placeholder-gray-500 focus:border-eco-500`}
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors border-sage-200 text-ink-900 placeholder-ink-400 focus:border-eco-500`}
                   placeholder="you@example.com"
                 />
               </div>
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 text-gray-300`}>
+              <label className={`block text-sm font-medium mb-1 text-ink-700`}>
                 Password
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className={`h-5 w-5 text-gray-500`} />
+                  <Lock className={`h-5 w-5 text-ink-400`} />
                 </div>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => { setPassword(e.target.value); setError(''); }}
-                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors border-gray-600 text-white placeholder-gray-500 focus:border-eco-500`}
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors border-sage-200 text-ink-900 placeholder-ink-400 focus:border-eco-500`}
                   placeholder="••••••••"
                 />
               </div>
@@ -98,9 +98,9 @@ export default function LoginPage({ setIsLoggedIn }) {
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
-                className="h-4 w-4 text-eco-600 focus:ring-eco-500 border-gray-300 rounded"
+                className="h-4 w-4 text-eco-600 focus:ring-eco-500 border-sage-300 rounded"
               />
-              <label htmlFor="remember-me" className={`ml-2 block text-sm text-gray-300`}>
+              <label htmlFor="remember-me" className={`ml-2 block text-sm text-ink-700`}>
                 Remember me
               </label>
             </div>
@@ -117,7 +117,7 @@ export default function LoginPage({ setIsLoggedIn }) {
             className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-gradient-eco hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-eco-500 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-              <Lock className="h-5 w-5 text-green-200 group-hover:text-white transition-colors" />
+              <Lock className="h-5 w-5 text-white/70 group-hover:text-white transition-colors" />
             </span>
             Sign In
             <ArrowRight className="ml-2 h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />

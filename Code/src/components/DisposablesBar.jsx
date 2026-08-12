@@ -40,16 +40,16 @@ export default function DisposablesBar() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`relative w-full px-4 py-6 bg-gray-800/50 border-b border-gray-700 backdrop-blur-md`}
+      className={`relative w-full px-4 py-6 bg-sage-100/50 border-b border-sage-200 backdrop-blur-md`}
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-4">
-          <h3 className={`text-lg font-bold text-white`}>
+          <h3 className={`text-lg font-bold text-ink-900`}>
             💚 Available Disposables
           </h3>
           <button
             onClick={() => navigate('/disposables')}
-            className={`text-sm font-semibold transition-colors text-eco-400 hover:text-eco-300`}
+            className={`text-sm font-semibold transition-colors text-eco-600 hover:text-eco-500`}
           >
             View All →
           </button>
@@ -62,9 +62,9 @@ export default function DisposablesBar() {
               onClick={() => scroll('left')}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md bg-gray-900/80 hover:bg-gray-800 transition-colors`}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md bg-cream-50/80 hover:bg-white transition-colors`}
             >
-              <ChevronLeft className={'text-white'} size={24} />
+              <ChevronLeft className={'text-ink-900'} size={24} />
             </motion.button>
           )}
 
@@ -87,7 +87,7 @@ export default function DisposablesBar() {
                   <motion.div
                     whileHover={{ scale: 1.05, y: -5 }}
                     onClick={() => navigate('/disposables')}
-                    className={`w-48 p-4 rounded-xl cursor-pointer transition-all bg-gray-700/50 border border-gray-600`}
+                    className={`w-48 p-4 rounded-xl cursor-pointer transition-all bg-sage-100/50 border border-sage-200`}
                   >
                     {/* Image or Icon */}
                     {item.image ? (
@@ -98,15 +98,15 @@ export default function DisposablesBar() {
                       <div
                         className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-3`}
                       >
-                        <item.icon className="w-6 h-6 text-white" />
+                        <item.icon className="w-6 h-6 text-ink-900" />
                       </div>
                     )}
 
                     {/* Product Info */}
-                    <h4 className={`font-semibold text-sm mb-1 text-white`}>
+                    <h4 className={`font-semibold text-sm mb-1 text-ink-900`}>
                       {item.name}
                     </h4>
-                    <p className={`text-xs mb-2 text-gray-400`}>
+                    <p className={`text-xs mb-2 text-ink-500`}>
                       {item.category}
                     </p>
 
@@ -137,9 +137,9 @@ export default function DisposablesBar() {
               onClick={() => scroll('right')}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md bg-gray-900/80 hover:bg-gray-800 transition-colors`}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md bg-cream-50/80 hover:bg-white transition-colors`}
             >
-              <ChevronRight className={'text-white'} size={24} />
+              <ChevronRight className={'text-ink-900'} size={24} />
             </motion.button>
           )}
         </div>

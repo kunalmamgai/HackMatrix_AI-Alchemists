@@ -33,7 +33,7 @@ export default function Toast({ message, type = 'success', onClose }) {
             <span className="font-medium flex-1">{message}</span>
             <button
               onClick={onClose}
-              className="hover:bg-white/20 rounded-lg p-1 transition-colors"
+              className="hover:bg-sage-100/20 rounded-lg p-1 transition-colors"
             >
               <X size={18} />
             </button>

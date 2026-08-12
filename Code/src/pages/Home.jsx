@@ -15,16 +15,16 @@ const MapTeaser = lazy(() => import('../components/MapTeaser'));
 
 function MapTeaserSkeleton() {
   return (
-    <section className="py-20 bg-gray-900" aria-hidden="true">
+    <section className="py-20 bg-cream-50" aria-hidden="true">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="h-10 w-2/3 max-w-md mx-auto rounded-full bg-gray-800 animate-pulse mb-14" />
+        <div className="h-10 w-2/3 max-w-md mx-auto rounded-full bg-white animate-pulse mb-14" />
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           <div className="space-y-4">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-16 rounded-xl bg-gray-800 animate-pulse" />
+              <div key={i} className="h-16 rounded-xl bg-white animate-pulse" />
             ))}
           </div>
-          <div className="h-[420px] rounded-2xl bg-gray-800 animate-pulse" />
+          <div className="h-[420px] rounded-2xl bg-white animate-pulse" />
         </div>
       </div>
     </section>
@@ -50,7 +50,7 @@ export default function Home() {
         />
 
         <div
-          className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/35 to-black/55"
+          className="absolute inset-0 bg-gradient-hero"
           aria-hidden="true"
         />
         <div className="absolute inset-0 backdrop-blur-[1px]" aria-hidden="true" />

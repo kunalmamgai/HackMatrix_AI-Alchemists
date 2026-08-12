@@ -7,19 +7,19 @@ const steps = [
     icon: Minimize2,
     title: 'Reduce',
     text: 'Buy only what you need — less manufacturing, lower carbon footprint.',
-    color: 'from-blue-400 to-blue-600',
+    color: 'from-eco-500 to-eco-700',
   },
   {
     icon: RotateCcw,
     title: 'Reuse',
     text: 'Repair, refurbish, and donate to keep devices alive longer.',
-    color: 'from-eco-400 to-eco-600',
+    color: 'from-gold-500 to-gold-700',
   },
   {
     icon: RotateCw,
     title: 'Recycle',
     text: 'Certified recyclers recover valuable metals and keep toxins out of landfills.',
-    color: 'from-ocean-400 to-ocean-600',
+    color: 'from-sage-600 to-sage-800',
   },
 ];
 
@@ -27,7 +27,7 @@ export default function CircularEconomyTeaser() {
   const navigate = useNavigate();
 
   return (
-    <section id="circular-teaser" className={`py-20 bg-gray-800`}>
+    <section id="circular-teaser" className={`py-20 bg-white`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -36,10 +36,10 @@ export default function CircularEconomyTeaser() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
-            The Circular Economy <span className="text-red-500">in Action</span>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
+            The Circular Economy <span className="text-gold-500">in Action</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-gray-400`}>
+          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
             Every device can stay in the loop instead of ending up in a landfill.
           </p>
         </motion.div>
@@ -48,7 +48,7 @@ export default function CircularEconomyTeaser() {
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
-              className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-gray-900 border-gray-700`}
+              className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-cream-50 border-sage-200`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -60,10 +60,10 @@ export default function CircularEconomyTeaser() {
               >
                 <step.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className={`text-2xl font-bold mb-3 text-white`}>
+              <h3 className={`text-2xl font-bold mb-3 text-ink-900`}>
                 {step.title}
               </h3>
-              <p className={`text-sm text-gray-400`}>{step.text}</p>
+              <p className={`text-sm text-ink-500`}>{step.text}</p>
             </motion.div>
           ))}
         </div>

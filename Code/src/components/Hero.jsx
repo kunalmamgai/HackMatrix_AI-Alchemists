@@ -77,7 +77,7 @@ export default function Hero({ transparentBackground = false }) {
   return (
     <section 
       id="hero"
-      className={`relative min-h-screen flex items-center justify-center pt-20 overflow-hidden ${transparentBackground ? 'bg-transparent' : 'bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900'}`}
+      className={`relative min-h-screen flex items-center justify-center pt-20 overflow-hidden ${transparentBackground ? 'bg-transparent' : 'bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50'}`}
     >
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated gradient orbs */}
@@ -128,7 +128,7 @@ export default function Hero({ transparentBackground = false }) {
             className={`text-5xl md:text-7xl font-bold mb-6 leading-tight text-white`}
           >
             Dispose Smarter. <br />
-            <span className="bg-gradient-to-r from-eco-500 to-ocean-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-eco-300 to-ocean-300 bg-clip-text text-transparent">
               Reuse Better.
             </span>
             <br />
@@ -138,7 +138,7 @@ export default function Hero({ transparentBackground = false }) {
           {/* Subheading */}
           <motion.p
             variants={itemVariants}
-            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-300`}
+            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-eco-100/90`}
           >
             Join millions in responsible e-waste disposal. Find recycling centers, schedule pickups, and participate in our circular economy network.
           </motion.p>
@@ -147,7 +147,7 @@ export default function Hero({ transparentBackground = false }) {
           <motion.div variants={itemVariants} className="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
             <div className="relative w-full md:w-[420px]">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search size={20} className="text-gray-400" />
+                <Search size={20} className="text-ink-500" />
               </div>
               <input
                 type="text"
@@ -158,25 +158,25 @@ export default function Hero({ transparentBackground = false }) {
                 onKeyDown={handleKeyDown}
                 placeholder="Search a device, e.g. Laptop, Battery..."
                 aria-label="Search the device disposal guide"
-                className="w-full pl-12 pr-4 py-3 rounded-xl text-gray-900 placeholder-gray-400 bg-white/95 backdrop-blur border-2 border-eco-500/60 focus:outline-none focus:ring-2 focus:ring-eco-400 shadow-lg"
+                className="w-full pl-12 pr-4 py-3 rounded-xl text-ink-900 placeholder-ink-400 bg-sage-100/95 backdrop-blur border-2 border-eco-500/60 focus:outline-none focus:ring-2 focus:ring-eco-400 shadow-lg"
               />
 
               {showSuggestions && suggestions.length > 0 && (
                 <motion.ul
                   initial={{ opacity: 0, y: -6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="absolute z-20 mt-2 w-full bg-gray-800/95 backdrop-blur-md border border-gray-600 rounded-xl shadow-2xl overflow-hidden text-left"
+                  className="absolute z-20 mt-2 w-full bg-sage-100/95 backdrop-blur-md border border-sage-200 rounded-xl shadow-2xl overflow-hidden text-left"
                 >
                   {suggestions.map((device) => (
                     <li key={device.id}>
                       <button
                         type="button"
                         onMouseDown={() => handleSelectDevice(device)}
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-700 transition-colors text-left"
+                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-sage-100 transition-colors text-left"
                       >
                         <device.icon className="w-4 h-4 text-eco-400 flex-shrink-0" />
-                        <span className="text-sm text-white">{device.name}</span>
-                        <span className="ml-auto text-xs text-gray-400">{device.category}</span>
+                        <span className="text-sm text-ink-900">{device.name}</span>
+                        <span className="ml-auto text-xs text-ink-500">{device.category}</span>
                       </button>
                     </li>
                   ))}
@@ -186,7 +186,7 @@ export default function Hero({ transparentBackground = false }) {
 
             <motion.button
               onClick={() => navigate('/pickup-network')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 border-2 border-eco-600 text-eco-400 hover:bg-eco-600/20`}
+              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 border-2 border-white/60 text-white hover:bg-white/10`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -206,13 +206,13 @@ export default function Hero({ transparentBackground = false }) {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className={`p-4 rounded-xl bg-gray-800/50 border border-gray-700 backdrop-blur-md`}
+                className={`p-4 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md`}
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="text-2xl md:text-3xl font-bold text-eco-500 mb-1">
                   {stat.number}
                 </div>
-                <div className={`text-sm text-gray-400`}>
+                <div className={`text-sm text-ink-500`}>
                   {stat.label}
                 </div>
               </motion.div>

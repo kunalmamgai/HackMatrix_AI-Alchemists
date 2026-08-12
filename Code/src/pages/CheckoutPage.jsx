@@ -41,13 +41,13 @@ export default function CheckoutPage({ isLoggedIn }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className={`min-h-screen flex items-center justify-center pt-20 px-4 bg-gray-900`}
+        className={`min-h-screen flex items-center justify-center pt-20 px-4 bg-cream-50`}
       >
-        <div className={`text-center p-8 rounded-2xl shadow-xl max-w-md bg-gray-800`}>
-          <h2 className={`text-2xl font-bold mb-3 text-white`}>
+        <div className={`text-center p-8 rounded-2xl shadow-xl max-w-md bg-white`}>
+          <h2 className={`text-2xl font-bold mb-3 text-ink-900`}>
             Login Required
           </h2>
-          <p className={`text-gray-400 mb-6`}>
+          <p className={`text-ink-500 mb-6`}>
             Please login first to continue with checkout.
           </p>
           <button
@@ -67,16 +67,16 @@ export default function CheckoutPage({ isLoggedIn }) {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className={`min-h-screen flex items-center justify-center pt-20 px-4 bg-gray-900`}
+        className={`min-h-screen flex items-center justify-center pt-20 px-4 bg-cream-50`}
       >
-        <div className={`text-center p-12 rounded-3xl shadow-2xl max-w-md bg-gray-800`}>
+        <div className={`text-center p-12 rounded-3xl shadow-2xl max-w-md bg-white`}>
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} className="mb-6">
             <div className="w-20 h-20 bg-gradient-eco rounded-full flex items-center justify-center mx-auto shadow-lg">
               <Check className="w-10 h-10 text-white" />
             </div>
           </motion.div>
-          <h2 className={`text-3xl font-bold mb-2 text-white`}>Order Placed!</h2>
-          <p className={`text-lg mb-4 text-gray-400`}>
+          <h2 className={`text-3xl font-bold mb-2 text-ink-900`}>Order Placed!</h2>
+          <p className={`text-lg mb-4 text-ink-500`}>
             Your order has been confirmed. Redirecting...
           </p>
         </div>
@@ -89,12 +89,12 @@ export default function CheckoutPage({ isLoggedIn }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen pt-20 pb-12 px-4 bg-gray-900`}
+      className={`min-h-screen pt-20 pb-12 px-4 bg-cream-50`}
     >
       <div className="max-w-6xl mx-auto">
         <button
           onClick={() => navigate('/disposables')}
-          className={`flex items-center space-x-2 mb-8 px-4 py-2 rounded-lg transition-colors text-eco-400 hover:bg-gray-800`}
+          className={`flex items-center space-x-2 mb-8 px-4 py-2 rounded-lg transition-colors text-eco-600 hover:bg-sage-100`}
         >
           <ArrowLeft size={20} />
           <span>Back to Products</span>
@@ -103,13 +103,13 @@ export default function CheckoutPage({ isLoggedIn }) {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className={`rounded-2xl p-8 shadow-xl bg-gray-800`}>
-              <h2 className={`text-2xl font-bold mb-6 text-white`}>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className={`rounded-2xl p-8 shadow-xl bg-white`}>
+              <h2 className={`text-2xl font-bold mb-6 text-ink-900`}>
                 Order Summary
               </h2>
 
               {cartItems.length === 0 ? (
-                <p className={`text-center py-8 text-gray-400`}>
+                <p className={`text-center py-8 text-ink-500`}>
                   Your cart is empty
                 </p>
               ) : (
@@ -119,7 +119,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                       key={item.id}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className={`flex items-center gap-4 p-4 rounded-xl border bg-gray-700 border-gray-600`}
+                      className={`flex items-center gap-4 p-4 rounded-xl border bg-sage-100 border-sage-200`}
                     >
                       <img
                         src={item.image}
@@ -128,10 +128,10 @@ export default function CheckoutPage({ isLoggedIn }) {
                       />
 
                       <div className="flex-1">
-                        <h3 className={`font-bold text-white`}>
+                        <h3 className={`font-bold text-ink-900`}>
                           {item.name}
                         </h3>
-                        <p className={`text-sm text-gray-400`}>
+                        <p className={`text-sm text-ink-500`}>
                           {item.category}
                         </p>
                         <p className={`font-semibold text-eco-500 text-lg`}>
@@ -142,14 +142,14 @@ export default function CheckoutPage({ isLoggedIn }) {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                          className={`p-2 rounded-lg transition-colors bg-gray-600 hover:bg-gray-500`}
+                          className={`p-2 rounded-lg transition-colors bg-sage-200 hover:bg-sage-200`}
                         >
                           <Minus size={16} />
                         </button>
                         <span className="w-8 text-center font-bold">{item.quantity}</span>
                         <button
                           onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                          className={`p-2 rounded-lg transition-colors bg-gray-600 hover:bg-gray-500`}
+                          className={`p-2 rounded-lg transition-colors bg-sage-200 hover:bg-sage-200`}
                         >
                           <Plus size={16} />
                         </button>
@@ -157,7 +157,7 @@ export default function CheckoutPage({ isLoggedIn }) {
 
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className={`p-2 rounded-lg transition-colors text-red-400 hover:bg-gray-700`}
+                        className={`p-2 rounded-lg transition-colors text-red-400 hover:bg-sage-100`}
                       >
                         <Trash2 size={18} />
                       </button>
@@ -169,26 +169,26 @@ export default function CheckoutPage({ isLoggedIn }) {
           </div>
 
           {/* Payment & Summary */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className={`rounded-2xl p-8 shadow-xl h-fit sticky top-24 bg-gray-800`}>
-            <h3 className={`text-xl font-bold mb-6 text-white`}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className={`rounded-2xl p-8 shadow-xl h-fit sticky top-24 bg-white`}>
+            <h3 className={`text-xl font-bold mb-6 text-ink-900`}>
               Payment Details
             </h3>
 
             {/* Pricing Summary */}
-            <div className={`mb-6 pb-4 border-b border-gray-700`}>
-              <div className={`flex justify-between mb-2 text-gray-400`}>
+            <div className={`mb-6 pb-4 border-b border-sage-200`}>
+              <div className={`flex justify-between mb-2 text-ink-500`}>
                 <span>Subtotal:</span>
                 <span>₹{totalPrice}</span>
               </div>
-              <div className={`flex justify-between mb-2 text-gray-400`}>
+              <div className={`flex justify-between mb-2 text-ink-500`}>
                 <span>Tax (5%):</span>
                 <span>₹{Math.round(totalPrice * 0.05)}</span>
               </div>
-              <div className={`flex justify-between mb-2 text-gray-400`}>
+              <div className={`flex justify-between mb-2 text-ink-500`}>
                 <span>Shipping:</span>
                 <span>₹50</span>
               </div>
-              <div className={`flex justify-between pt-4 font-bold text-lg text-white`}>
+              <div className={`flex justify-between pt-4 font-bold text-lg text-ink-900`}>
                 <span>Total:</span>
                 <span className="text-eco-500">₹{totalPrice + Math.round(totalPrice * 0.05) + 50}</span>
               </div>
@@ -198,8 +198,8 @@ export default function CheckoutPage({ isLoggedIn }) {
             <div className="mb-6 space-y-3">
               <label className="flex items-center p-3 rounded-lg border-2 cursor-pointer transition-colors"
                 style={{
-                  borderColor: paymentMethod === 'card' ? '#34d399' : '#4b5563',
-                  backgroundColor: paymentMethod === 'card' ? 'rgba(52, 211, 153, 0.1)' : 'transparent'
+                  borderColor: paymentMethod === 'card' ? '#1e4033' : '#c3d9c0',
+                  backgroundColor: paymentMethod === 'card' ? 'rgba(30, 64, 51, 0.08)' : 'transparent'
                 }}
               >
                 <input
@@ -210,15 +210,15 @@ export default function CheckoutPage({ isLoggedIn }) {
                   className="w-4 h-4"
                 />
                 <CreditCard size={18} className="ml-3 mr-2 text-eco-500" />
-                <span className={`font-semibold text-white`}>
+                <span className={`font-semibold text-ink-900`}>
                   Credit/Debit Card
                 </span>
               </label>
 
               <label className="flex items-center p-3 rounded-lg border-2 cursor-pointer transition-colors"
                 style={{
-                  borderColor: paymentMethod === 'upi' ? '#34d399' : '#4b5563',
-                  backgroundColor: paymentMethod === 'upi' ? 'rgba(52, 211, 153, 0.1)' : 'transparent'
+                  borderColor: paymentMethod === 'upi' ? '#1e4033' : '#c3d9c0',
+                  backgroundColor: paymentMethod === 'upi' ? 'rgba(30, 64, 51, 0.08)' : 'transparent'
                 }}
               >
                 <input
@@ -229,7 +229,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                   className="w-4 h-4"
                 />
                 <HelpCircle size={18} className="ml-3 mr-2 text-eco-500" />
-                <span className={`font-semibold text-white`}>
+                <span className={`font-semibold text-ink-900`}>
                   UPI / Wallet
                 </span>
               </label>
@@ -244,7 +244,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                   placeholder="Cardholder Name"
                   value={cardDetails.cardName}
                   onChange={handleCardChange}
-                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-700 border-gray-600 text-white`}
+                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
                 />
                 <input
                   type="text"
@@ -253,7 +253,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                   len="16"
                   value={cardDetails.cardNumber}
                   onChange={handleCardChange}
-                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-700 border-gray-600 text-white`}
+                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
                 />
                 <div className="grid grid-cols-2 gap-3">
                   <input
@@ -262,7 +262,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                     placeholder="MM/YY"
                     value={cardDetails.expiryDate}
                     onChange={handleCardChange}
-                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-700 border-gray-600 text-white`}
+                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
                   />
                   <input
                     type="text"
@@ -271,7 +271,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                     value={cardDetails.cvv}
                     onChange={handleCardChange}
                     maxLength="3"
-                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-700 border-gray-600 text-white`}
+                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
                   />
                 </div>
               </motion.div>

@@ -39,7 +39,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className={`bg-gray-900 border-t border-gray-800 py-16`}>
+    <footer className={`bg-forest-800 border-t border-forest-700 py-16`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Content */}
@@ -55,7 +55,7 @@ export default function Footer() {
             <div className={`text-2xl font-bold mb-4 text-white`}>
               🌍 E-Scrape Mart
             </div>
-            <p className={`text-sm text-gray-400 mb-4`}>
+            <p className={`text-sm text-eco-100/80 mb-4`}>
               Making e-waste disposal smart, accessible, and sustainable for everyone.
             </p>
             <div className="flex space-x-3">
@@ -63,7 +63,7 @@ export default function Footer() {
                 <motion.a
                   key={index}
                   href="#"
-                  className={`p-2 rounded-lg transition-colors bg-gray-800 text-eco-400 hover:bg-eco-600 hover:text-white`}
+                  className={`p-2 rounded-lg transition-colors bg-white/10 text-white hover:bg-white/20`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -84,7 +84,7 @@ export default function Footer() {
                   <li key={index}>
                     <a
                       href="#"
-                      className={`text-sm transition-colors hover:text-eco-500 text-gray-400 hover:text-eco-400`}
+                      className={`text-sm transition-colors text-eco-100/80 hover:text-white`}
                     >
                       {link}
                     </a>
@@ -97,7 +97,7 @@ export default function Footer() {
 
         {/* Contact Section */}
         <motion.div
-          className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 pb-12 border-b border-gray-800`}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 pb-12 border-b border-sage-200`}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -110,7 +110,7 @@ export default function Footer() {
           ].map((contact, index) => (
             <motion.div
               key={index}
-              className={`p-4 rounded-xl bg-gray-800`}
+              className={`p-4 rounded-xl bg-white`}
               variants={itemVariants}
             >
               <div className="flex items-start space-x-3">
@@ -118,10 +118,10 @@ export default function Footer() {
                   <contact.icon className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h4 className={`font-semibold text-sm text-white`}>
+                  <h4 className={`font-semibold text-sm text-ink-900`}>
                     {contact.title}
                   </h4>
-                  <p className={`text-sm text-gray-400`}>
+                  <p className={`text-sm text-ink-500`}>
                     {contact.content}
                   </p>
                 </div>
@@ -137,17 +137,17 @@ export default function Footer() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <p className={`text-sm text-gray-400`}>
+          <p className={`text-sm text-eco-100/80`}>
             © {currentYear} E-Scrape Mart. All rights reserved. | Our Mission: Dispose Smarter. Reuse Better. Save the Planet.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className={`text-sm hover:text-eco-500 transition-colors text-gray-400`}>
+            <a href="#" className={`text-sm hover:text-white transition-colors text-eco-100/80`}>
               Privacy Policy
             </a>
-            <a href="#" className={`text-sm hover:text-eco-500 transition-colors text-gray-400`}>
+            <a href="#" className={`text-sm hover:text-white transition-colors text-eco-100/80`}>
               Terms of Service
             </a>
-            <a href="#" className={`text-sm hover:text-eco-500 transition-colors text-gray-400`}>
+            <a href="#" className={`text-sm hover:text-white transition-colors text-eco-100/80`}>
               Cookie Settings
             </a>
           </div>

@@ -23,7 +23,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-700 shadow-lg">
+    <nav className="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md border-b border-sage-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           
@@ -37,7 +37,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
               <div className="w-10 h-10 bg-gradient-eco rounded-xl flex items-center justify-center">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-white">E-Scrape Mart</span>
+              <span className="text-xl font-bold text-ink-900">E-Scrape Mart</span>
             </motion.div>
           </Link>
 
@@ -46,7 +46,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
             {navItems.map((item, index) => (
               <Link key={index} to={item.href}>
                 <motion.div
-                  className="font-medium text-gray-300 transition-colors hover:text-eco-400"
+                  className="font-medium text-ink-700 transition-colors hover:text-eco-600"
                   whileHover={{ scale: 1.05 }}
                 >
                   {item.label}
@@ -84,9 +84,9 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
               className="md:hidden p-2"
             >
               {isOpen ? (
-                <X className="text-white" size={24} />
+                <X className="text-ink-900" size={24} />
               ) : (
-                <Menu className="text-white" size={24} />
+                <Menu className="text-ink-900" size={24} />
               )}
             </button>
           </div>
@@ -99,7 +99,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
-          className="md:hidden border-t bg-gray-800 border-gray-700"
+          className="md:hidden border-t bg-white border-sage-200"
         >
           <div className="px-4 pt-2 pb-3 space-y-1">
             {isLoggedIn ? (
@@ -129,7 +129,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
               <Link
                 key={index}
                 to={item.href}
-                className={`block px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-700`}
+                className={`block px-3 py-2 rounded-lg transition-colors text-ink-700 hover:bg-sage-100`}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}

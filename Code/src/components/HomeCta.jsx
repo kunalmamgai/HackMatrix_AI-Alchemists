@@ -6,7 +6,7 @@ export default function HomeCta() {
   const navigate = useNavigate();
 
   return (
-    <section id="home-cta" className={`py-20 bg-gray-900`}>
+    <section id="home-cta" className={`py-20 bg-cream-50`}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="rounded-3xl bg-gradient-eco p-10 md:p-14 text-center text-white shadow-xl"
@@ -30,7 +30,7 @@ export default function HomeCta() {
             </button>
             <button
               onClick={() => navigate('/disposables')}
-              className="inline-flex items-center justify-center gap-2 border-2 border-white/80 text-white font-semibold px-8 py-3 rounded-xl hover:bg-white/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 border-2 border-white/60 text-white font-semibold px-8 py-3 rounded-xl hover:bg-white/10 transition-colors"
             >
               <ShoppingBag size={20} />
               Browse Disposables

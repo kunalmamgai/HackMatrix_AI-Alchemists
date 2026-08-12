@@ -134,7 +134,7 @@ export default function PickupNetwork({ onNotification }) {
   return (
     <section
       id="pickup"
-      className={`py-20 bg-gray-800`}
+      className={`py-20 bg-white`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -144,8 +144,8 @@ export default function PickupNetwork({ onNotification }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title mb-4 text-yellow-300">Pickup & Reuse Network</h2>
-          <p className={`section-subtitle text-gray-400`}>
+          <h2 className="section-title mb-4 text-gold-600">Pickup & Reuse Network</h2>
+          <p className={`section-subtitle text-ink-500`}>
             Schedule a convenient pickup for your used devices and connect with verified recyclers or repair enthusiasts
           </p>
         </motion.div>
@@ -155,7 +155,7 @@ export default function PickupNetwork({ onNotification }) {
           <motion.div
             className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'recycler'
                 ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
-                : 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
+                : 'bg-sage-100 border-2 border-sage-200 hover:border-eco-400'
               }`}
             onClick={() => setFormData({ ...formData, pickupType: 'recycler' })}
             variants={itemVariants}
@@ -164,13 +164,13 @@ export default function PickupNetwork({ onNotification }) {
             <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
               <Truck className="w-6 h-6 text-white" />
             </div>
-            <h3 className={`text-xl font-bold mb-3 text-white`}>
+            <h3 className={`text-xl font-bold mb-3 text-ink-900`}>
               Verified Recycler
             </h3>
-            <p className={`text-sm mb-4 text-gray-400`}>
+            <p className={`text-sm mb-4 text-ink-500`}>
               Professional certified e-waste recycling facility with government certifications
             </p>
-            <ul className={`space-y-2 text-sm text-gray-300`}>
+            <ul className={`space-y-2 text-sm text-ink-700`}>
               <li className="flex items-center space-x-2">
                 <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
                 <span>Certified & insured</span>
@@ -190,7 +190,7 @@ export default function PickupNetwork({ onNotification }) {
           <motion.div
             className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'repairer'
                 ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
-                : 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
+                : 'bg-sage-100 border-2 border-sage-200 hover:border-eco-400'
               }`}
             onClick={() => setFormData({ ...formData, pickupType: 'repairer' })}
             variants={itemVariants}
@@ -199,13 +199,13 @@ export default function PickupNetwork({ onNotification }) {
             <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
               <User className="w-6 h-6 text-white" />
             </div>
-            <h3 className={`text-xl font-bold mb-3 text-white`}>
+            <h3 className={`text-xl font-bold mb-3 text-ink-900`}>
               Repair Enthusiast
             </h3>
-            <p className={`text-sm mb-4 text-gray-400`}>
+            <p className={`text-sm mb-4 text-ink-500`}>
               Community members skilled in repair and refurbishment of used electronics
             </p>
-            <ul className={`space-y-2 text-sm text-gray-300`}>
+            <ul className={`space-y-2 text-sm text-ink-700`}>
               <li className="flex items-center space-x-2">
                 <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
                 <span>Expert community members</span>
@@ -223,19 +223,19 @@ export default function PickupNetwork({ onNotification }) {
 
           {/* Trust & Safety Card */}
           <motion.div
-            className={`rounded-2xl p-8 bg-gray-700 border-2 border-eco-300`}
+            className={`rounded-2xl p-8 bg-sage-100 border-2 border-eco-300`}
             variants={itemVariants}
           >
             <div className="p-4 rounded-xl bg-eco-500 w-fit mb-4">
               <Shield className="w-6 h-6 text-white" />
             </div>
-            <h3 className={`text-xl font-bold mb-3 text-white`}>
+            <h3 className={`text-xl font-bold mb-3 text-ink-900`}>
               Trust & Safety
             </h3>
-            <p className={`text-sm mb-4 text-gray-400`}>
+            <p className={`text-sm mb-4 text-ink-500`}>
               All partners are verified with ratings, reviews, and security certifications
             </p>
-            <ul className={`space-y-2 text-sm text-gray-300`}>
+            <ul className={`space-y-2 text-sm text-ink-700`}>
               <li className="flex items-center space-x-2">
                 <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
                 <span>Verified members only</span>
@@ -254,7 +254,7 @@ export default function PickupNetwork({ onNotification }) {
 
         {/* Pickup Form */}
         <motion.div
-          className={`max-w-2xl mx-auto bg-gray-700 rounded-2xl shadow-xl p-8 border border-gray-600`}
+          className={`max-w-2xl mx-auto bg-sage-100 rounded-2xl shadow-xl p-8 border border-sage-200`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -267,13 +267,13 @@ export default function PickupNetwork({ onNotification }) {
               animate={{ opacity: 1, scale: 1 }}
             >
               <div className="text-5xl mb-4">✅</div>
-              <h3 className={`text-2xl font-bold mb-2 text-white`}>
+              <h3 className={`text-2xl font-bold mb-2 text-ink-900`}>
                 Pickup Scheduled!
               </h3>
-              <p className={`text-lg text-gray-400`}>
+              <p className={`text-lg text-ink-500`}>
                 We've received your request. A {formData.pickupType === 'recycler' ? 'certified recycler' : 'repair enthusiast'} will contact you soon.
               </p>
-              <p className={`text-sm mt-4 text-gray-500`}>
+              <p className={`text-sm mt-4 text-ink-400`}>
                 Confirmation email sent to your phone number
               </p>
             </motion.div>
@@ -300,13 +300,13 @@ export default function PickupNetwork({ onNotification }) {
                     <motion.div
                       className={`w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 ${step <= currentStep
                           ? 'bg-eco-500 text-white'
-                          : 'bg-gray-600 text-gray-300'
+                          : 'bg-sage-200 text-ink-700'
                         }`}
                       whileHover={step <= currentStep ? { scale: 1.1 } : {}}
                     >
                       {step}
                     </motion.div>
-                    <span className={`text-xs font-semibold text-gray-400`}>
+                    <span className={`text-xs font-semibold text-ink-500`}>
                       {step === 1 ? 'Device' : step === 2 ? 'Partner' : 'Details'}
                     </span>
                   </motion.button>
@@ -314,7 +314,7 @@ export default function PickupNetwork({ onNotification }) {
               </div>
 
               {/* Progress Bar */}
-              <div className={`h-1 rounded-full overflow-hidden bg-gray-600`}>
+              <div className={`h-1 rounded-full overflow-hidden bg-sage-200`}>
                 <motion.div
                   className="h-full bg-gradient-eco"
                   initial={{ width: 0 }}
@@ -334,12 +334,12 @@ export default function PickupNetwork({ onNotification }) {
                       exit={{ opacity: 0, x: -20 }}
                       className="space-y-4"
                     >
-                      <h3 className={`text-lg font-bold text-white`}>
+                      <h3 className={`text-lg font-bold text-ink-900`}>
                         What device are you disposing?
                       </h3>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
+                        <label className={`block text-sm font-semibold mb-2 text-ink-700`}>
                           Device Type
                         </label>
                         <div className="grid grid-cols-2 gap-2">
@@ -353,7 +353,7 @@ export default function PickupNetwork({ onNotification }) {
                               }}
                               className={`p-3 rounded-lg transition-all ${formData.deviceType === type
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
-                                  : 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
+                                  : 'bg-sage-200 text-ink-700 border-2 border-sage-200 hover:border-eco-400'
                                 }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -365,7 +365,7 @@ export default function PickupNetwork({ onNotification }) {
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
+                        <label className={`block text-sm font-semibold mb-2 text-ink-700`}>
                           Device Condition
                         </label>
                         <div className="grid grid-cols-2 gap-2">
@@ -379,7 +379,7 @@ export default function PickupNetwork({ onNotification }) {
                               }}
                               className={`p-3 rounded-lg transition-all ${formData.condition === condition
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
-                                  : 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
+                                  : 'bg-sage-200 text-ink-700 border-2 border-sage-200 hover:border-eco-400'
                                 }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -391,7 +391,7 @@ export default function PickupNetwork({ onNotification }) {
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
+                        <label className={`block text-sm font-semibold mb-2 text-ink-700`}>
                           Quantity
                         </label>
                         <input
@@ -401,7 +401,7 @@ export default function PickupNetwork({ onNotification }) {
                           max="50"
                           value={formData.quantity}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-600 border-gray-600 text-white`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-200 border-sage-200 text-ink-900`}
                         />
                       </div>
                     </motion.div>
@@ -416,7 +416,7 @@ export default function PickupNetwork({ onNotification }) {
                       exit={{ opacity: 0, x: -20 }}
                       className="space-y-6"
                     >
-                      <h3 className={`text-lg font-bold text-white`}>
+                      <h3 className={`text-lg font-bold text-ink-900`}>
                         Choose your pickup partner
                       </h3>
 
@@ -427,7 +427,7 @@ export default function PickupNetwork({ onNotification }) {
                             key={partner.id}
                             className={`rounded-2xl p-6 transition-all border-2 flex flex-col h-full ${formData.pickupType === partner.id
                                 ? 'bg-gradient-eco/20 border-eco-500 shadow-glow'
-                                : 'bg-gray-700 border-gray-600'
+                                : 'bg-sage-100 border-sage-200'
                               }`}
                             whileHover={{ scale: 1.05 }}
                           >
@@ -438,15 +438,15 @@ export default function PickupNetwork({ onNotification }) {
                               })()}
                             </div>
 
-                            <h4 className={`text-xl font-bold mb-3 text-white`}>
+                            <h4 className={`text-xl font-bold mb-3 text-ink-900`}>
                               {partner.title}
                             </h4>
 
-                            <p className={`text-sm mb-4 leading-relaxed flex-grow text-gray-300`}>
+                            <p className={`text-sm mb-4 leading-relaxed flex-grow text-ink-700`}>
                               {partner.description}
                             </p>
 
-                            <ul className={`space-y-3 mb-6 text-gray-300`}>
+                            <ul className={`space-y-3 mb-6 text-ink-700`}>
                               {partner.features.map((feature, idx) => (
                                 <li key={idx} className="flex items-center space-x-3">
                                   <CheckCircle size={18} className="text-eco-500 flex-shrink-0" />
@@ -463,7 +463,7 @@ export default function PickupNetwork({ onNotification }) {
                               }}
                               className={`w-full py-3 px-4 rounded-lg font-semibold transition-all ${formData.pickupType === partner.id
                                   ? 'bg-eco-500 text-white shadow-glow'
-                                  : 'bg-gray-600 text-gray-100 hover:bg-eco-500 hover:text-white'
+                                  : 'bg-sage-200 text-ink-900 hover:bg-eco-500 hover:text-white'
                                 }`}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
@@ -477,13 +477,13 @@ export default function PickupNetwork({ onNotification }) {
                       {/* Selected Partner Info */}
                       {formData.pickupType && (
                         <motion.div
-                          className={`p-4 rounded-lg border-2 border-eco-400 bg-eco-900/20`}
+                          className={`p-4 rounded-lg border-2 border-eco-400 bg-eco-100/60`}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
                           <div className="flex items-start space-x-2">
                             <CheckCircle size={18} className="text-eco-500 flex-shrink-0 mt-0.5" />
-                            <p className={`text-sm text-eco-300`}>
+                            <p className={`text-sm text-eco-700`}>
                               <span className="font-semibold">Selected: </span>
                               {PARTNERS.find(p => p.id === formData.pickupType)?.title}
                             </p>
@@ -502,12 +502,12 @@ export default function PickupNetwork({ onNotification }) {
                       exit={{ opacity: 0, x: -20 }}
                       className="space-y-4"
                     >
-                      <h3 className={`text-lg font-bold text-white`}>
+                      <h3 className={`text-lg font-bold text-ink-900`}>
                         Your pickup details
                       </h3>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
+                        <label className={`block text-sm font-semibold mb-2 text-ink-700`}>
                           Full Name
                         </label>
                         <input
@@ -516,13 +516,13 @@ export default function PickupNetwork({ onNotification }) {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-600 border-gray-600 text-white placeholder-gray-400`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
                           placeholder="John Doe"
                         />
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
+                        <label className={`block text-sm font-semibold mb-2 text-ink-700`}>
                           Phone Number
                         </label>
                         <input
@@ -531,13 +531,13 @@ export default function PickupNetwork({ onNotification }) {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-600 border-gray-600 text-white placeholder-gray-400`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
                           placeholder="+1 (555) 123-4567"
                         />
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
+                        <label className={`block text-sm font-semibold mb-2 text-ink-700`}>
                           Pickup Address
                         </label>
                         <textarea
@@ -546,7 +546,7 @@ export default function PickupNetwork({ onNotification }) {
                           onChange={handleInputChange}
                           required
                           rows="3"
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 resize-none bg-gray-600 border-gray-600 text-white placeholder-gray-400`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 resize-none bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
                           placeholder="123 Main St, City, State 12345"
                         />
                       </div>
@@ -556,7 +556,7 @@ export default function PickupNetwork({ onNotification }) {
               </div>
 
               {/* Navigation Buttons */}
-              <div className="flex justify-between pt-8 border-t border-gray-300">
+              <div className="flex justify-between pt-8 border-t border-sage-300">
                 <motion.button
                   type="button"
                   onClick={(e) => {
@@ -566,7 +566,7 @@ export default function PickupNetwork({ onNotification }) {
                   disabled={currentStep === 1}
                   className={`px-6 py-2 rounded-lg font-medium transition-all ${currentStep === 1
                       ? 'opacity-50 cursor-not-allowed'
-                      : 'bg-gray-600 text-white hover:bg-gray-500'
+                      : 'bg-sage-200 text-ink-900 hover:bg-sage-200'
                     }`}
                   whileHover={currentStep !== 1 ? { scale: 1.05 } : {}}
                   whileTap={currentStep !== 1 ? { scale: 0.95 } : {}}
@@ -584,7 +584,7 @@ export default function PickupNetwork({ onNotification }) {
                     disabled={!isStepComplete(currentStep)}
                     className={`px-6 py-2 rounded-lg font-medium flex items-center space-x-2 transition-all ${isStepComplete(currentStep)
                         ? 'bg-gradient-eco text-white hover:shadow-glow'
-                        : 'opacity-50 cursor-not-allowed bg-gray-400 text-white'
+                        : 'opacity-50 cursor-not-allowed bg-sage-300 text-ink-900'
                       }`}
                     whileHover={isStepComplete(currentStep) ? { scale: 1.05 } : {}}
                     whileTap={isStepComplete(currentStep) ? { scale: 0.95 } : {}}
