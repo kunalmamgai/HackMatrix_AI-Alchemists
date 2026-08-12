@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Minimize2, RotateCcw, RotateCw, Leaf, Zap, Droplet, Trophy, Lightbulb, Heart } from 'lucide-react';
 
-export default function CircularEconomy({ darkMode }) {
+export default function CircularEconomy() {
   const navigate = useNavigate();
 
   const containerVariants = {
@@ -65,7 +65,7 @@ export default function CircularEconomy({ darkMode }) {
   return (
     <section
       id="circular"
-      className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}
+      className={`py-20 bg-gray-900`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -76,7 +76,7 @@ export default function CircularEconomy({ darkMode }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title mb-4 text-red-600">The Circular Economy in Action</h2>
-          <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
+          <p className={`section-subtitle text-gray-400`}>
             Understanding how we transform e-waste into value through a sustainable circular model
           </p>
         </motion.div>
@@ -98,11 +98,7 @@ export default function CircularEconomy({ darkMode }) {
               >
                 {/* Card */}
                 <motion.div
-                  className={`rounded-2xl p-8 h-full shadow-xl transition-all border-2 ${
-                    darkMode
-                      ? 'bg-gray-800 border-gray-700 hover:border-eco-500'
-                      : 'bg-white border-gray-200 hover:border-eco-500'
-                  }`}
+                  className={`rounded-2xl p-8 h-full shadow-xl transition-all border-2 bg-gray-800 border-gray-700 hover:border-eco-500`}
                   whileHover={{ scale: 1.05, y: -10 }}
                 >
                   {/* Icon */}
@@ -119,10 +115,10 @@ export default function CircularEconomy({ darkMode }) {
                   </motion.div>
 
                   {/* Content */}
-                  <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  <h3 className={`text-2xl font-bold mb-3 text-white`}>
                     {item.title}
                   </h3>
-                  <p className={`text-sm mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-sm mb-6 text-gray-400`}>
                     {item.description}
                   </p>
 
@@ -138,7 +134,7 @@ export default function CircularEconomy({ darkMode }) {
                         transition={{ delay: idx * 0.1 }}
                       >
                         <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.color}`} />
-                        <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <span className={`text-sm text-gray-300`}>
                           {benefit}
                         </span>
                       </motion.div>
@@ -153,7 +149,7 @@ export default function CircularEconomy({ darkMode }) {
                     animate={{ x: [0, 10, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <div className={`text-3xl ${darkMode ? 'text-eco-400' : 'text-eco-500'}`}>→</div>
+                    <div className={`text-3xl text-eco-400`}>→</div>
                   </motion.div>
                 )}
 
@@ -164,7 +160,7 @@ export default function CircularEconomy({ darkMode }) {
                     animate={{ y: [0, 5, 0] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <div className={`text-3xl ${darkMode ? 'text-eco-400' : 'text-eco-500'}`}>↓</div>
+                    <div className={`text-3xl text-eco-400`}>↓</div>
                   </motion.div>
                 )}
               </motion.div>
@@ -177,7 +173,7 @@ export default function CircularEconomy({ darkMode }) {
             animate={{ y: [0, 5, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <div className={`text-4xl ${darkMode ? 'text-eco-400' : 'text-eco-500'}`}>↻</div>
+            <div className={`text-4xl text-eco-400`}>↻</div>
           </motion.div>
         </motion.div>
 
@@ -189,18 +185,14 @@ export default function CircularEconomy({ darkMode }) {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <h3 className={`text-3xl font-bold text-center mb-12 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`text-3xl font-bold text-center mb-12 text-white`}>
             Environmental Impact
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className={`rounded-2xl p-8 text-center shadow-lg border-2 ${
-                  darkMode
-                    ? 'bg-gray-800 border-gray-700'
-                    : 'bg-gradient-subtle border-eco-200'
-                }`}
+                className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-gray-800 border-gray-700`}
                 variants={itemVariants}
                 whileHover={{ scale: 1.05 }}
               >
@@ -211,10 +203,10 @@ export default function CircularEconomy({ darkMode }) {
                 >
                   <stat.icon className="w-8 h-8 text-white" />
                 </motion.div>
-                <div className={`text-4xl font-bold mb-2 ${darkMode ? 'text-eco-300' : 'text-eco-600'}`}>
+                <div className={`text-4xl font-bold mb-2 text-eco-300`}>
                   {stat.value}
                 </div>
-                <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className={`text-sm text-gray-400`}>
                   {stat.label}
                 </p>
               </motion.div>
@@ -224,13 +216,13 @@ export default function CircularEconomy({ darkMode }) {
 
         {/* How You Can Help */}
         <motion.div
-          className={`rounded-2xl p-12 ${darkMode ? 'bg-gray-800' : 'bg-gradient-to-r from-eco-50 to-ocean-50'} border-2 border-eco-300`}
+          className={`rounded-2xl p-12 bg-gray-800 border-2 border-eco-300`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className={`text-2xl font-bold mb-8 text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`text-2xl font-bold mb-8 text-center text-white`}>
             5 Ways to Support the Circular Economy
           </h3>
 
@@ -244,11 +236,7 @@ export default function CircularEconomy({ darkMode }) {
             ].map((item, index) => (
               <motion.div
                 key={index}
-                className={`p-4 rounded-xl text-center transition-all ${
-                  darkMode
-                    ? 'bg-gray-700/50 hover:bg-gray-700'
-                    : 'bg-white/60 hover:bg-white'
-                }`}
+                className={`p-4 rounded-xl text-center transition-all bg-gray-700/50 hover:bg-gray-700`}
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -256,10 +244,10 @@ export default function CircularEconomy({ darkMode }) {
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="text-3xl mb-2">{item.step}</div>
-                <h4 className={`font-bold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h4 className={`font-bold text-sm mb-1 text-white`}>
                   {item.action}
                 </h4>
-                <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <p className={`text-xs text-gray-400`}>
                   {item.desc}
                 </p>
               </motion.div>
@@ -275,10 +263,10 @@ export default function CircularEconomy({ darkMode }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`text-2xl font-bold mb-4 text-white`}>
             Ready to Make a Difference?
           </h3>
-          <p className={`text-lg mb-8 max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-lg mb-8 max-w-2xl mx-auto text-gray-400`}>
             Join thousands of people who are already part of the circular economy movement. Start by disposing of your e-waste responsibly today.
           </p>
           <motion.button

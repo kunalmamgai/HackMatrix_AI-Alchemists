@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Loader } from 'lucide-react';
 
-export default function ChatBot({ darkMode }) {
+export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -96,11 +96,7 @@ export default function ChatBot({ darkMode }) {
       {/* Floating Chat Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 ${
-          darkMode
-            ? 'bg-gradient-eco text-white hover:shadow-eco'
-            : 'bg-gradient-eco text-white hover:shadow-eco'
-        }`}
+        className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 bg-gradient-eco text-white hover:shadow-eco`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -124,9 +120,7 @@ export default function ChatBot({ darkMode }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className={`fixed bottom-24 right-6 z-40 w-96 max-h-screen md:max-h-[600px] rounded-2xl shadow-2xl overflow-hidden flex flex-col ${
-              darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-300'
-            }`}
+            className={`fixed bottom-24 right-6 z-40 w-96 max-h-screen md:max-h-[600px] rounded-2xl shadow-2xl overflow-hidden flex flex-col bg-gray-800 border border-gray-700`}
           >
             {/* Header */}
             <div className="bg-gradient-eco text-white p-4 flex items-center justify-between">
@@ -144,7 +138,7 @@ export default function ChatBot({ darkMode }) {
             </div>
 
             {/* Messages */}
-            <div className={`flex-1 overflow-y-auto p-4 space-y-4 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
+            <div className={`flex-1 overflow-y-auto p-4 space-y-4 bg-gray-900`}>
               {messages.map((message, index) => (
                 <motion.div
                   key={message.id}
@@ -157,9 +151,7 @@ export default function ChatBot({ darkMode }) {
                     className={`max-w-xs px-4 py-3 rounded-xl ${
                       message.sender === 'user'
                         ? 'bg-eco-500 text-white rounded-br-none'
-                        : darkMode
-                        ? 'bg-gray-700 text-gray-100 rounded-bl-none'
-                        : 'bg-gray-200 text-gray-900 rounded-bl-none'
+                        : 'bg-gray-700 text-gray-100 rounded-bl-none'
                     }`}
                   >
                     <p className="text-sm whitespace-pre-wrap break-words">{message.text}</p>
@@ -188,7 +180,7 @@ export default function ChatBot({ darkMode }) {
             </div>
 
             {/* Input */}
-            <div className={`p-4 border-t ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white'}`}>
+            <div className={`p-4 border-t border-gray-700 bg-gray-800`}>
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -196,11 +188,7 @@ export default function ChatBot({ darkMode }) {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  className={`flex-1 px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-eco-500 ${
-                    darkMode
-                      ? 'bg-gray-700 border-gray-600 text-white placeholder-gray-400'
-                      : 'bg-gray-100 border-gray-300 text-gray-900'
-                  }`}
+                  className={`flex-1 px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-700 border-gray-600 text-white placeholder-gray-400`}
                 />
                 <motion.button
                   onClick={handleSendMessage}

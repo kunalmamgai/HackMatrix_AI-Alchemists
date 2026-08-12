@@ -6,7 +6,7 @@ import MapComponent from './MapComponent';
 import { centers } from '../data/centers';
 import 'leaflet/dist/leaflet.css';
 
-export default function NearbyLocations({ darkMode }) {
+export default function NearbyLocations() {
   const [selectedLocation, setSelectedLocation] = useState(null);
   const detailsRef = useRef(null);
 
@@ -62,7 +62,7 @@ export default function NearbyLocations({ darkMode }) {
   return (
     <section
       id="locations"
-      className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+      className={`py-20 bg-gray-900`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -73,7 +73,7 @@ export default function NearbyLocations({ darkMode }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title mb-4 text-cyan-400">Find Nearby Recycling Centers</h2>
-          <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
+          <p className={`section-subtitle text-gray-400`}>
             Locate certified e-waste recycling centers near you with real-time information
           </p>
         </motion.div>
@@ -81,7 +81,7 @@ export default function NearbyLocations({ darkMode }) {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Real Map */}
           <motion.div
-            className={`lg:col-span-2 rounded-2xl overflow-hidden shadow-xl ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+            className={`lg:col-span-2 rounded-2xl overflow-hidden shadow-xl bg-gray-800`}
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -91,7 +91,6 @@ export default function NearbyLocations({ darkMode }) {
                 locations={filteredLocations}
                 selectedLocation={selectedLocation}
                 onSelectLocation={setSelectedLocation}
-                darkMode={darkMode}
               />
             </div>
           </motion.div>
@@ -105,21 +104,21 @@ export default function NearbyLocations({ darkMode }) {
             transition={{ duration: 0.6 }}
           >
             {/* Filters */}
-            <div className={`p-4 rounded-xl ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg`}>
+            <div className={`p-4 rounded-xl bg-gray-800 shadow-lg`}>
               <div className="flex items-center space-x-2 mb-3">
                 <Filter size={18} className="text-eco-500" />
-                <h3 className={`font-semibold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Filters</h3>
+                <h3 className={`font-semibold text-white`}>Filters</h3>
               </div>
 
               {/* Sort */}
               <div className="mb-4">
-                <label className={`text-xs font-semibold block mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <label className={`text-xs font-semibold block mb-2 text-gray-400`}>
                   Sort by
                 </label>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className={`w-full px-3 py-2 rounded-lg border text-sm transition-colors ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-300 text-gray-900'}`}
+                  className={`w-full px-3 py-2 rounded-lg border text-sm transition-colors bg-gray-700 border-gray-600 text-white`}
                 >
                   <option value="distance">Distance</option>
                   <option value="rating">Rating</option>
@@ -129,7 +128,7 @@ export default function NearbyLocations({ darkMode }) {
 
               {/* Service Filter */}
               <div>
-                <label className={`text-xs font-semibold block mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <label className={`text-xs font-semibold block mb-2 text-gray-400`}>
                   Services
                 </label>
                 <div className="flex flex-wrap gap-2">
@@ -140,9 +139,7 @@ export default function NearbyLocations({ darkMode }) {
                       className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
                         filterService === service
                           ? 'bg-eco-500 text-white'
-                          : darkMode
-                          ? 'bg-gray-700 text-gray-300 hover:bg-gray-600'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
                       }`}
                     >
                       {service}
@@ -160,12 +157,8 @@ export default function NearbyLocations({ darkMode }) {
                   onClick={() => setSelectedLocation(location)}
                   className={`w-full text-left overflow-hidden rounded-xl transition-all transform ${
                     selectedLocation?.id === location.id
-                      ? darkMode
-                        ? 'bg-eco-600/20 border-2 border-eco-500 scale-105 shadow-lg'
-                        : 'bg-eco-50 border-2 border-eco-500 scale-105 shadow-lg'
-                      : darkMode
-                      ? 'bg-gray-800 hover:bg-gray-700 border border-gray-700'
-                      : 'bg-white hover:bg-gray-50 border border-gray-200'
+                      ? 'bg-eco-600/20 border-2 border-eco-500 scale-105 shadow-lg'
+                      : 'bg-gray-800 hover:bg-gray-700 border border-gray-700'
                   }`}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -184,7 +177,7 @@ export default function NearbyLocations({ darkMode }) {
                   )}
                   <div className="p-4">
                     <div className="flex items-start justify-between mb-2">
-                      <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <h4 className={`font-bold text-white`}>
                         {location.name}
                       </h4>
                       <span className={`text-xs font-semibold px-2 py-1 rounded-lg ${
@@ -205,13 +198,13 @@ export default function NearbyLocations({ darkMode }) {
                           className={i < Math.floor(location.rating) ? 'fill-amber-400 text-amber-400' : 'text-gray-300'}
                         />
                       ))}
-                      <span className={`text-xs ml-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                      <span className={`text-xs ml-1 text-gray-400`}>
                         {location.rating} ({location.reviews})
                       </span>
                     </div>
 
                     {/* Details */}
-                    <div className={`grid grid-cols-2 gap-2 text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <div className={`grid grid-cols-2 gap-2 text-xs text-gray-400`}>
                       <div className="flex items-center space-x-1">
                         <MapPin size={14} />
                         <span className="truncate">Near you</span>
@@ -232,7 +225,7 @@ export default function NearbyLocations({ darkMode }) {
         {selectedLocation && (
           <motion.div
             ref={detailsRef}
-            className={`mt-8 rounded-2xl shadow-xl overflow-hidden ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+            className={`mt-8 rounded-2xl shadow-xl overflow-hidden bg-gray-800`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -248,11 +241,11 @@ export default function NearbyLocations({ darkMode }) {
             )}
             <div className="p-6">
               <div className="mb-4">
-                <h3 className={`text-3xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className={`text-3xl font-bold mb-2 text-white`}>
                   {selectedLocation.name}
                 </h3>
                 {selectedLocation.description && (
-                  <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                  <p className={`text-sm text-gray-300`}>
                     {selectedLocation.description}
                   </p>
                 )}
@@ -263,15 +256,15 @@ export default function NearbyLocations({ darkMode }) {
                   <div className="flex items-start space-x-3">
                     <MapPin className="w-5 h-5 text-eco-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} uppercase`}>Address</p>
-                      <p className={darkMode ? 'text-white' : 'text-gray-900'}>{selectedLocation.address}</p>
+                      <p className={`text-xs font-semibold text-gray-400 uppercase`}>Address</p>
+                      <p className={'text-white'}>{selectedLocation.address}</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Phone className="w-5 h-5 text-eco-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} uppercase`}>Phone</p>
-                      <a href={`tel:${selectedLocation.phone}`} className={`hover:text-eco-500 transition-colors ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <p className={`text-xs font-semibold text-gray-400 uppercase`}>Phone</p>
+                      <a href={`tel:${selectedLocation.phone}`} className={`hover:text-eco-500 transition-colors text-white`}>
                         {selectedLocation.phone}
                       </a>
                     </div>
@@ -279,14 +272,14 @@ export default function NearbyLocations({ darkMode }) {
                   <div className="flex items-start space-x-3">
                     <Clock className="w-5 h-5 text-eco-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <p className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'} uppercase`}>Hours</p>
-                      <p className={darkMode ? 'text-white' : 'text-gray-900'}>{selectedLocation.hours}</p>
+                      <p className={`text-xs font-semibold text-gray-400 uppercase`}>Hours</p>
+                      <p className={'text-white'}>{selectedLocation.hours}</p>
                     </div>
                   </div>
                   </div>
                 </div>
                 <div>
-                  <h4 className={`font-semibold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Services Offered</h4>
+                  <h4 className={`font-semibold mb-3 text-white`}>Services Offered</h4>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {selectedLocation.services.map((service, index) => (
                     <motion.span

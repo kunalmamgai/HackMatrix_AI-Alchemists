@@ -4,7 +4,7 @@ import { Search, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { devices } from '../data/devices';
 
-export default function Hero({ darkMode, transparentBackground = false }) {
+export default function Hero({ transparentBackground = false }) {
   const navigate = useNavigate();
   const [query, setQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
@@ -77,7 +77,7 @@ export default function Hero({ darkMode, transparentBackground = false }) {
   return (
     <section 
       id="hero"
-      className={`relative min-h-screen flex items-center justify-center pt-20 overflow-hidden ${transparentBackground ? 'bg-transparent' : darkMode ? 'bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900' : 'bg-gradient-to-b from-white via-eco-50 to-ocean-50'}`}
+      className={`relative min-h-screen flex items-center justify-center pt-20 overflow-hidden ${transparentBackground ? 'bg-transparent' : 'bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900'}`}
     >
       <div className="absolute inset-0 overflow-hidden">
         {/* Animated gradient orbs */}
@@ -116,16 +116,16 @@ export default function Hero({ darkMode, transparentBackground = false }) {
         >
           {/* Badge */}
           <motion.div variants={itemVariants} className="mb-6">
-            <div className={`inline-flex items-center space-x-2 px-4 py-2 rounded-full ${darkMode ? 'bg-eco-900/30 border border-eco-700/50' : 'bg-eco-100 border border-eco-300'}`}>
+            <div className={`inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-eco-900/30 border border-eco-700/50`}>
               <Zap className="w-4 h-4 text-eco-600" />
-              <span className={`text-sm font-medium ${darkMode ? 'text-eco-300' : 'text-eco-700'}`}>🌱 Revolutionizing E-Waste</span>
+              <span className={`text-sm font-medium text-eco-300`}>🌱 Revolutionizing E-Waste</span>
             </div>
           </motion.div>
 
           {/* Main Headline */}
           <motion.h1
             variants={itemVariants}
-            className={`text-5xl md:text-7xl font-bold mb-6 leading-tight ${darkMode ? 'text-white' : 'text-gray-900'}`}
+            className={`text-5xl md:text-7xl font-bold mb-6 leading-tight text-white`}
           >
             Dispose Smarter. <br />
             <span className="bg-gradient-to-r from-eco-500 to-ocean-500 bg-clip-text text-transparent">
@@ -138,7 +138,7 @@ export default function Hero({ darkMode, transparentBackground = false }) {
           {/* Subheading */}
           <motion.p
             variants={itemVariants}
-            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}
+            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-gray-300`}
           >
             Join millions in responsible e-waste disposal. Find recycling centers, schedule pickups, and participate in our circular economy network.
           </motion.p>
@@ -186,7 +186,7 @@ export default function Hero({ darkMode, transparentBackground = false }) {
 
             <motion.button
               onClick={() => navigate('/pickup-network')}
-              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 border-2 ${darkMode ? 'border-eco-600 text-eco-400 hover:bg-eco-600/20' : 'border-eco-600 text-eco-600 hover:bg-eco-50'}`}
+              className={`px-8 py-3 rounded-xl font-semibold transition-all duration-300 border-2 border-eco-600 text-eco-400 hover:bg-eco-600/20`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -206,13 +206,13 @@ export default function Hero({ darkMode, transparentBackground = false }) {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className={`p-4 rounded-xl ${darkMode ? 'bg-gray-800/50 border border-gray-700' : 'bg-white/50 border border-gray-200'} backdrop-blur-md`}
+                className={`p-4 rounded-xl bg-gray-800/50 border border-gray-700 backdrop-blur-md`}
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="text-2xl md:text-3xl font-bold text-eco-500 mb-1">
                   {stat.number}
                 </div>
-                <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                <div className={`text-sm text-gray-400`}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -225,24 +225,24 @@ export default function Hero({ darkMode, transparentBackground = false }) {
             animate={bounce}
             className="mt-16 relative h-64 flex items-center justify-center"
           >
-            <div className={`relative w-64 h-64 rounded-3xl ${darkMode ? 'bg-gradient-to-br from-eco-900/30 to-ocean-900/30 border border-eco-700/30' : 'bg-gradient-to-br from-eco-100 to-ocean-100 border-2 border-eco-300'}`}>
+            <div className={`relative w-64 h-64 rounded-3xl bg-gradient-to-br from-eco-900/30 to-ocean-900/30 border border-eco-700/30`}>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-6xl mb-2">♻️</div>
-                  <p className={`font-semibold ${darkMode ? 'text-eco-300' : 'text-eco-700'}`}>
+                  <p className={`font-semibold text-eco-300`}>
                     Circular Economy
                   </p>
                 </div>
               </div>
               {/* Orbiting elements */}
               <motion.div
-                className={`absolute w-8 h-8 rounded-full ${darkMode ? 'bg-eco-500' : 'bg-eco-400'} top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
+                className={`absolute w-8 h-8 rounded-full bg-eco-500 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                 style={{ transformOrigin: '0px 100px' }}
               />
               <motion.div
-                className={`absolute w-6 h-6 rounded-full ${darkMode ? 'bg-ocean-500' : 'bg-ocean-400'} bottom-0 right-0 transform translate-x-1/2 translate-y-1/2`}
+                className={`absolute w-6 h-6 rounded-full bg-ocean-500 bottom-0 right-0 transform translate-x-1/2 translate-y-1/2`}
                 animate={{ rotate: -360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
                 style={{ transformOrigin: '-80px -80px' }}

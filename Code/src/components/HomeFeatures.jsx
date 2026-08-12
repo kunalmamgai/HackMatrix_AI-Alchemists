@@ -35,11 +35,11 @@ const features = [
   },
 ];
 
-export default function HomeFeatures({ darkMode }) {
+export default function HomeFeatures() {
   const navigate = useNavigate();
 
   return (
-    <section id="features" className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+    <section id="features" className={`py-20 bg-gray-800`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -48,10 +48,10 @@ export default function HomeFeatures({ darkMode }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
             Everything You Need to <span className="text-eco-500">Go Circular</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-gray-400`}>
             One platform for the whole e-waste journey — from finding a recycler to buying a second-life device.
           </p>
         </motion.div>
@@ -61,11 +61,7 @@ export default function HomeFeatures({ darkMode }) {
             <motion.button
               key={feature.title}
               onClick={() => navigate(feature.href)}
-              className={`text-left rounded-2xl p-8 shadow-lg border-2 transition-all ${
-                darkMode
-                  ? 'bg-gray-900 border-gray-700 hover:border-eco-500'
-                  : 'bg-white border-gray-200 hover:border-eco-500'
-              }`}
+              className={`text-left rounded-2xl p-8 shadow-lg border-2 transition-all bg-gray-900 border-gray-700 hover:border-eco-500`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -75,13 +71,13 @@ export default function HomeFeatures({ darkMode }) {
               <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-5">
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h3 className={`text-xl font-bold mb-2 text-white`}>
                 {feature.title}
               </h3>
-              <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <p className={`text-sm mb-4 text-gray-400`}>
                 {feature.description}
               </p>
-              <span className={`inline-flex items-center gap-1 text-sm font-semibold ${darkMode ? 'text-eco-400' : 'text-eco-600'}`}>
+              <span className={`inline-flex items-center gap-1 text-sm font-semibold text-eco-400`}>
                 Explore <ArrowRight size={16} />
               </span>
             </motion.button>

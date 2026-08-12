@@ -30,8 +30,6 @@ function PageLoader() {
 }
 
 function AppContent() {
-  const [darkMode] = useState(true);
-
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem('isLoggedIn') === 'true';
   });
@@ -39,8 +37,9 @@ function AppContent() {
   const [notification, setNotification] = useState(null);
   const [notificationType, setNotificationType] = useState('success');
 
+  // The app is dark-only by design — keep the class on <html> so any
+  // future dark: variants and the custom scrollbar colors apply.
   useEffect(() => {
-    localStorage.setItem('darkMode', 'true');
     document.documentElement.classList.add('dark');
   }, []);
 
@@ -60,7 +59,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white transition-colors duration-300 dark">
-      <Navbar darkMode={true} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -69,22 +68,22 @@ function AppContent() {
       >
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/" element={<Home darkMode={darkMode} />} />
-            <Route path="/device-search" element={<DeviceSearchPage darkMode={darkMode} />} />
-            <Route path="/nearby-locations" element={<NearbyLocationsPage darkMode={darkMode} />} />
-            <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />
-            <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
-            <Route path="/disposables" element={<DisposablesPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
-            <Route path="/checkout" element={<CheckoutPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
-            <Route path="/login" element={<LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
-            <Route path="/checkout" element={isLoggedIn ? <CheckoutPage darkMode={darkMode} /> : <LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/device-search" element={<DeviceSearchPage />} />
+            <Route path="/nearby-locations" element={<NearbyLocationsPage />} />
+            <Route path="/pickup-network" element={<PickupNetworkPage onNotification={handleNotification} />} />
+            <Route path="/circular-economy" element={<CircularEconomyPage />} />
+            <Route path="/disposables" element={<DisposablesPage isLoggedIn={isLoggedIn} />} />
+            <Route path="/checkout" element={<CheckoutPage isLoggedIn={isLoggedIn} />} />
+            <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/checkout" element={isLoggedIn ? <CheckoutPage /> : <LoginPage setIsLoggedIn={setIsLoggedIn} />} />
           </Routes>
         </Suspense>
       </motion.div>
 
-      <Footer darkMode={darkMode} />
+      <Footer />
 
-      <ChatBot darkMode={darkMode} />
+      <ChatBot />
 
       <Toast
         message={notification}

@@ -3,7 +3,7 @@ import { Menu, X, Leaf, LogIn, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 
-export default function Navbar({ darkMode, isLoggedIn, setIsLoggedIn }) {
+export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -129,7 +129,7 @@ export default function Navbar({ darkMode, isLoggedIn, setIsLoggedIn }) {
               <Link
                 key={index}
                 to={item.href}
-                className={`block px-3 py-2 rounded-lg transition-colors ${darkMode ? 'text-gray-300 hover:bg-gray-700' : 'text-gray-700 hover:bg-gray-100'}`}
+                className={`block px-3 py-2 rounded-lg transition-colors text-gray-300 hover:bg-gray-700`}
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}

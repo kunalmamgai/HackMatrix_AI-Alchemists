@@ -5,7 +5,7 @@ import { centers } from '../data/centers';
 import { devices } from '../data/devices';
 import { products } from '../data/products';
 
-export default function ImpactStats({ darkMode }) {
+export default function ImpactStats() {
   const stats = [
     { icon: MapPin, target: centers.length, suffix: '+', label: 'Recycling Centers', note: 'Certified locations across India' },
     { icon: BookOpen, target: devices.length, label: 'Disposal Guides', note: 'Step-by-step instructions & safety tips' },
@@ -14,7 +14,7 @@ export default function ImpactStats({ darkMode }) {
   ];
 
   return (
-    <section id="impact" className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <section id="impact" className={`py-20 bg-gray-900`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -23,10 +23,10 @@ export default function ImpactStats({ darkMode }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
             Impact in <span className="text-eco-500">Numbers</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-gray-400`}>
             Real numbers from our network — and the scale of the e-waste challenge we are up against.
           </p>
         </motion.div>
@@ -35,9 +35,7 @@ export default function ImpactStats({ darkMode }) {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className={`rounded-2xl p-8 text-center shadow-lg border-2 ${
-                darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'
-              }`}
+              className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-gray-800 border-gray-700`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -47,11 +45,11 @@ export default function ImpactStats({ darkMode }) {
               <div className="p-4 rounded-xl bg-gradient-eco w-fit mx-auto mb-4">
                 <stat.icon className="w-7 h-7 text-white" />
               </div>
-              <div className={`text-4xl font-bold mb-2 ${darkMode ? 'text-eco-300' : 'text-eco-600'}`}>
+              <div className={`text-4xl font-bold mb-2 text-eco-300`}>
                 <CountUp target={stat.target} suffix={stat.suffix} />
               </div>
-              <p className={`font-semibold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>{stat.label}</p>
-              <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{stat.note}</p>
+              <p className={`font-semibold mb-1 text-white`}>{stat.label}</p>
+              <p className={`text-sm text-gray-400`}>{stat.note}</p>
             </motion.div>
           ))}
         </div>

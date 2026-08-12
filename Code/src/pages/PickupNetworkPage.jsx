@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import PickupNetwork from '../components/PickupNetwork';
 
-export default function PickupNetworkPage({ darkMode, onNotification }) {
+export default function PickupNetworkPage({ onNotification }) {
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -9,7 +9,7 @@ export default function PickupNetworkPage({ darkMode, onNotification }) {
       transition={{ duration: 0.5 }}
     >
       <div className="pt-20">
-        <PickupNetwork darkMode={darkMode} onNotification={onNotification} />
+        <PickupNetwork onNotification={onNotification} />
       </div>
     </motion.main>
   );

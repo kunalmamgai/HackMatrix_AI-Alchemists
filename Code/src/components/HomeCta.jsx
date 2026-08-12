@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Truck, ShoppingBag } from 'lucide-react';
 
-export default function HomeCta({ darkMode }) {
+export default function HomeCta() {
   const navigate = useNavigate();
 
   return (
-    <section id="home-cta" className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <section id="home-cta" className={`py-20 bg-gray-900`}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="rounded-3xl bg-gradient-eco p-10 md:p-14 text-center text-white shadow-xl"

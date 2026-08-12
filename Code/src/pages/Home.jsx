@@ -31,7 +31,7 @@ function MapTeaserSkeleton() {
   );
 }
 
-export default function Home({ darkMode }) {
+export default function Home() {
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -56,20 +56,20 @@ export default function Home({ darkMode }) {
         <div className="absolute inset-0 backdrop-blur-[1px]" aria-hidden="true" />
 
         <div className="relative z-10">
-          <Hero darkMode={darkMode} transparentBackground />
+          <Hero transparentBackground />
         </div>
       </div>
 
       {/* Below-the-fold sections */}
-      <HomeFeatures darkMode={darkMode} />
-      <ImpactStats darkMode={darkMode} />
+      <HomeFeatures />
+      <ImpactStats />
       <Suspense fallback={<MapTeaserSkeleton />}>
-        <MapTeaser darkMode={darkMode} />
+        <MapTeaser />
       </Suspense>
-      <DisposablesBar darkMode={darkMode} />
-      <CircularEconomyTeaser darkMode={darkMode} />
-      <DrawerEstimator darkMode={darkMode} />
-      <HomeCta darkMode={darkMode} />
+      <DisposablesBar />
+      <CircularEconomyTeaser />
+      <DrawerEstimator />
+      <HomeCta />
     </motion.main>
   );
 }

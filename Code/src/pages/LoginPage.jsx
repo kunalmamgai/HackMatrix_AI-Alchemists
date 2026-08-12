@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, User, Lock, ArrowRight } from 'lucide-react';
 
-export default function LoginPage({ darkMode, setIsLoggedIn }) {
+export default function LoginPage({ setIsLoggedIn }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -32,17 +32,17 @@ export default function LoginPage({ darkMode, setIsLoggedIn }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+      className={`min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 bg-gray-900`}
     >
-      <div className={`max-w-md w-full space-y-8 p-10 rounded-3xl shadow-2xl ${darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white'}`}>
+      <div className={`max-w-md w-full space-y-8 p-10 rounded-3xl shadow-2xl bg-gray-800 border border-gray-700`}>
         <div className="text-center">
           <div className="mx-auto w-16 h-16 bg-gradient-eco rounded-2xl flex items-center justify-center shadow-lg mb-6">
             <LogIn className="w-8 h-8 text-white" />
           </div>
-          <h2 className={`text-3xl font-extrabold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-3xl font-extrabold text-white`}>
             Welcome Back
           </h2>
-          <p className={`mt-2 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`mt-2 text-sm text-gray-400`}>
             Sign in to access your account and make purchases.
           </p>
         </div>
@@ -56,44 +56,36 @@ export default function LoginPage({ darkMode, setIsLoggedIn }) {
 
           <div className="space-y-4">
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              <label className={`block text-sm font-medium mb-1 text-gray-300`}>
                 Email Address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className={`h-5 w-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
+                  <User className={`h-5 w-5 text-gray-500`} />
                 </div>
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); setError(''); }}
-                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors ${
-                    darkMode 
-                      ? 'border-gray-600 text-white placeholder-gray-500 focus:border-eco-500' 
-                      : 'border-gray-300 text-gray-900 placeholder-gray-400 focus:border-eco-500'
-                  }`}
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors border-gray-600 text-white placeholder-gray-500 focus:border-eco-500`}
                   placeholder="you@example.com"
                 />
               </div>
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+              <label className={`block text-sm font-medium mb-1 text-gray-300`}>
                 Password
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className={`h-5 w-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
+                  <Lock className={`h-5 w-5 text-gray-500`} />
                 </div>
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => { setPassword(e.target.value); setError(''); }}
-                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors ${
-                    darkMode 
-                      ? 'border-gray-600 text-white placeholder-gray-500 focus:border-eco-500' 
-                      : 'border-gray-300 text-gray-900 placeholder-gray-400 focus:border-eco-500'
-                  }`}
+                  className={`block w-full pl-10 pr-3 py-3 border rounded-xl leading-5 bg-transparent focus:outline-none focus:ring-2 focus:ring-eco-500 sm:text-sm transition-colors border-gray-600 text-white placeholder-gray-500 focus:border-eco-500`}
                   placeholder="••••••••"
                 />
               </div>
@@ -108,7 +100,7 @@ export default function LoginPage({ darkMode, setIsLoggedIn }) {
                 type="checkbox"
                 className="h-4 w-4 text-eco-600 focus:ring-eco-500 border-gray-300 rounded"
               />
-              <label htmlFor="remember-me" className={`ml-2 block text-sm ${darkMode ? 'text-gray-300' : 'text-gray-900'}`}>
+              <label htmlFor="remember-me" className={`ml-2 block text-sm text-gray-300`}>
                 Remember me
               </label>
             </div>

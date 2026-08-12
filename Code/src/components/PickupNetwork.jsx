@@ -41,7 +41,7 @@ const PARTNERS = [
   }
 ];
 
-export default function PickupNetwork({ darkMode, onNotification }) {
+export default function PickupNetwork({ onNotification }) {
   const [formData, setFormData] = useState({
     deviceType: '',
     condition: '',
@@ -134,7 +134,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
   return (
     <section
       id="pickup"
-      className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+      className={`py-20 bg-gray-800`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -145,7 +145,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title mb-4 text-yellow-300">Pickup & Reuse Network</h2>
-          <p className={`section-subtitle ${darkMode ? 'text-gray-400' : ''}`}>
+          <p className={`section-subtitle text-gray-400`}>
             Schedule a convenient pickup for your used devices and connect with verified recyclers or repair enthusiasts
           </p>
         </motion.div>
@@ -154,12 +154,8 @@ export default function PickupNetwork({ darkMode, onNotification }) {
           {/* Recycler Card */}
           <motion.div
             className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'recycler'
-                ? darkMode
-                  ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
-                  : 'bg-eco-50 border-2 border-eco-500 scale-105 shadow-lg'
-                : darkMode
-                  ? 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
-                  : 'bg-gray-50 border-2 border-gray-200 hover:border-eco-400'
+                ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
+                : 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
               }`}
             onClick={() => setFormData({ ...formData, pickupType: 'recycler' })}
             variants={itemVariants}
@@ -168,13 +164,13 @@ export default function PickupNetwork({ darkMode, onNotification }) {
             <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
               <Truck className="w-6 h-6 text-white" />
             </div>
-            <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h3 className={`text-xl font-bold mb-3 text-white`}>
               Verified Recycler
             </h3>
-            <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`text-sm mb-4 text-gray-400`}>
               Professional certified e-waste recycling facility with government certifications
             </p>
-            <ul className={`space-y-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <ul className={`space-y-2 text-sm text-gray-300`}>
               <li className="flex items-center space-x-2">
                 <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
                 <span>Certified & insured</span>
@@ -193,12 +189,8 @@ export default function PickupNetwork({ darkMode, onNotification }) {
           {/* Repair Enthusiast Card */}
           <motion.div
             className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'repairer'
-                ? darkMode
-                  ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
-                  : 'bg-eco-50 border-2 border-eco-500 scale-105 shadow-lg'
-                : darkMode
-                  ? 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
-                  : 'bg-gray-50 border-2 border-gray-200 hover:border-eco-400'
+                ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
+                : 'bg-gray-700 border-2 border-gray-600 hover:border-eco-400'
               }`}
             onClick={() => setFormData({ ...formData, pickupType: 'repairer' })}
             variants={itemVariants}
@@ -207,13 +199,13 @@ export default function PickupNetwork({ darkMode, onNotification }) {
             <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
               <User className="w-6 h-6 text-white" />
             </div>
-            <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h3 className={`text-xl font-bold mb-3 text-white`}>
               Repair Enthusiast
             </h3>
-            <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`text-sm mb-4 text-gray-400`}>
               Community members skilled in repair and refurbishment of used electronics
             </p>
-            <ul className={`space-y-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <ul className={`space-y-2 text-sm text-gray-300`}>
               <li className="flex items-center space-x-2">
                 <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
                 <span>Expert community members</span>
@@ -231,19 +223,19 @@ export default function PickupNetwork({ darkMode, onNotification }) {
 
           {/* Trust & Safety Card */}
           <motion.div
-            className={`rounded-2xl p-8 ${darkMode ? 'bg-gray-700' : 'bg-gradient-to-br from-eco-50 to-ocean-50'} border-2 border-eco-300`}
+            className={`rounded-2xl p-8 bg-gray-700 border-2 border-eco-300`}
             variants={itemVariants}
           >
             <div className="p-4 rounded-xl bg-eco-500 w-fit mb-4">
               <Shield className="w-6 h-6 text-white" />
             </div>
-            <h3 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            <h3 className={`text-xl font-bold mb-3 text-white`}>
               Trust & Safety
             </h3>
-            <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`text-sm mb-4 text-gray-400`}>
               All partners are verified with ratings, reviews, and security certifications
             </p>
-            <ul className={`space-y-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            <ul className={`space-y-2 text-sm text-gray-300`}>
               <li className="flex items-center space-x-2">
                 <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
                 <span>Verified members only</span>
@@ -262,7 +254,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
 
         {/* Pickup Form */}
         <motion.div
-          className={`max-w-2xl mx-auto ${darkMode ? 'bg-gray-700' : 'bg-white'} rounded-2xl shadow-xl p-8 border ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}
+          className={`max-w-2xl mx-auto bg-gray-700 rounded-2xl shadow-xl p-8 border border-gray-600`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -275,13 +267,13 @@ export default function PickupNetwork({ darkMode, onNotification }) {
               animate={{ opacity: 1, scale: 1 }}
             >
               <div className="text-5xl mb-4">✅</div>
-              <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h3 className={`text-2xl font-bold mb-2 text-white`}>
                 Pickup Scheduled!
               </h3>
-              <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <p className={`text-lg text-gray-400`}>
                 We've received your request. A {formData.pickupType === 'recycler' ? 'certified recycler' : 'repair enthusiast'} will contact you soon.
               </p>
-              <p className={`text-sm mt-4 ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
+              <p className={`text-sm mt-4 text-gray-500`}>
                 Confirmation email sent to your phone number
               </p>
             </motion.div>
@@ -308,15 +300,13 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                     <motion.div
                       className={`w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 ${step <= currentStep
                           ? 'bg-eco-500 text-white'
-                          : darkMode
-                            ? 'bg-gray-600 text-gray-300'
-                            : 'bg-gray-300 text-gray-500'
+                          : 'bg-gray-600 text-gray-300'
                         }`}
                       whileHover={step <= currentStep ? { scale: 1.1 } : {}}
                     >
                       {step}
                     </motion.div>
-                    <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <span className={`text-xs font-semibold text-gray-400`}>
                       {step === 1 ? 'Device' : step === 2 ? 'Partner' : 'Details'}
                     </span>
                   </motion.button>
@@ -324,7 +314,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
               </div>
 
               {/* Progress Bar */}
-              <div className={`h-1 rounded-full overflow-hidden ${darkMode ? 'bg-gray-600' : 'bg-gray-200'}`}>
+              <div className={`h-1 rounded-full overflow-hidden bg-gray-600`}>
                 <motion.div
                   className="h-full bg-gradient-eco"
                   initial={{ width: 0 }}
@@ -344,12 +334,12 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                       exit={{ opacity: 0, x: -20 }}
                       className="space-y-4"
                     >
-                      <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <h3 className={`text-lg font-bold text-white`}>
                         What device are you disposing?
                       </h3>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
                           Device Type
                         </label>
                         <div className="grid grid-cols-2 gap-2">
@@ -363,9 +353,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                               }}
                               className={`p-3 rounded-lg transition-all ${formData.deviceType === type
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
-                                  : darkMode
-                                    ? 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
-                                    : 'bg-gray-100 text-gray-700 border-2 border-gray-300 hover:border-eco-400'
+                                  : 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
                                 }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -377,7 +365,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
                           Device Condition
                         </label>
                         <div className="grid grid-cols-2 gap-2">
@@ -391,9 +379,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                               }}
                               className={`p-3 rounded-lg transition-all ${formData.condition === condition
                                   ? 'bg-eco-500 text-white border-2 border-eco-600'
-                                  : darkMode
-                                    ? 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
-                                    : 'bg-gray-100 text-gray-700 border-2 border-gray-300 hover:border-eco-400'
+                                  : 'bg-gray-600 text-gray-300 border-2 border-gray-600 hover:border-eco-400'
                                 }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -405,7 +391,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
                           Quantity
                         </label>
                         <input
@@ -415,7 +401,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                           max="50"
                           value={formData.quantity}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 ${darkMode ? 'bg-gray-600 border-gray-600 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-600 border-gray-600 text-white`}
                         />
                       </div>
                     </motion.div>
@@ -430,7 +416,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                       exit={{ opacity: 0, x: -20 }}
                       className="space-y-6"
                     >
-                      <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <h3 className={`text-lg font-bold text-white`}>
                         Choose your pickup partner
                       </h3>
 
@@ -440,12 +426,8 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                           <motion.div
                             key={partner.id}
                             className={`rounded-2xl p-6 transition-all border-2 flex flex-col h-full ${formData.pickupType === partner.id
-                                ? darkMode
-                                  ? 'bg-gradient-eco/20 border-eco-500 shadow-glow'
-                                  : 'bg-eco-50 border-eco-500 shadow-glow'
-                                : darkMode
-                                  ? 'bg-gray-700 border-gray-600'
-                                  : 'bg-gray-50 border-gray-200'
+                                ? 'bg-gradient-eco/20 border-eco-500 shadow-glow'
+                                : 'bg-gray-700 border-gray-600'
                               }`}
                             whileHover={{ scale: 1.05 }}
                           >
@@ -456,15 +438,15 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                               })()}
                             </div>
 
-                            <h4 className={`text-xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                            <h4 className={`text-xl font-bold mb-3 text-white`}>
                               {partner.title}
                             </h4>
 
-                            <p className={`text-sm mb-4 leading-relaxed flex-grow ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            <p className={`text-sm mb-4 leading-relaxed flex-grow text-gray-300`}>
                               {partner.description}
                             </p>
 
-                            <ul className={`space-y-3 mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            <ul className={`space-y-3 mb-6 text-gray-300`}>
                               {partner.features.map((feature, idx) => (
                                 <li key={idx} className="flex items-center space-x-3">
                                   <CheckCircle size={18} className="text-eco-500 flex-shrink-0" />
@@ -481,9 +463,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                               }}
                               className={`w-full py-3 px-4 rounded-lg font-semibold transition-all ${formData.pickupType === partner.id
                                   ? 'bg-eco-500 text-white shadow-glow'
-                                  : darkMode
-                                    ? 'bg-gray-600 text-gray-100 hover:bg-eco-500 hover:text-white'
-                                    : 'bg-gray-200 text-gray-900 hover:bg-eco-500 hover:text-white'
+                                  : 'bg-gray-600 text-gray-100 hover:bg-eco-500 hover:text-white'
                                 }`}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
@@ -497,13 +477,13 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                       {/* Selected Partner Info */}
                       {formData.pickupType && (
                         <motion.div
-                          className={`p-4 rounded-lg border-2 border-eco-400 ${darkMode ? 'bg-eco-900/20' : 'bg-eco-50'}`}
+                          className={`p-4 rounded-lg border-2 border-eco-400 bg-eco-900/20`}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
                           <div className="flex items-start space-x-2">
                             <CheckCircle size={18} className="text-eco-500 flex-shrink-0 mt-0.5" />
-                            <p className={`text-sm ${darkMode ? 'text-eco-300' : 'text-eco-800'}`}>
+                            <p className={`text-sm text-eco-300`}>
                               <span className="font-semibold">Selected: </span>
                               {PARTNERS.find(p => p.id === formData.pickupType)?.title}
                             </p>
@@ -522,12 +502,12 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                       exit={{ opacity: 0, x: -20 }}
                       className="space-y-4"
                     >
-                      <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                      <h3 className={`text-lg font-bold text-white`}>
                         Your pickup details
                       </h3>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
                           Full Name
                         </label>
                         <input
@@ -536,13 +516,13 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 ${darkMode ? 'bg-gray-600 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-600 border-gray-600 text-white placeholder-gray-400`}
                           placeholder="John Doe"
                         />
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
                           Phone Number
                         </label>
                         <input
@@ -551,13 +531,13 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 ${darkMode ? 'bg-gray-600 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-gray-600 border-gray-600 text-white placeholder-gray-400`}
                           placeholder="+1 (555) 123-4567"
                         />
                       </div>
 
                       <div>
-                        <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                        <label className={`block text-sm font-semibold mb-2 text-gray-300`}>
                           Pickup Address
                         </label>
                         <textarea
@@ -566,7 +546,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                           onChange={handleInputChange}
                           required
                           rows="3"
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 resize-none ${darkMode ? 'bg-gray-600 border-gray-600 text-white placeholder-gray-400' : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'}`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 resize-none bg-gray-600 border-gray-600 text-white placeholder-gray-400`}
                           placeholder="123 Main St, City, State 12345"
                         />
                       </div>
@@ -586,9 +566,7 @@ export default function PickupNetwork({ darkMode, onNotification }) {
                   disabled={currentStep === 1}
                   className={`px-6 py-2 rounded-lg font-medium transition-all ${currentStep === 1
                       ? 'opacity-50 cursor-not-allowed'
-                      : darkMode
-                        ? 'bg-gray-600 text-white hover:bg-gray-500'
-                        : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+                      : 'bg-gray-600 text-white hover:bg-gray-500'
                     }`}
                   whileHover={currentStep !== 1 ? { scale: 1.05 } : {}}
                   whileTap={currentStep !== 1 ? { scale: 0.95 } : {}}

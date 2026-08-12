@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import CircularEconomy from '../components/CircularEconomy';
 
-export default function CircularEconomyPage({ darkMode }) {
+export default function CircularEconomyPage() {
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -9,7 +9,7 @@ export default function CircularEconomyPage({ darkMode }) {
       transition={{ duration: 0.5 }}
     >
       <div className="pt-20">
-        <CircularEconomy darkMode={darkMode} />
+        <CircularEconomy />
       </div>
     </motion.main>
   );

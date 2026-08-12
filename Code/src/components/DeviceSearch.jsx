@@ -6,7 +6,7 @@ import { devices } from '../data/devices';
 
 const CUSTOM_DISPOSABLES_KEY = 'customDisposables';
 
-export default function DeviceSearch({ darkMode, initialQuery = '' }) {
+export default function DeviceSearch({ initialQuery = '' }) {
   const [searchTerm, setSearchTerm] = useState(initialQuery || '');
   const [selectedDevice, setSelectedDevice] = useState(null);
   const [filteredDevices, setFilteredDevices] = useState([]);
@@ -154,10 +154,10 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
   return (
     <section
       id="device-search"
-      className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
+      className={`py-20 bg-gray-800`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`rounded-[2rem] p-8 md:p-16 mb-12 mt-4 text-center shadow-xl ${darkMode ? 'bg-gray-800/80 border border-gray-700' : 'bg-[#1a2332] border border-[#2a3441]'} relative overflow-hidden`}>
+        <div className={`rounded-[2rem] p-8 md:p-16 mb-12 mt-4 text-center shadow-xl bg-gray-800/80 border border-gray-700 relative overflow-hidden`}>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -197,16 +197,16 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
 
         {selectedDevice && (
           <motion.div
-            className={`mb-12 card ${darkMode ? 'bg-gray-700' : ''}`}
+            className={`mb-12 card bg-gray-700`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-          <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`text-2xl font-bold mb-2 text-white`}>
             Add Device To Disposables
           </h3>
-          <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`mb-6 text-gray-400`}>
             Add product information and upload an image. It will appear in the Disposables tab.
           </p>
 
@@ -216,7 +216,7 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
               placeholder="Device Name"
               value={newDisposable.name}
               onChange={(e) => handleNewDisposableChange('name', e.target.value)}
-              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              className={`px-4 py-3 rounded-lg border bg-gray-600 border-gray-500 text-white`}
             />
 
             <input
@@ -225,13 +225,13 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
               placeholder="Price in Rupees (e.g. 12000)"
               value={newDisposable.price}
               onChange={(e) => handleNewDisposableChange('price', e.target.value)}
-              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              className={`px-4 py-3 rounded-lg border bg-gray-600 border-gray-500 text-white`}
             />
 
             <select
               value={newDisposable.category}
               onChange={(e) => handleNewDisposableChange('category', e.target.value)}
-              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              className={`px-4 py-3 rounded-lg border bg-gray-600 border-gray-500 text-white`}
             >
               <option value="Smartphone">Smartphone</option>
               <option value="Laptop">Laptop</option>
@@ -244,7 +244,7 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
             <select
               value={newDisposable.condition}
               onChange={(e) => handleNewDisposableChange('condition', e.target.value)}
-              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              className={`px-4 py-3 rounded-lg border bg-gray-600 border-gray-500 text-white`}
             >
               <option value="Excellent">Excellent</option>
               <option value="Like New">Like New</option>
@@ -259,7 +259,7 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
               placeholder="Stock"
               value={newDisposable.stock}
               onChange={(e) => handleNewDisposableChange('stock', e.target.value)}
-              className={`px-4 py-3 rounded-lg border ${darkMode ? 'bg-gray-600 border-gray-500 text-white' : 'bg-white border-gray-300 text-gray-900'}`}
+              className={`px-4 py-3 rounded-lg border bg-gray-600 border-gray-500 text-white`}
             />
 
             <div>
@@ -268,11 +268,7 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
                 onClick={() => addFileInputRef.current?.click()}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full py-3 rounded-lg border-2 border-dashed font-semibold transition-colors ${
-                  darkMode
-                    ? 'border-eco-500 text-eco-300 hover:bg-gray-600'
-                    : 'border-eco-500 text-eco-700 hover:bg-eco-50'
-                }`}
+                className={`w-full py-3 rounded-lg border-2 border-dashed font-semibold transition-colors border-eco-500 text-eco-300 hover:bg-gray-600`}
               >
                 {newDisposableImage ? 'Change Uploaded Image' : 'Upload Product Image'}
               </motion.button>
@@ -325,7 +321,7 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
             >
               <button
                 onClick={() => setSelectedDevice(null)}
-                className={`flex items-center space-x-2 mb-6 px-4 py-2 rounded-lg transition-colors ${darkMode ? 'text-eco-400 hover:bg-gray-700' : 'text-eco-600 hover:bg-eco-50'}`}
+                className={`flex items-center space-x-2 mb-6 px-4 py-2 rounded-lg transition-colors text-eco-400 hover:bg-gray-700`}
               >
                 <X size={18} />
                 <span>Back to search</span>
@@ -333,20 +329,20 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
 
               {/* Disposal Steps */}
               <motion.div
-                className={`mt-8 card ${darkMode ? 'bg-gray-700' : ''}`}
+                className={`mt-8 card bg-gray-700`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <div className="flex items-center space-x-2 mb-6">
                   <RotateCcw className="w-5 h-5 text-eco-500 flex-shrink-0" />
-                  <h4 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Step-by-Step Disposal Guide</h4>
+                  <h4 className={`text-xl font-bold text-white`}>Step-by-Step Disposal Guide</h4>
                 </div>
                 <div className="space-y-4">
                   {selectedDevice.disposal.steps.map((step, index) => (
                     <motion.div
                       key={index}
-                      className={`flex gap-4 p-4 rounded-lg ${darkMode ? 'bg-gray-600' : 'bg-gray-50'}`}
+                      className={`flex gap-4 p-4 rounded-lg bg-gray-600`}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -355,7 +351,7 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
                       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-eco flex items-center justify-center text-white font-bold text-sm">
                         {index + 1}
                       </div>
-                      <p className={`flex-1 pt-0.5 ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+                      <p className={`flex-1 pt-0.5 text-gray-300`}>
                         {step}
                       </p>
                     </motion.div>
@@ -387,22 +383,22 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
                   <motion.button
                     key={device.id}
                     onClick={() => handleDeviceSelect(device)}
-                    className={`card-interactive group ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : ''}`}
+                    className={`card-interactive group bg-gray-700 hover:bg-gray-600`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <div className={`mb-4 overflow-hidden rounded-xl ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                    <div className={`mb-4 overflow-hidden rounded-xl bg-gray-600`}>
                       <img
                         src={deviceImages[device.id] || device.image}
                         alt={device.name}
                         className="h-36 w-full object-cover"
                       />
                     </div>
-                    <h3 className={`text-lg font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <h3 className={`text-lg font-bold mb-1 text-white`}>
                       {device.name}
                     </h3>
-                    <p className={`text-sm mb-3 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p className={`text-sm mb-3 text-gray-400`}>
                       {device.category}
                     </p>
                     <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
@@ -422,8 +418,8 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <Trash2 className={`w-16 h-16 mx-auto mb-4 ${darkMode ? 'text-gray-600' : 'text-gray-400'}`} />
-                  <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <Trash2 className={`w-16 h-16 mx-auto mb-4 text-gray-600`} />
+                  <p className={`text-lg text-gray-400`}>
                     No devices found. Try searching for "phone", "laptop", or "battery".
                   </p>
                 </motion.div>
@@ -441,22 +437,22 @@ export default function DeviceSearch({ darkMode, initialQuery = '' }) {
                 <motion.button
                   key={device.id}
                   onClick={() => handleDeviceSelect(device)}
-                  className={`card-interactive group ${darkMode ? 'bg-gray-700 hover:bg-gray-600' : ''}`}
+                  className={`card-interactive group bg-gray-700 hover:bg-gray-600`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <div className={`mb-4 overflow-hidden rounded-xl ${darkMode ? 'bg-gray-600' : 'bg-gray-100'}`}>
+                  <div className={`mb-4 overflow-hidden rounded-xl bg-gray-600`}>
                     <img
                       src={deviceImages[device.id] || device.image}
                       alt={device.name}
                       className="h-36 w-full object-cover"
                     />
                   </div>
-                  <h3 className={`text-lg font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                  <h3 className={`text-lg font-bold mb-1 text-white`}>
                     {device.name}
                   </h3>
-                  <p className={`text-sm mb-3 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-sm mb-3 text-gray-400`}>
                     {device.category}
                   </p>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${

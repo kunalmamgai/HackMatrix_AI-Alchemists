@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import NearbyLocations from '../components/NearbyLocations';
 
-export default function NearbyLocationsPage({ darkMode }) {
+export default function NearbyLocationsPage() {
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -9,7 +9,7 @@ export default function NearbyLocationsPage({ darkMode }) {
       transition={{ duration: 0.5 }}
     >
       <div className="pt-20">
-        <NearbyLocations darkMode={darkMode} />
+        <NearbyLocations />
       </div>
     </motion.main>
   );

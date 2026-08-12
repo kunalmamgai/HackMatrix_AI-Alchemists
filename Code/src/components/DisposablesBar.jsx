@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
 
-export default function DisposablesBar({ darkMode }) {
+export default function DisposablesBar() {
   const navigate = useNavigate();
   const scrollContainerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -40,18 +40,16 @@ export default function DisposablesBar({ darkMode }) {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`relative w-full px-4 py-6 ${
-        darkMode ? 'bg-gray-800/50 border-b border-gray-700' : 'bg-white/50 border-b border-gray-200'
-      } backdrop-blur-md`}
+      className={`relative w-full px-4 py-6 bg-gray-800/50 border-b border-gray-700 backdrop-blur-md`}
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-4">
-          <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h3 className={`text-lg font-bold text-white`}>
             💚 Available Disposables
           </h3>
           <button
             onClick={() => navigate('/disposables')}
-            className={`text-sm font-semibold transition-colors ${darkMode ? 'text-eco-400 hover:text-eco-300' : 'text-eco-600 hover:text-eco-700'}`}
+            className={`text-sm font-semibold transition-colors text-eco-400 hover:text-eco-300`}
           >
             View All →
           </button>
@@ -64,11 +62,9 @@ export default function DisposablesBar({ darkMode }) {
               onClick={() => scroll('left')}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md ${
-                darkMode ? 'bg-gray-900/80 hover:bg-gray-800' : 'bg-white/80 hover:bg-white'
-              } transition-colors`}
+              className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md bg-gray-900/80 hover:bg-gray-800 transition-colors`}
             >
-              <ChevronLeft className={darkMode ? 'text-white' : 'text-gray-900'} size={24} />
+              <ChevronLeft className={'text-white'} size={24} />
             </motion.button>
           )}
 
@@ -91,9 +87,7 @@ export default function DisposablesBar({ darkMode }) {
                   <motion.div
                     whileHover={{ scale: 1.05, y: -5 }}
                     onClick={() => navigate('/disposables')}
-                    className={`w-48 p-4 rounded-xl cursor-pointer transition-all ${
-                      darkMode ? 'bg-gray-700/50 border border-gray-600' : 'bg-white border border-gray-300'
-                    }`}
+                    className={`w-48 p-4 rounded-xl cursor-pointer transition-all bg-gray-700/50 border border-gray-600`}
                   >
                     {/* Image or Icon */}
                     {item.image ? (
@@ -109,10 +103,10 @@ export default function DisposablesBar({ darkMode }) {
                     )}
 
                     {/* Product Info */}
-                    <h4 className={`font-semibold text-sm mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <h4 className={`font-semibold text-sm mb-1 text-white`}>
                       {item.name}
                     </h4>
-                    <p className={`text-xs mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p className={`text-xs mb-2 text-gray-400`}>
                       {item.category}
                     </p>
 
@@ -143,11 +137,9 @@ export default function DisposablesBar({ darkMode }) {
               onClick={() => scroll('right')}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md ${
-                darkMode ? 'bg-gray-900/80 hover:bg-gray-800' : 'bg-white/80 hover:bg-white'
-              } transition-colors`}
+              className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full backdrop-blur-md bg-gray-900/80 hover:bg-gray-800 transition-colors`}
             >
-              <ChevronRight className={darkMode ? 'text-white' : 'text-gray-900'} size={24} />
+              <ChevronRight className={'text-white'} size={24} />
             </motion.button>
           )}
         </div>

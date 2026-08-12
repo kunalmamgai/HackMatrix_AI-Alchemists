@@ -5,7 +5,7 @@ import MapComponent from './MapComponent';
 import { centers } from '../data/centers';
 import 'leaflet/dist/leaflet.css';
 
-export default function MapTeaser({ darkMode }) {
+export default function MapTeaser() {
   const navigate = useNavigate();
   const topCenters = [...centers].sort((a, b) => b.rating - a.rating).slice(0, 5);
 
@@ -16,7 +16,7 @@ export default function MapTeaser({ darkMode }) {
   ];
 
   return (
-    <section id="map-teaser" className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-white'}`}>
+    <section id="map-teaser" className={`py-20 bg-gray-900`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -25,10 +25,10 @@ export default function MapTeaser({ darkMode }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
             Find Certified <span className="text-cyan-400">Recycling Centers</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-gray-400`}>
             A network of verified e-waste recyclers across India — with directions, ratings, and pickup options.
           </p>
         </motion.div>
@@ -45,18 +45,16 @@ export default function MapTeaser({ darkMode }) {
               {topCenters.map((center) => (
                 <li
                   key={center.id}
-                  className={`flex items-center gap-4 p-4 rounded-xl border-2 ${
-                    darkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'
-                  }`}
+                  className={`flex items-center gap-4 p-4 rounded-xl border-2 bg-gray-800 border-gray-700`}
                 >
                   <div className="p-2.5 rounded-lg bg-eco-500/15 flex-shrink-0">
                     <MapPin className="w-5 h-5 text-eco-500" />
                   </div>
                   <div className="min-w-0">
-                    <p className={`font-semibold truncate ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <p className={`font-semibold truncate text-white`}>
                       {center.name}
                     </p>
-                    <p className={`text-sm truncate ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p className={`text-sm truncate text-gray-400`}>
                       {center.address} · ★ {center.rating} ({center.reviews})
                     </p>
                   </div>
@@ -68,11 +66,7 @@ export default function MapTeaser({ darkMode }) {
               {badges.map((badge) => (
                 <span
                   key={badge.label}
-                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border-2 ${
-                    darkMode
-                      ? 'bg-gray-800 border-eco-700/50 text-eco-300'
-                      : 'bg-eco-50 border-eco-200 text-eco-700'
-                  }`}
+                  className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border-2 bg-gray-800 border-eco-700/50 text-eco-300`}
                 >
                   <badge.icon className="w-4 h-4" />
                   {badge.label}
@@ -101,7 +95,6 @@ export default function MapTeaser({ darkMode }) {
               locations={centers}
               selectedLocation={null}
               onSelectLocation={() => {}}
-              darkMode={darkMode}
             />
           </motion.div>
         </div>

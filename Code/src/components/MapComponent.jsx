@@ -23,7 +23,7 @@ const selectedShoeIcon = new L.DivIcon({
   popupAnchor: [0, -40],
 });
 
-export default function MapComponent({ locations, selectedLocation, onSelectLocation, darkMode }) {
+export default function MapComponent({ locations, selectedLocation, onSelectLocation}) {
   // Keep a consistent India-first starting viewport.
   const initialCenter = [22.5937, 78.9629];
   const initialZoom = 5;

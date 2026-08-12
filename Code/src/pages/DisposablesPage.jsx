@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { products, productCategories } from '../data/products';
 
-export default function DisposablesPage({ darkMode, isLoggedIn }) {
+export default function DisposablesPage({ isLoggedIn }) {
   const [wishlist, setWishlist] = useState(new Set());
   const [filter, setFilter] = useState('All');
   const navigate = useNavigate();
@@ -60,7 +60,7 @@ export default function DisposablesPage({ darkMode, isLoggedIn }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen pt-20 pb-12 ${darkMode ? 'bg-gray-900' : 'bg-gradient-to-b from-white to-gray-50'}`}
+      className={`min-h-screen pt-20 pb-12 bg-gray-900`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -70,10 +70,10 @@ export default function DisposablesPage({ darkMode, isLoggedIn }) {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
             💚 Available Disposables
           </h1>
-          <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-lg text-gray-400`}>
             Browse our collection of refurbished electronics at great prices
           </p>
         </motion.div>
@@ -94,9 +94,7 @@ export default function DisposablesPage({ darkMode, isLoggedIn }) {
               className={`px-4 py-2 rounded-full font-semibold transition-all ${
                 filter === category
                   ? 'bg-eco-500 text-white shadow-lg'
-                  : darkMode
-                  ? 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
             >
               {category}
@@ -122,9 +120,7 @@ export default function DisposablesPage({ darkMode, isLoggedIn }) {
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
                 <div
-                  className={`h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all ${
-                    darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'
-                  }`}
+                  className={`h-full rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all bg-gray-800 border border-gray-700`}
                 >
                   {/* Icon Background */}
                   <div className={`h-40 bg-gradient-to-br ${product.color} flex items-center justify-center relative overflow-hidden`}>
@@ -177,12 +173,12 @@ export default function DisposablesPage({ darkMode, isLoggedIn }) {
                     </motion.div>
 
                     {/* Product Name */}
-                    <h3 className={`font-bold text-lg mb-1 line-clamp-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <h3 className={`font-bold text-lg mb-1 line-clamp-2 text-white`}>
                       {product.name}
                     </h3>
 
                     {/* Category */}
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p className={`text-sm mb-4 text-gray-400`}>
                       {product.category}
                     </p>
 
@@ -213,7 +209,7 @@ export default function DisposablesPage({ darkMode, isLoggedIn }) {
             animate={{ opacity: 1 }}
             className="text-center py-12"
           >
-            <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+            <p className={`text-lg text-gray-400`}>
               No products found in this category
             </p>
           </motion.div>

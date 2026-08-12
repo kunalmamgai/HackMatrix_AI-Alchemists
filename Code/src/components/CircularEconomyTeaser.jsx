@@ -23,11 +23,11 @@ const steps = [
   },
 ];
 
-export default function CircularEconomyTeaser({ darkMode }) {
+export default function CircularEconomyTeaser() {
   const navigate = useNavigate();
 
   return (
-    <section id="circular-teaser" className={`py-20 ${darkMode ? 'bg-gray-800' : 'bg-gray-50'}`}>
+    <section id="circular-teaser" className={`py-20 bg-gray-800`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -36,10 +36,10 @@ export default function CircularEconomyTeaser({ darkMode }) {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-white`}>
             The Circular Economy <span className="text-red-500">in Action</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-gray-400`}>
             Every device can stay in the loop instead of ending up in a landfill.
           </p>
         </motion.div>
@@ -48,9 +48,7 @@ export default function CircularEconomyTeaser({ darkMode }) {
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
-              className={`rounded-2xl p-8 text-center shadow-lg border-2 ${
-                darkMode ? 'bg-gray-900 border-gray-700' : 'bg-white border-gray-200'
-              }`}
+              className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-gray-900 border-gray-700`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -62,10 +60,10 @@ export default function CircularEconomyTeaser({ darkMode }) {
               >
                 <step.icon className="w-8 h-8 text-white" />
               </div>
-              <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+              <h3 className={`text-2xl font-bold mb-3 text-white`}>
                 {step.title}
               </h3>
-              <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{step.text}</p>
+              <p className={`text-sm text-gray-400`}>{step.text}</p>
             </motion.div>
           ))}
         </div>
