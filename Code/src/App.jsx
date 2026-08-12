@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -8,16 +8,26 @@ import ChatBot from './components/ChatBot';
 import { CartProvider } from './context/CartContext';
 
 // Pages
+// Home stays eager for the fastest first paint; everything else is
+// code-split so Leaflet and secondary pages only download when visited.
 import Home from './pages/Home';
-import DeviceSearchPage from './pages/DeviceSearchPage';
-import NearbyLocationsPage from './pages/NearbyLocationsPage';
-import PickupNetworkPage from './pages/PickupNetworkPage';
-import CircularEconomyPage from './pages/CircularEconomyPage';
-import DisposablesPage from './pages/DisposablesPage';
-import LoginPage from './pages/LoginPage';
-import CheckoutPage from './pages/CheckoutPage';
+const DeviceSearchPage = lazy(() => import('./pages/DeviceSearchPage'));
+const NearbyLocationsPage = lazy(() => import('./pages/NearbyLocationsPage'));
+const PickupNetworkPage = lazy(() => import('./pages/PickupNetworkPage'));
+const CircularEconomyPage = lazy(() => import('./pages/CircularEconomyPage'));
+const DisposablesPage = lazy(() => import('./pages/DisposablesPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
 
 import './index.css';
+
+function PageLoader() {
+  return (
+    <div className="min-h-[60vh] flex items-center justify-center">
+      <div className="w-12 h-12 border-4 border-eco-500 border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+}
 
 function AppContent() {
   const [darkMode] = useState(true);
@@ -57,17 +67,19 @@ function AppContent() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Routes>
-          <Route path="/" element={<Home darkMode={darkMode} />} />
-          <Route path="/device-search" element={<DeviceSearchPage darkMode={darkMode} />} />
-          <Route path="/nearby-locations" element={<NearbyLocationsPage darkMode={darkMode} />} />
-          <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />
-          <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
-          <Route path="/disposables" element={<DisposablesPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
-          <Route path="/checkout" element={<CheckoutPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
-          <Route path="/login" element={<LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/checkout" element={isLoggedIn ? <CheckoutPage darkMode={darkMode} /> : <LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
-        </Routes>
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Home darkMode={darkMode} />} />
+            <Route path="/device-search" element={<DeviceSearchPage darkMode={darkMode} />} />
+            <Route path="/nearby-locations" element={<NearbyLocationsPage darkMode={darkMode} />} />
+            <Route path="/pickup-network" element={<PickupNetworkPage darkMode={darkMode} onNotification={handleNotification} />} />
+            <Route path="/circular-economy" element={<CircularEconomyPage darkMode={darkMode} />} />
+            <Route path="/disposables" element={<DisposablesPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
+            <Route path="/checkout" element={<CheckoutPage darkMode={darkMode} isLoggedIn={isLoggedIn} />} />
+            <Route path="/login" element={<LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/checkout" element={isLoggedIn ? <CheckoutPage darkMode={darkMode} /> : <LoginPage darkMode={darkMode} setIsLoggedIn={setIsLoggedIn} />} />
+          </Routes>
+        </Suspense>
       </motion.div>
 
       <Footer darkMode={darkMode} />

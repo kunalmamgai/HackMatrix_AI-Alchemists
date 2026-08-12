@@ -1,12 +1,34 @@
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import HomeFeatures from '../components/HomeFeatures';
 import ImpactStats from '../components/ImpactStats';
-import MapTeaser from '../components/MapTeaser';
 import DisposablesBar from '../components/DisposablesBar';
 import CircularEconomyTeaser from '../components/CircularEconomyTeaser';
 import HomeCta from '../components/HomeCta';
 import homeVideo from '../assets/home.mp4';
+
+// MapTeaser pulls in Leaflet (~150 KB) — keep it out of the first paint
+// by loading it as its own chunk once the page mounts.
+const MapTeaser = lazy(() => import('../components/MapTeaser'));
+
+function MapTeaserSkeleton() {
+  return (
+    <section className="py-20 bg-gray-900" aria-hidden="true">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="h-10 w-2/3 max-w-md mx-auto rounded-full bg-gray-800 animate-pulse mb-14" />
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
+          <div className="space-y-4">
+            {[...Array(5)].map((_, i) => (
+              <div key={i} className="h-16 rounded-xl bg-gray-800 animate-pulse" />
+            ))}
+          </div>
+          <div className="h-[420px] rounded-2xl bg-gray-800 animate-pulse" />
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home({ darkMode }) {
   return (
@@ -40,7 +62,9 @@ export default function Home({ darkMode }) {
       {/* Below-the-fold sections */}
       <HomeFeatures darkMode={darkMode} />
       <ImpactStats darkMode={darkMode} />
-      <MapTeaser darkMode={darkMode} />
+      <Suspense fallback={<MapTeaserSkeleton />}>
+        <MapTeaser darkMode={darkMode} />
+      </Suspense>
       <DisposablesBar darkMode={darkMode} />
       <CircularEconomyTeaser darkMode={darkMode} />
       <HomeCta darkMode={darkMode} />
