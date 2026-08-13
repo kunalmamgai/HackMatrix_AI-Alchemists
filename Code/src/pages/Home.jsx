@@ -4,7 +4,6 @@ import Hero from '../components/Hero';
 import HomeFeatures from '../components/HomeFeatures';
 import ImpactStats from '../components/ImpactStats';
 import DisposablesBar from '../components/DisposablesBar';
-import CircularEconomyTeaser from '../components/CircularEconomyTeaser';
 import DrawerEstimator from '../components/DrawerEstimator';
 import HomeCta from '../components/HomeCta';
 import HeroAurora from '../components/HeroAurora';
@@ -60,7 +59,6 @@ export default function Home() {
         <MapTeaser />
       </Suspense>
       <DisposablesBar />
-      <CircularEconomyTeaser />
       <DrawerEstimator />
       <HomeCta />
     </motion.main>
