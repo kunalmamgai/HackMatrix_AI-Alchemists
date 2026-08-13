@@ -220,36 +220,9 @@ export default function Hero({ transparentBackground = false }) {
             </motion.button>
           </motion.div>
 
-          {/* Floating Illustration */}
-          <motion.div
-            variants={floatingVariants}
-            animate={bounce}
-            className="mt-16 relative h-64 flex items-center justify-center"
-          >
-            <div className={`relative w-64 h-64 rounded-3xl bg-gradient-to-br from-eco-900/30 to-ocean-900/30 border border-eco-700/30`}>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-2">♻️</div>
-                  <p className={`font-semibold text-eco-300`}>
-                    Circular Economy
-                  </p>
-                </div>
-              </div>
-              {/* Orbiting elements */}
-              <motion.div
-                className={`absolute w-8 h-8 rounded-full bg-eco-500 top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2`}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                style={{ transformOrigin: '0px 100px' }}
-              />
-              <motion.div
-                className={`absolute w-6 h-6 rounded-full bg-ocean-500 bottom-0 right-0 transform translate-x-1/2 translate-y-1/2`}
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-                style={{ transformOrigin: '-80px -80px' }}
-              />
-            </div>
-          </motion.div>
+          
+           
+             
 
           {/* Featured Stats */}
           <motion.div
