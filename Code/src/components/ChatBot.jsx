@@ -96,7 +96,7 @@ export default function ChatBot() {
       {/* Floating Chat Button */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 bg-gradient-eco text-white hover:shadow-glow`}
+        className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 bg-gradient-forest text-white hover:shadow-glow`}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -123,7 +123,7 @@ export default function ChatBot() {
             className={`fixed bottom-24 right-6 z-40 w-96 max-h-screen md:max-h-[600px] rounded-2xl shadow-2xl overflow-hidden flex flex-col bg-white border border-sage-200`}
           >
             {/* Header */}
-            <div className="bg-gradient-eco text-white p-4 flex items-center justify-between">
+            <div className="bg-gradient-forest text-white p-4 flex items-center justify-between">
               <div>
                 <h3 className="text-lg font-bold">EcoBot</h3>
                 <p className="text-sm text-forest-100">Always here to help</p>
@@ -150,7 +150,7 @@ export default function ChatBot() {
                   <div
                     className={`max-w-xs px-4 py-3 rounded-xl ${
                       message.sender === 'user'
-                        ? 'bg-eco-500 text-white rounded-br-none'
+                        ? 'bg-forest-500 text-white rounded-br-none'
                         : 'bg-sage-100 text-ink-900 rounded-bl-none'
                     }`}
                   >
@@ -169,7 +169,7 @@ export default function ChatBot() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="flex items-center gap-2 text-eco-500"
+                  className="flex items-center gap-2 text-forest-500"
                 >
                   <Loader size={16} className="animate-spin" />
                   <span>EcoBot is typing...</span>
@@ -188,12 +188,12 @@ export default function ChatBot() {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-                  className={`flex-1 px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900 placeholder-ink-400`}
+                  className={`flex-1 px-4 py-2 rounded-full border focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-100 border-sage-200 text-ink-900 placeholder-ink-400`}
                 />
                 <motion.button
                   onClick={handleSendMessage}
                   disabled={isLoading || !inputValue.trim()}
-                  className="p-2 rounded-full bg-gradient-eco text-white hover:opacity-90 disabled:opacity-50 transition-opacity"
+                  className="p-2 rounded-full bg-gradient-forest text-white hover:opacity-90 disabled:opacity-50 transition-opacity"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

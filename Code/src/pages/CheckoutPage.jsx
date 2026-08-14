@@ -43,16 +43,19 @@ export default function CheckoutPage({ isLoggedIn }) {
         transition={{ duration: 0.4 }}
         className={`min-h-screen flex items-center justify-center pt-20 px-4 bg-cream-50`}
       >
-        <div className={`text-center p-8 rounded-2xl shadow-xl max-w-md bg-white`}>
-          <h2 className={`text-2xl font-bold mb-3 text-ink-900`}>
-            Login Required
+        <div className="text-center p-8 rounded-2xl shadow-xl max-w-md bg-white border border-sage-200">
+          <div className="w-16 h-16 bg-gradient-forest rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg">
+            <CreditCard className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-h2 mb-3 text-ink-900">
+            Sign in to complete your order
           </h2>
-          <p className={`text-ink-500 mb-6`}>
-            Please login first to continue with checkout.
+          <p className="text-body text-ink-500 mb-6">
+            Your cart is saved — {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'} waiting for you.
           </p>
           <button
             onClick={() => navigate('/login')}
-            className="bg-gradient-eco text-white font-semibold py-2.5 px-5 rounded-lg hover:shadow-lg transition-all"
+            className="btn-primary"
           >
             Go to Login
           </button>
@@ -69,9 +72,9 @@ export default function CheckoutPage({ isLoggedIn }) {
         transition={{ duration: 0.5 }}
         className={`min-h-screen flex items-center justify-center pt-20 px-4 bg-cream-50`}
       >
-        <div className={`text-center p-12 rounded-3xl shadow-2xl max-w-md bg-white`}>
+        <div className={`text-center p-12 rounded-2xl shadow-2xl max-w-md bg-white`}>
           <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.3 }} className="mb-6">
-            <div className="w-20 h-20 bg-gradient-eco rounded-full flex items-center justify-center mx-auto shadow-lg">
+            <div className="w-20 h-20 bg-gradient-forest rounded-full flex items-center justify-center mx-auto shadow-lg">
               <Check className="w-10 h-10 text-white" />
             </div>
           </motion.div>
@@ -94,7 +97,7 @@ export default function CheckoutPage({ isLoggedIn }) {
       <div className="max-w-6xl mx-auto">
         <button
           onClick={() => navigate('/disposables')}
-          className={`flex items-center space-x-2 mb-8 px-4 py-2 rounded-lg transition-colors text-eco-600 hover:bg-sage-100`}
+          className={`flex items-center space-x-2 mb-8 px-4 py-2 rounded-lg transition-colors text-forest-600 hover:bg-sage-100`}
         >
           <ArrowLeft size={20} />
           <span>Back to Products</span>
@@ -134,7 +137,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                         <p className={`text-sm text-ink-500`}>
                           {item.category}
                         </p>
-                        <p className={`font-semibold text-eco-500 text-lg`}>
+                        <p className={`font-semibold text-forest-500 text-lg`}>
                           {item.price}
                         </p>
                       </div>
@@ -157,7 +160,7 @@ export default function CheckoutPage({ isLoggedIn }) {
 
                       <button
                         onClick={() => removeFromCart(item.id)}
-                        className={`p-2 rounded-lg transition-colors text-red-400 hover:bg-sage-100`}
+                        className={`p-2 rounded-lg transition-colors text-danger-400 hover:bg-sage-100`}
                       >
                         <Trash2 size={18} />
                       </button>
@@ -190,7 +193,7 @@ export default function CheckoutPage({ isLoggedIn }) {
               </div>
               <div className={`flex justify-between pt-4 font-bold text-lg text-ink-900`}>
                 <span>Total:</span>
-                <span className="text-eco-500">₹{totalPrice + Math.round(totalPrice * 0.05) + 50}</span>
+                <span className="text-forest-500">₹{totalPrice + Math.round(totalPrice * 0.05) + 50}</span>
               </div>
             </div>
 
@@ -209,7 +212,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                   onChange={(e) => setPaymentMethod(e.target.value)}
                   className="w-4 h-4"
                 />
-                <CreditCard size={18} className="ml-3 mr-2 text-eco-500" />
+                <CreditCard size={18} className="ml-3 mr-2 text-forest-500" />
                 <span className={`font-semibold text-ink-900`}>
                   Credit/Debit Card
                 </span>
@@ -228,7 +231,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                   onChange={(e) => setPaymentMethod(e.target.value)}
                   className="w-4 h-4"
                 />
-                <HelpCircle size={18} className="ml-3 mr-2 text-eco-500" />
+                <HelpCircle size={18} className="ml-3 mr-2 text-forest-500" />
                 <span className={`font-semibold text-ink-900`}>
                   UPI / Wallet
                 </span>
@@ -244,7 +247,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                   placeholder="Cardholder Name"
                   value={cardDetails.cardName}
                   onChange={handleCardChange}
-                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
+                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-100 border-sage-200 text-ink-900`}
                 />
                 <input
                   type="text"
@@ -253,7 +256,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                   len="16"
                   value={cardDetails.cardNumber}
                   onChange={handleCardChange}
-                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
+                  className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-100 border-sage-200 text-ink-900`}
                 />
                 <div className="grid grid-cols-2 gap-3">
                   <input
@@ -262,7 +265,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                     placeholder="MM/YY"
                     value={cardDetails.expiryDate}
                     onChange={handleCardChange}
-                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
+                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-100 border-sage-200 text-ink-900`}
                   />
                   <input
                     type="text"
@@ -271,7 +274,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                     value={cardDetails.cvv}
                     onChange={handleCardChange}
                     maxLength="3"
-                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-100 border-sage-200 text-ink-900`}
+                    className={`px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-100 border-sage-200 text-ink-900`}
                   />
                 </div>
               </motion.div>
@@ -280,7 +283,7 @@ export default function CheckoutPage({ isLoggedIn }) {
             <button
               onClick={handlePlaceOrder}
               disabled={cartItems.length === 0}
-              className="w-full py-3 rounded-lg font-bold text-white bg-gradient-eco hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full py-3 rounded-lg font-bold text-white bg-gradient-forest hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             >
               Place Order
             </button>

@@ -7,7 +7,7 @@ const steps = [
     icon: Minimize2,
     title: 'Reduce',
     text: 'Buy only what you need — less manufacturing, lower carbon footprint.',
-    color: 'from-eco-500 to-eco-700',
+    color: 'from-forest-500 to-forest-700',
   },
   {
     icon: RotateCcw,
@@ -27,7 +27,7 @@ export default function CircularEconomyTeaser() {
   const navigate = useNavigate();
 
   return (
-    <section id="circular-teaser" className={`py-20 bg-white`}>
+    <section id="circular-teaser" className={`py-16 lg:py-24 bg-white`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"

@@ -61,40 +61,53 @@ export default {
           800: '#7e5713',
           900: '#5c3f0e',
         },
-        // Legacy aliases — existing classes keep working
-        eco: {
-          50: '#f0f6f1',
-          100: '#dcecdf',
-          200: '#b9d9c0',
-          300: '#8fbe9c',
-          400: '#5e9677',
-          500: '#3d7358',
-          600: '#2e5d46',
-          700: '#244b3a',
-          800: '#1e4033',
-          900: '#173228',
+        // Semantic layer — components reference intent, not raw color families
+        danger: {
+          50: '#fdf3f3',
+          100: '#fbe0df',
+          200: '#f5c2c0',
+          300: '#ec9a96',
+          400: '#df6b66',
+          500: '#b3261e', // destructive actions (replaces raw red-500/600)
+          600: '#9a1f18',
+          700: '#7e1a14',
+          800: '#651410',
+          900: '#4f0f0c',
         },
-        ocean: {
-          50: '#fdf9ee',
+        success: {
+          100: '#dcecdf',
+          500: '#2e5d46', // alias of forest-600 — confirmations
+          600: '#244b3a',
+        },
+        warning: {
           100: '#faf0d5',
-          200: '#f4e0a8',
-          300: '#eecc77',
-          400: '#e7b44c',
-          500: '#e0a527',
+          500: '#e0a527', // alias of gold-500 — cautions
           600: '#c48b1e',
-          700: '#a06f17',
-          800: '#7e5713',
-          900: '#5c3f0e',
+        },
+        info: {
+          100: '#dcecdf',
+          500: '#5e9677', // alias of forest-400 — informational
+          600: '#3d7358',
         },
       },
       fontFamily: {
         sans: ["'Manrope'", 'system-ui', 'sans-serif'],
         display: ["'Poppins'", "'Manrope'", 'system-ui', 'sans-serif'],
       },
+      // Named type scale — components pick a role, not an ad hoc text-5xl
+      fontSize: {
+        display: ['clamp(2.5rem, 6vw, 4rem)', { lineHeight: '1.08', fontWeight: '800', letterSpacing: '-0.02em' }], // hero H1 only
+        h1: ['clamp(2rem, 4.5vw, 2.75rem)', { lineHeight: '1.15', fontWeight: '700' }], // section titles
+        h2: ['clamp(1.5rem, 3vw, 1.875rem)', { lineHeight: '1.25', fontWeight: '700' }], // subsection / card group titles
+        h3: ['clamp(1.25rem, 2vw, 1.375rem)', { lineHeight: '1.35', fontWeight: '600' }], // card titles
+        body: ['1.0625rem', { lineHeight: '1.6' }], // paragraph copy (17px)
+        small: ['0.875rem', { lineHeight: '1.5', fontWeight: '500' }], // meta / helper text
+        stat: ['clamp(2rem, 4vw, 2.75rem)', { lineHeight: '1.1', fontWeight: '800', fontVariantNumeric: 'tabular-nums' }], // counters
+      },
       borderRadius: {
-        xl: '1rem', // 16px (was 12)
-        '2xl': '1.25rem', // 20px (was 16)
-        '3xl': '1.75rem', // 28px (was 24)
+        xl: '1rem', // 16px — modals, drawers, large surfaces
+        '2xl': '1.25rem', // 20px — content cards (containers, not blobs)
+        '3xl': '1.75rem', // 28px — reserved for feature/marketing moments
       },
       boxShadow: {
         soft: '0 4px 20px -2px rgba(30, 64, 51, 0.08), 0 2px 8px -2px rgba(30, 64, 51, 0.06)',
@@ -103,7 +116,7 @@ export default {
         'glow-blue': '0 0 20px rgba(224, 165, 39, 0.3)',
       },
       backgroundImage: {
-        'gradient-eco': 'linear-gradient(135deg, #2e5d46 0%, #1e4033 100%)',
+        'gradient-forest': 'linear-gradient(135deg, #2e5d46 0%, #1e4033 100%)',
         'gradient-subtle': 'linear-gradient(135deg, rgba(46, 93, 70, 0.08) 0%, rgba(224, 165, 39, 0.08) 100%)',
         'gradient-hero': 'linear-gradient(180deg, rgba(23, 50, 40, 0.6) 0%, rgba(23, 50, 40, 0.35) 50%, rgba(23, 50, 40, 0.6) 100%)',
       },

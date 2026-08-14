@@ -92,7 +92,7 @@ const GRID_X = [-72, 0, 72];
 const GRID_Y = [-30, 30];
 
 // Brand colors (0..1)
-const GREEN_A = [0.36, 0.8, 0.58]; // eco-300
+const GREEN_A = [0.36, 0.8, 0.58]; // forest-300
 const GREEN_B = [0.22, 0.62, 0.47]; // deeper eco
 const GOLD = [0.88, 0.65, 0.15]; // gold-500
 

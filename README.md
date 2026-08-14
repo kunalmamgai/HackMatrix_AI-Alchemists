@@ -87,7 +87,7 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 
 ### 9. UI and Experience
 
-- Dark-mode-only interface.
+- Light botanical theme (forest / sage / cream / ink / gold design tokens, Poppins display over Manrope body).
 - Toast notifications for feedback.
 - Floating chatbot for quick user assistance.
 - Mobile-responsive navigation and section layouts.
@@ -147,7 +147,6 @@ HackMatrix_AI-Alchemists/
 
 ### LocalStorage Keys Used
 
-- `darkMode`
 - `isLoggedIn`
 - `cartItems`
 - `deviceImages`

@@ -134,7 +134,7 @@ export default function PickupNetwork({ onNotification }) {
   return (
     <section
       id="pickup"
-      className={`py-20 bg-white`}
+      className={`py-16 lg:py-24 bg-white`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -154,14 +154,14 @@ export default function PickupNetwork({ onNotification }) {
           {/* Recycler Card */}
           <motion.div
             className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'recycler'
-                ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
-                : 'bg-sage-100 border-2 border-sage-200 hover:border-eco-400'
+                ? 'bg-gradient-forest/20 border-2 border-forest-500 scale-105 shadow-lg'
+                : 'bg-sage-100 border-2 border-sage-200 hover:border-forest-400'
               }`}
             onClick={() => setFormData({ ...formData, pickupType: 'recycler' })}
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
+            <div className="p-4 rounded-xl bg-gradient-forest w-fit mb-4">
               <Truck className="w-6 h-6 text-white" />
             </div>
             <h3 className={`text-xl font-bold mb-3 text-ink-900`}>
@@ -172,15 +172,15 @@ export default function PickupNetwork({ onNotification }) {
             </p>
             <ul className={`space-y-2 text-sm text-ink-700`}>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Certified & insured</span>
               </li>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Data destruction guarantee</span>
               </li>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Eco-friendly processes</span>
               </li>
             </ul>
@@ -189,14 +189,14 @@ export default function PickupNetwork({ onNotification }) {
           {/* Repair Enthusiast Card */}
           <motion.div
             className={`rounded-2xl p-8 transition-all cursor-pointer transform ${formData.pickupType === 'repairer'
-                ? 'bg-gradient-eco/20 border-2 border-eco-500 scale-105 shadow-lg'
-                : 'bg-sage-100 border-2 border-sage-200 hover:border-eco-400'
+                ? 'bg-gradient-forest/20 border-2 border-forest-500 scale-105 shadow-lg'
+                : 'bg-sage-100 border-2 border-sage-200 hover:border-forest-400'
               }`}
             onClick={() => setFormData({ ...formData, pickupType: 'repairer' })}
             variants={itemVariants}
             whileHover={{ scale: 1.05 }}
           >
-            <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
+            <div className="p-4 rounded-xl bg-gradient-forest w-fit mb-4">
               <User className="w-6 h-6 text-white" />
             </div>
             <h3 className={`text-xl font-bold mb-3 text-ink-900`}>
@@ -207,15 +207,15 @@ export default function PickupNetwork({ onNotification }) {
             </p>
             <ul className={`space-y-2 text-sm text-ink-700`}>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Expert community members</span>
               </li>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Give devices new life</span>
               </li>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Fair pricing & transparency</span>
               </li>
             </ul>
@@ -223,10 +223,10 @@ export default function PickupNetwork({ onNotification }) {
 
           {/* Trust & Safety Card */}
           <motion.div
-            className={`rounded-2xl p-8 bg-sage-100 border-2 border-eco-300`}
+            className={`rounded-2xl p-8 bg-sage-100 border-2 border-forest-300`}
             variants={itemVariants}
           >
-            <div className="p-4 rounded-xl bg-eco-500 w-fit mb-4">
+            <div className="p-4 rounded-xl bg-forest-500 w-fit mb-4">
               <Shield className="w-6 h-6 text-white" />
             </div>
             <h3 className={`text-xl font-bold mb-3 text-ink-900`}>
@@ -237,15 +237,15 @@ export default function PickupNetwork({ onNotification }) {
             </p>
             <ul className={`space-y-2 text-sm text-ink-700`}>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Verified members only</span>
               </li>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>Real reviews & ratings</span>
               </li>
               <li className="flex items-center space-x-2">
-                <CheckCircle size={16} className="text-eco-500 flex-shrink-0" />
+                <CheckCircle size={16} className="text-forest-500 flex-shrink-0" />
                 <span>24/7 support available</span>
               </li>
             </ul>
@@ -279,6 +279,16 @@ export default function PickupNetwork({ onNotification }) {
             </motion.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Numbered-step progress: guides the user through the flow */}
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-h3 text-ink-900">
+                  Step {currentStep} of 3
+                </h3>
+                <span className="text-small text-ink-500">
+                  {currentStep === 1 ? 'Device details' : currentStep === 2 ? 'Choose a partner' : 'Contact & address'}
+                </span>
+              </div>
+
               {/* Step Indicator */}
               <div className="flex justify-between mb-8">
                 {[1, 2, 3].map((step) => (
@@ -299,7 +309,7 @@ export default function PickupNetwork({ onNotification }) {
                   >
                     <motion.div
                       className={`w-10 h-10 rounded-full flex items-center justify-center font-bold mb-2 ${step <= currentStep
-                          ? 'bg-eco-500 text-white'
+                          ? 'bg-forest-500 text-white'
                           : 'bg-sage-200 text-ink-700'
                         }`}
                       whileHover={step <= currentStep ? { scale: 1.1 } : {}}
@@ -316,7 +326,7 @@ export default function PickupNetwork({ onNotification }) {
               {/* Progress Bar */}
               <div className={`h-1 rounded-full overflow-hidden bg-sage-200`}>
                 <motion.div
-                  className="h-full bg-gradient-eco"
+                  className="h-full bg-gradient-forest"
                   initial={{ width: 0 }}
                   animate={{ width: `${(currentStep / 3) * 100}%` }}
                   transition={{ duration: 0.5 }}
@@ -352,8 +362,8 @@ export default function PickupNetwork({ onNotification }) {
                                 setFormData({ ...formData, deviceType: type });
                               }}
                               className={`p-3 rounded-lg transition-all ${formData.deviceType === type
-                                  ? 'bg-eco-500 text-white border-2 border-eco-600'
-                                  : 'bg-sage-200 text-ink-700 border-2 border-sage-200 hover:border-eco-400'
+                                  ? 'bg-forest-500 text-white border-2 border-forest-600'
+                                  : 'bg-sage-200 text-ink-700 border-2 border-sage-200 hover:border-forest-400'
                                 }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -378,8 +388,8 @@ export default function PickupNetwork({ onNotification }) {
                                 setFormData({ ...formData, condition });
                               }}
                               className={`p-3 rounded-lg transition-all ${formData.condition === condition
-                                  ? 'bg-eco-500 text-white border-2 border-eco-600'
-                                  : 'bg-sage-200 text-ink-700 border-2 border-sage-200 hover:border-eco-400'
+                                  ? 'bg-forest-500 text-white border-2 border-forest-600'
+                                  : 'bg-sage-200 text-ink-700 border-2 border-sage-200 hover:border-forest-400'
                                 }`}
                               whileHover={{ scale: 1.05 }}
                               whileTap={{ scale: 0.95 }}
@@ -401,7 +411,7 @@ export default function PickupNetwork({ onNotification }) {
                           max="50"
                           value={formData.quantity}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-200 border-sage-200 text-ink-900`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-200 border-sage-200 text-ink-900`}
                         />
                       </div>
                     </motion.div>
@@ -426,12 +436,12 @@ export default function PickupNetwork({ onNotification }) {
                           <motion.div
                             key={partner.id}
                             className={`rounded-2xl p-6 transition-all border-2 flex flex-col h-full ${formData.pickupType === partner.id
-                                ? 'bg-gradient-eco/20 border-eco-500 shadow-glow'
+                                ? 'bg-gradient-forest/20 border-forest-500 shadow-glow'
                                 : 'bg-sage-100 border-sage-200'
                               }`}
                             whileHover={{ scale: 1.05 }}
                           >
-                            <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-4">
+                            <div className="p-4 rounded-xl bg-gradient-forest w-fit mb-4">
                               {(() => {
                                 const IconComponent = partner.icon;
                                 return <IconComponent className="w-8 h-8 text-white" />;
@@ -449,7 +459,7 @@ export default function PickupNetwork({ onNotification }) {
                             <ul className={`space-y-3 mb-6 text-ink-700`}>
                               {partner.features.map((feature, idx) => (
                                 <li key={idx} className="flex items-center space-x-3">
-                                  <CheckCircle size={18} className="text-eco-500 flex-shrink-0" />
+                                  <CheckCircle size={18} className="text-forest-500 flex-shrink-0" />
                                   <span className="text-sm">{feature}</span>
                                 </li>
                               ))}
@@ -462,8 +472,8 @@ export default function PickupNetwork({ onNotification }) {
                                 selectPartnerFromCarousel(partner.id);
                               }}
                               className={`w-full py-3 px-4 rounded-lg font-semibold transition-all ${formData.pickupType === partner.id
-                                  ? 'bg-eco-500 text-white shadow-glow'
-                                  : 'bg-sage-200 text-ink-900 hover:bg-eco-500 hover:text-white'
+                                  ? 'bg-forest-500 text-white shadow-glow'
+                                  : 'bg-sage-200 text-ink-900 hover:bg-forest-500 hover:text-white'
                                 }`}
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
@@ -477,13 +487,13 @@ export default function PickupNetwork({ onNotification }) {
                       {/* Selected Partner Info */}
                       {formData.pickupType && (
                         <motion.div
-                          className={`p-4 rounded-lg border-2 border-eco-400 bg-eco-100/60`}
+                          className={`p-4 rounded-lg border-2 border-forest-400 bg-forest-100/60`}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
                           <div className="flex items-start space-x-2">
-                            <CheckCircle size={18} className="text-eco-500 flex-shrink-0 mt-0.5" />
-                            <p className={`text-sm text-eco-700`}>
+                            <CheckCircle size={18} className="text-forest-500 flex-shrink-0 mt-0.5" />
+                            <p className={`text-sm text-forest-700`}>
                               <span className="font-semibold">Selected: </span>
                               {PARTNERS.find(p => p.id === formData.pickupType)?.title}
                             </p>
@@ -516,7 +526,7 @@ export default function PickupNetwork({ onNotification }) {
                           value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
                           placeholder="John Doe"
                         />
                       </div>
@@ -531,7 +541,7 @@ export default function PickupNetwork({ onNotification }) {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-forest-500 bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
                           placeholder="+1 (555) 123-4567"
                         />
                       </div>
@@ -546,7 +556,7 @@ export default function PickupNetwork({ onNotification }) {
                           onChange={handleInputChange}
                           required
                           rows="3"
-                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-eco-500 resize-none bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
+                          className={`w-full px-4 py-2 rounded-lg border-2 transition-all focus:outline-none focus:ring-2 focus:ring-forest-500 resize-none bg-sage-200 border-sage-200 text-ink-900 placeholder-ink-400`}
                           placeholder="123 Main St, City, State 12345"
                         />
                       </div>
@@ -583,7 +593,7 @@ export default function PickupNetwork({ onNotification }) {
                     }}
                     disabled={!isStepComplete(currentStep)}
                     className={`px-6 py-2 rounded-lg font-medium flex items-center space-x-2 transition-all ${isStepComplete(currentStep)
-                        ? 'bg-gradient-eco text-white hover:shadow-glow'
+                        ? 'bg-gradient-forest text-white hover:shadow-glow'
                         : 'opacity-50 cursor-not-allowed bg-sage-300 text-ink-900'
                       }`}
                     whileHover={isStepComplete(currentStep) ? { scale: 1.05 } : {}}

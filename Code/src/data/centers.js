@@ -10,7 +10,7 @@ export const centers = [
     hours: 'Mon-Sat: 9AM-6PM',
     services: ['Drop-off', 'Dismantling', 'Refurbishing', 'Component Testing', 'Plastic Recovery', 'Second-hand Electronics Market'],
     coordinates: { lat: 28.5921, lng: 77.3693 },
-    image: 'https://images.news18.com/ibnlive/uploads/2025/06/Delhi-eco-park-2025-06-3a0fa58fc26fffe73108773502cfb9d3.jpg',
+    image: 'https://images.news18.com/ibnlive/uploads/2025/06/Delhi-forest-park-2025-06-3a0fa58fc26fffe73108773502cfb9d3.jpg',
     description: "India's first state-of-the-art E-Waste Eco Park at Holambi Kalan, spanning 11.4 acres with Rs 150 crore investment. Processes 51,000 metric tonnes of e-waste annually covering all 106 categories under E-Waste Management Rules 2022. Features dedicated zones for dismantling, refurbishing, component testing, plastic recovery, and second-hand electronics market. Includes skilling centers to train thousands of informal workers. Expected to generate Rs 350 crore in revenue and create thousands of green jobs. PPP model with 18-month construction timeline.",
   },
   {

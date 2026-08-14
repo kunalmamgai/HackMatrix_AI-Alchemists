@@ -6,10 +6,10 @@ export default function HomeCta() {
   const navigate = useNavigate();
 
   return (
-    <section id="home-cta" className={`py-20 bg-cream-50`}>
+    <section id="home-cta" className={`py-16 lg:py-24 bg-cream-50`}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="rounded-3xl bg-gradient-eco p-10 md:p-14 text-center text-white shadow-xl"
+          className="rounded-3xl bg-gradient-forest p-10 md:p-14 text-center text-white shadow-xl"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -23,7 +23,7 @@ export default function HomeCta() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => navigate('/pickup-network')}
-              className="inline-flex items-center justify-center gap-2 bg-white text-eco-700 font-semibold px-8 py-3 rounded-xl hover:bg-eco-50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white text-forest-700 font-semibold px-8 py-3 rounded-xl hover:bg-forest-50 transition-colors"
             >
               <Truck size={20} />
               Schedule a Pickup

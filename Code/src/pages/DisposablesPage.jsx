@@ -93,7 +93,7 @@ export default function DisposablesPage({ isLoggedIn }) {
               whileTap={{ scale: 0.95 }}
               className={`px-4 py-2 rounded-full font-semibold transition-all ${
                 filter === category
-                  ? 'bg-eco-500 text-white shadow-lg'
+                  ? 'bg-forest-500 text-white shadow-lg'
                   : 'bg-white text-ink-700 hover:bg-sage-100'
               }`}
             >
@@ -150,7 +150,7 @@ export default function DisposablesPage({ isLoggedIn }) {
                     >
                       <Heart
                         size={20}
-                        className={isWishlisted ? 'fill-eco-500 text-eco-500' : 'text-ink-500'}
+                        className={isWishlisted ? 'fill-forest-500 text-forest-500' : 'text-ink-500'}
                       />
                     </motion.button>
                   </div>
@@ -162,9 +162,9 @@ export default function DisposablesPage({ isLoggedIn }) {
                       <span
                         className={`text-xs font-bold px-3 py-1 rounded-full ${
                           product.condition === 'Excellent' || product.condition === 'Like New'
-                            ? 'bg-green-100 text-forest-700'
+                            ? 'bg-success-100 text-success-600'
                             : product.condition === 'Very Good'
-                            ? 'bg-blue-100 text-blue-700'
+                            ? 'bg-info-100 text-info-600'
                             : 'bg-gold-100 text-gold-700'
                         }`}
                       >
@@ -184,12 +184,12 @@ export default function DisposablesPage({ isLoggedIn }) {
 
                     {/* Price and Button */}
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-2xl font-bold text-eco-500">{product.price}</span>
+                      <span className="text-2xl font-bold text-forest-500">{product.price}</span>
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() => handleBuy(product)}
-                        className="flex-1 bg-gradient-eco text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                        className="flex-1 bg-gradient-forest text-white font-semibold py-2 px-3 rounded-lg hover:shadow-lg transition-all flex items-center justify-center gap-2"
                       >
                         <ShoppingCart size={18} />
                         <span className="hidden sm:inline">{isLoggedIn ? 'Buy' : 'Login to Buy'}</span>

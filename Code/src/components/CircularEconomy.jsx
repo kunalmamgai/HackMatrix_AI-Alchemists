@@ -2,207 +2,146 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Minimize2, RotateCcw, RotateCw, Leaf, Zap, Droplet, Trophy } from 'lucide-react';
 
+const CYCLE = [
+  {
+    icon: Minimize2,
+    number: '01',
+    title: 'Reduce',
+    description:
+      'Minimize e-waste by buying only what you need and choosing quality over quantity.',
+    benefits: ['Less manufacturing', 'Lower carbon footprint', 'Cost savings'],
+    color: 'from-gold-400 to-gold-600',
+  },
+  {
+    icon: RotateCcw,
+    number: '02',
+    title: 'Reuse',
+    description:
+      'Extend device lifecycles through repair, refurbishment, and donation programs.',
+    benefits: ['Saves resources', 'Affordable access', 'Community support'],
+    color: 'from-forest-400 to-forest-600',
+  },
+  {
+    icon: RotateCw,
+    number: '03',
+    title: 'Recycle',
+    description:
+      'Responsibly process materials to recover valuable metals and minimize environmental impact.',
+    benefits: ['Material recovery', 'Pollution prevention', 'New products'],
+    color: 'from-sage-500 to-sage-700',
+  },
+];
+
+const STATS = [
+  { icon: Leaf, value: '95%', label: 'Less E-waste' },
+  { icon: Zap, value: '80%', label: 'Energy Saved' },
+  { icon: Droplet, value: '250M', label: 'Liters Water Saved' },
+  { icon: Trophy, value: '1000+', label: 'Devices Renewed' },
+];
+
+const WAYS = [
+  { step: '1️⃣', action: 'Buy Responsibly', desc: 'Choose durable, repairable devices' },
+  { step: '2️⃣', action: 'Extend Life', desc: 'Keep devices working as long as possible' },
+  { step: '3️⃣', action: 'Donate Used', desc: 'Give devices to those who need them' },
+  { step: '4️⃣', action: "Repair, Don't Replace", desc: 'Get items fixed instead of buying new' },
+  { step: '5️⃣', action: 'Recycle Properly', desc: 'Use certified e-waste recyclers' },
+];
+
 export default function CircularEconomy() {
   const navigate = useNavigate();
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8 },
-    },
-  };
-
-  const cycleItems = [
-    {
-      icon: Minimize2,
-      title: 'Reduce',
-      description: 'Minimize e-waste by buying only what you need and choosing quality over quantity',
-      color: 'from-gold-400 to-gold-600',
-      benefits: ['Less manufacturing', 'Lower carbon footprint', 'Cost savings'],
-    },
-    {
-      icon: RotateCcw,
-      title: 'Reuse',
-      description: 'Extend device lifecycles through repair, refurbishment, and donation programs',
-      color: 'from-eco-400 to-eco-600',
-      benefits: ['Saves resources', 'Affordable access', 'Community support'],
-    },
-    {
-      icon: RotateCw,
-      title: 'Recycle',
-      description: 'Responsibly process materials to recover valuable metals and minimize environmental impact',
-      color: 'from-sage-500 to-sage-700',
-      benefits: ['Material recovery', 'Pollution prevention', 'New products'],
-    },
-  ];
-
-  const stats = [
-    { icon: Leaf, value: '95%', label: 'Less E-waste' },
-    { icon: Zap, value: '80%', label: 'Energy Saved' },
-    { icon: Droplet, value: '250M', label: 'Liters Water Saved' },
-    { icon: Trophy, value: '1000+', label: 'Devices Renewed' },
-  ];
-
   return (
-    <section
-      id="circular"
-      className={`py-20 bg-cream-50`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="circular" className="section bg-cream-50">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Editorial header — the "why", not a feature intro */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title mb-4 text-eco-600">The Circular Economy in Action</h2>
-          <p className={`section-subtitle text-ink-500`}>
-            Understanding how we transform e-waste into value through a sustainable circular model
+          <p className="text-small uppercase tracking-widest text-gold-600 mb-4">
+            Why we exist
+          </p>
+          <h2 className="text-h1 text-ink-900 mb-6">
+            The Circular Economy <span className="text-gold-500">in Action</span>
+          </h2>
+          <p className="text-body md:text-h3 font-normal text-ink-500 max-w-3xl mx-auto leading-relaxed">
+            Every device can stay in the loop instead of ending up in a landfill.
+            Understanding how we transform e-waste into value through a sustainable
+            circular model — that's the mission.
           </p>
         </motion.div>
 
-        {/* Main Cycle Flow */}
-        <motion.div
-          className="mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            {cycleItems.map((item, index) => (
-              <motion.div
-                key={item.title}
-                variants={itemVariants}
-                className="relative"
-              >
-                {/* Card */}
+        {/* Editorial cycle — numbered timeline, alternating rows */}
+        <div className="space-y-16 md:space-y-20 mb-24">
+          {CYCLE.map((item, index) => (
+            <motion.div
+              key={item.title}
+              className={`flex flex-col md:flex-row items-start gap-8 md:gap-16 ${
+                index % 2 === 1 ? 'md:flex-row-reverse' : ''
+              }`}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Icon + number */}
+              <div className="md:w-2/5 flex items-start gap-5">
+                <span className="text-display font-bold text-sage-300 leading-none select-none">
+                  {item.number}
+                </span>
                 <motion.div
-                  className={`rounded-2xl p-8 h-full shadow-xl transition-all border-2 bg-white border-sage-200 hover:border-eco-500`}
-                  whileHover={{ scale: 1.05, y: -10 }}
+                  className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center flex-shrink-0`}
+                  whileHover={{ rotate: 8, scale: 1.05 }}
                 >
-                  {/* Icon */}
-                  <motion.div
-                    className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center mb-6`}
-                    animate={{ rotate: 360 }}
-                    transition={{
-                      duration: 20,
-                      repeat: Infinity,
-                      ease: 'linear',
-                    }}
-                  >
-                    <item.icon className="w-8 h-8 text-white" />
-                  </motion.div>
-
-                  {/* Content */}
-                  <h3 className={`text-2xl font-bold mb-3 text-ink-900`}>
-                    {item.title}
-                  </h3>
-                  <p className={`text-sm mb-6 text-ink-500`}>
-                    {item.description}
-                  </p>
-
-                  {/* Benefits */}
-                  <div className="space-y-2">
-                    {item.benefits.map((benefit, idx) => (
-                      <motion.div
-                        key={idx}
-                        className="flex items-center space-x-2"
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                      >
-                        <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.color}`} />
-                        <span className={`text-sm text-ink-700`}>
-                          {benefit}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
+                  <item.icon className="w-8 h-8 text-white" />
                 </motion.div>
+              </div>
 
-                {/* Arrow to next item */}
-                {index < cycleItems.length - 1 && (
-                  <motion.div
-                    className="hidden md:flex absolute -right-6 top-1/2 transform -translate-y-1/2 z-10"
-                    animate={{ x: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className={`text-3xl text-eco-500`}>→</div>
-                  </motion.div>
-                )}
-
-                {/* Mobile arrow */}
-                {index < cycleItems.length - 1 && (
-                  <motion.div
-                    className="md:hidden flex justify-center mt-4"
-                    animate={{ y: [0, 5, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <div className={`text-3xl text-eco-500`}>↓</div>
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Cycle Complete Arrow */}
-          <motion.div
-            className="flex justify-center mt-8"
-            animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <div className={`text-4xl text-eco-500`}>↻</div>
-          </motion.div>
-        </motion.div>
+              {/* Copy */}
+              <div className="md:w-3/5">
+                <h3 className="text-h2 text-ink-900 mb-3">{item.title}</h3>
+                <p className="text-body text-ink-500 mb-6 leading-relaxed max-w-xl">
+                  {item.description}
+                </p>
+                <ul className="space-y-2.5">
+                  {item.benefits.map((benefit) => (
+                    <li key={benefit} className="flex items-center space-x-3 text-ink-700">
+                      <span className={`w-2.5 h-2.5 rounded-full bg-gradient-to-r ${item.color}`} />
+                      <span className="text-body">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
         {/* Environmental Impact Stats */}
         <motion.div
-          className="mb-16"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          className="mb-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h3 className={`text-3xl font-bold text-center mb-12 text-ink-900`}>
+          <h3 className="text-h2 text-center mb-12 text-ink-900">
             Environmental Impact
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
+            {STATS.map((stat) => (
               <motion.div
-                key={index}
-                className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-white border-sage-200`}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
+                key={stat.label}
+                className="rounded-2xl p-8 text-center shadow-soft border-2 bg-white border-sage-200"
+                whileHover={{ scale: 1.03, y: -4 }}
               >
-                <motion.div
-                  className="p-4 rounded-xl bg-gradient-eco w-fit mx-auto mb-4"
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
+                <div className="p-4 rounded-xl bg-gradient-forest w-fit mx-auto mb-4">
                   <stat.icon className="w-8 h-8 text-white" />
-                </motion.div>
-                <div className={`text-4xl font-bold mb-2 text-eco-600`}>
-                  {stat.value}
                 </div>
-                <p className={`text-sm text-ink-500`}>
-                  {stat.label}
-                </p>
+                <div className="text-stat text-forest-600 mb-2">{stat.value}</div>
+                <p className="text-small text-ink-500">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -210,40 +149,33 @@ export default function CircularEconomy() {
 
         {/* How You Can Help */}
         <motion.div
-          className={`rounded-2xl p-12 bg-white border-2 border-eco-300`}
+          className="rounded-2xl p-10 md:p-14 bg-white border-2 border-forest-300"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h3 className={`text-2xl font-bold mb-8 text-center text-ink-900`}>
+          <h3 className="text-h2 font-bold mb-2 text-center text-ink-900">
             5 Ways to Support the Circular Economy
           </h3>
+          <p className="text-body text-center text-ink-500 mb-10 max-w-xl mx-auto">
+            Small choices, compounding into a waste-free future.
+          </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {[
-              { step: '1️⃣', action: 'Buy Responsibly', desc: 'Choose durable, repairable devices' },
-              { step: '2️⃣', action: 'Extend Life', desc: 'Keep devices working as long as possible' },
-              { step: '3️⃣', action: 'Donate Used', desc: 'Give devices to those who need them' },
-              { step: '4️⃣', action: 'Repair, Don\'t Replace', desc: 'Get items fixed instead of buying new' },
-              { step: '5️⃣', action: 'Recycle Properly', desc: 'Use certified e-waste recyclers' },
-            ].map((item, index) => (
+            {WAYS.map((item, index) => (
               <motion.div
                 key={index}
-                className={`p-4 rounded-xl text-center transition-all bg-sage-100/50 hover:bg-sage-100`}
-                initial={{ opacity: 0, scale: 0.8 }}
+                className="p-4 rounded-xl text-center transition-all bg-sage-100/50 hover:bg-sage-100"
+                initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.08 }}
                 whileHover={{ scale: 1.05 }}
               >
                 <div className="text-3xl mb-2">{item.step}</div>
-                <h4 className={`font-bold text-sm mb-1 text-ink-900`}>
-                  {item.action}
-                </h4>
-                <p className={`text-xs text-ink-500`}>
-                  {item.desc}
-                </p>
+                <h4 className="font-bold text-small mb-1 text-ink-900">{item.action}</h4>
+                <p className="text-xs text-ink-500">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -251,17 +183,16 @@ export default function CircularEconomy() {
 
         {/* Call to Action */}
         <motion.div
-          className="text-center mt-16"
+          className="text-center mt-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <h3 className={`text-2xl font-bold mb-4 text-ink-900`}>
-            Ready to Make a Difference?
-          </h3>
-          <p className={`text-lg mb-8 max-w-2xl mx-auto text-ink-500`}>
-            Join thousands of people who are already part of the circular economy movement. Start by disposing of your e-waste responsibly today.
+          <h3 className="text-h1 text-ink-900 mb-4">Ready to Make a Difference?</h3>
+          <p className="text-body mb-8 max-w-2xl mx-auto text-ink-500">
+            Join thousands of people who are already part of the circular economy
+            movement. Start by disposing of your e-waste responsibly today.
           </p>
           <motion.button
             className="btn-primary"

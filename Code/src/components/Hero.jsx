@@ -1,8 +1,9 @@
 import { Component, lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { motion, useTransform, useMotionValue, useSpring } from 'framer-motion';
-import { Search, Zap } from 'lucide-react';
+import { Search, Zap, Leaf } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { devices } from '../data/devices';
+import { transitions } from '../utils/motion';
 
 // HeroScene pulls in three.js (~132 KB gzip) — keep it out of the first
 // paint by loading it as its own chunk, exactly like the lazy Leaflet map.
@@ -103,7 +104,7 @@ export default function Hero({ transparentBackground = false }) {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: 'easeOut' },
+      transition: transitions.slow,
     },
   };
 
@@ -144,19 +145,20 @@ export default function Hero({ transparentBackground = false }) {
         >
           {/* Badge */}
           <motion.div variants={itemVariants} className="mb-6">
-            <div className={`inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-eco-900/30 border border-eco-700/50`}>
-              <Zap className="w-4 h-4 text-eco-600" />
-              <span className={`text-sm font-medium text-eco-300`}>🌱 Revolutionizing E-Waste</span>
+            <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-forest-900/30 border border-forest-700/50">
+              <Zap className="w-4 h-4 text-forest-300" />
+              <Leaf className="w-4 h-4 text-gold-400" />
+              <span className="text-sm font-medium text-forest-100">Revolutionizing E-Waste</span>
             </div>
           </motion.div>
 
           {/* Main Headline */}
           <motion.h1
             variants={itemVariants}
-            className={`text-5xl md:text-7xl font-bold mb-6 leading-tight text-white`}
+            className="text-display mb-6 text-white"
           >
             Dispose Smarter. <br />
-            <span className="bg-gradient-to-r from-eco-300 to-ocean-300 bg-clip-text text-transparent text-gradient-shimmer">
+            <span className="bg-gradient-to-r from-forest-300 to-gold-300 bg-clip-text text-transparent text-gradient-shimmer">
               Reuse Better.
             </span>
             <br />
@@ -166,7 +168,7 @@ export default function Hero({ transparentBackground = false }) {
           {/* Subheading */}
           <motion.p
             variants={itemVariants}
-            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-eco-100/90`}
+            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-forest-100/90`}
           >
             Join millions in responsible e-waste disposal. Find recycling centers, schedule pickups, and participate in our circular economy network.
           </motion.p>
@@ -186,7 +188,7 @@ export default function Hero({ transparentBackground = false }) {
                 onKeyDown={handleKeyDown}
                 placeholder="Search a device, e.g. Laptop, Battery..."
                 aria-label="Search the device disposal guide"
-                className="w-full pl-12 pr-4 py-3 rounded-xl text-ink-900 placeholder-ink-400 bg-sage-100/95 backdrop-blur border-2 border-eco-500/60 focus:outline-none focus:ring-2 focus:ring-eco-400 shadow-lg"
+                className="w-full pl-12 pr-4 py-3 rounded-xl text-ink-900 placeholder-ink-400 bg-sage-100/95 backdrop-blur border-2 border-forest-500/60 focus:outline-none focus:ring-2 focus:ring-forest-400 shadow-lg"
               />
 
               {showSuggestions && suggestions.length > 0 && (
@@ -202,7 +204,7 @@ export default function Hero({ transparentBackground = false }) {
                         onMouseDown={() => handleSelectDevice(device)}
                         className="w-full flex items-center gap-3 px-4 py-3 hover:bg-sage-100 transition-colors text-left"
                       >
-                        <device.icon className="w-4 h-4 text-eco-400 flex-shrink-0" />
+                        <device.icon className="w-4 h-4 text-forest-400 flex-shrink-0" />
                         <span className="text-sm text-ink-900">{device.name}</span>
                         <span className="ml-auto text-xs text-ink-500">{device.category}</span>
                       </button>
@@ -229,25 +231,25 @@ export default function Hero({ transparentBackground = false }) {
             </Suspense>
           </SceneErrorBoundary>
 
-          {/* Featured Stats */}
+          {/* Featured Stats — real figures from the in-repo datasets */}
           <motion.div
             variants={itemVariants}
             className="grid grid-cols-3 gap-4 max-w-2xl mx-auto"
           >
             {[
-              { number: '5000+', label: 'Recycling Centers' },
-              { number: '2M+', label: 'Devices Recycled' },
-              { number: '500K', label: 'Active Users' },
+              { number: '17', label: 'Verified Centers' },
+              { number: '6', label: 'Device Categories' },
+              { number: '₹2,500+', label: 'Recoverable Value' },
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className={`p-4 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md`}
+                className="p-4 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-2xl md:text-3xl font-bold text-eco-500 mb-1">
+                <div className="text-stat text-forest-400 mb-1">
                   {stat.number}
                 </div>
-                <div className={`text-sm text-ink-500`}>
+                <div className="text-sm text-forest-100/80">
                   {stat.label}
                 </div>
               </motion.div>

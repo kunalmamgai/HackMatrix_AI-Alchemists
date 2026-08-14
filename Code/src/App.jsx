@@ -24,7 +24,7 @@ import './index.css';
 function PageLoader() {
   return (
     <div className="min-h-[60vh] flex items-center justify-center">
-      <div className="w-12 h-12 border-4 border-eco-500 border-t-transparent rounded-full animate-spin" />
+      <div className="w-12 h-12 border-4 border-forest-500 border-t-transparent rounded-full animate-spin" />
     </div>
   );
 }
@@ -37,11 +37,7 @@ function AppContent() {
   const [notification, setNotification] = useState(null);
   const [notificationType, setNotificationType] = useState('success');
 
-  // The app is dark-only by design — keep the class on <html> so any
-  // future dark: variants and the custom scrollbar colors apply.
-  useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
+  // The site is fully light-first (botanical palette) — no forced dark class.
 
   useEffect(() => {
     if (notification) {
@@ -58,7 +54,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen bg-cream-50 text-ink-900 transition-colors duration-300 dark">
+    <div className="min-h-screen bg-cream-50 text-ink-900 transition-colors duration-300">
       <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <motion.div
@@ -76,7 +72,6 @@ function AppContent() {
             <Route path="/disposables" element={<DisposablesPage isLoggedIn={isLoggedIn} />} />
             <Route path="/checkout" element={<CheckoutPage isLoggedIn={isLoggedIn} />} />
             <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
-            <Route path="/checkout" element={isLoggedIn ? <CheckoutPage /> : <LoginPage setIsLoggedIn={setIsLoggedIn} />} />
           </Routes>
         </Suspense>
       </motion.div>

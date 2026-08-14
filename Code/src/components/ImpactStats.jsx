@@ -14,7 +14,7 @@ export default function ImpactStats() {
   ];
 
   return (
-    <section id="impact" className={`py-20 bg-cream-50`}>
+    <section id="impact" className={`py-16 lg:py-24 bg-cream-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -24,7 +24,7 @@ export default function ImpactStats() {
           transition={{ duration: 0.6 }}
         >
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
-            Impact in <span className="text-eco-500">Numbers</span>
+            Impact in <span className="text-forest-500">Numbers</span>
           </h2>
           <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
             Real numbers from our network — and the scale of the e-waste challenge we are up against.
@@ -42,10 +42,10 @@ export default function ImpactStats() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="p-4 rounded-xl bg-gradient-eco w-fit mx-auto mb-4">
+              <div className="p-4 rounded-xl bg-gradient-forest w-fit mx-auto mb-4">
                 <stat.icon className="w-7 h-7 text-white" />
               </div>
-              <div className={`text-4xl font-bold mb-2 text-eco-600`}>
+              <div className={`text-4xl font-bold mb-2 text-forest-600`}>
                 <CountUp target={stat.target} suffix={stat.suffix} />
               </div>
               <p className={`font-semibold mb-1 text-ink-900`}>{stat.label}</p>

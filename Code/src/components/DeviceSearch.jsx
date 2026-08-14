@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Trash2, RotateCcw, X, Trash } from 'lucide-react';
+import { Search, Trash2, RotateCcw, X, Trash, TriangleAlert, ShieldAlert } from 'lucide-react';
 import { devices } from '../data/devices';
 
 const CUSTOM_DISPOSABLES_KEY = 'customDisposables';
@@ -131,7 +131,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
       condition: newDisposable.condition,
       stock: Math.max(1, Number(newDisposable.stock) || 1),
       image: newDisposableImage,
-      color: 'from-eco-500 to-ocean-500',
+      color: 'from-forest-500 to-gold-500',
     };
 
     const existing = JSON.parse(localStorage.getItem(CUSTOM_DISPOSABLES_KEY) || '[]');
@@ -154,10 +154,10 @@ export default function DeviceSearch({ initialQuery = '' }) {
   return (
     <section
       id="device-search"
-      className={`py-20 bg-white`}
+      className={`py-16 lg:py-24 bg-white`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`rounded-[2rem] p-8 md:p-16 mb-12 mt-4 text-center shadow-xl bg-sage-100/80 border border-sage-200 relative overflow-hidden`}>
+        <div className={`rounded-3xl p-8 md:p-16 mb-12 mt-4 text-center shadow-xl bg-sage-100/80 border border-sage-200 relative overflow-hidden`}>
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -166,7 +166,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
             className="relative z-10"
           >
             <h1 className="text-4xl md:text-6xl font-extrabold text-ink-900 mb-6 tracking-tight">
-              Device <span className="text-eco-500">Disposal Guide</span>
+              Device <span className="text-forest-500">Disposal Guide</span>
             </h1>
             <p className="text-lg md:text-xl text-ink-700 max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
               Search your device to unlock tailored disposal steps, crucial safety tips, and maximum recycling value.
@@ -182,14 +182,14 @@ export default function DeviceSearch({ initialQuery = '' }) {
           >
             <div className="relative group">
               <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                <Search className="h-6 w-6 text-ink-500 group-focus-within:text-eco-500 transition-colors" />
+                <Search className="h-6 w-6 text-ink-500 group-focus-within:text-forest-500 transition-colors" />
               </div>
               <input
                 type="text"
                 placeholder="Search device (e.g., iPhone, Laptop, Battery)..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="block w-full pl-16 pr-6 py-5 border border-sage-300 rounded-2xl leading-5 bg-white text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-eco-500/50 focus:border-eco-500 transition-all text-lg shadow-inner"
+                className="block w-full pl-16 pr-6 py-5 border border-sage-300 rounded-2xl leading-5 bg-white text-ink-900 placeholder-ink-400 focus:outline-none focus:ring-2 focus:ring-forest-500/50 focus:border-forest-500 transition-all text-lg shadow-inner"
               />
             </div>
           </motion.div>
@@ -268,7 +268,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
                 onClick={() => addFileInputRef.current?.click()}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className={`w-full py-3 rounded-lg border-2 border-dashed font-semibold transition-colors border-eco-500 text-eco-600 hover:bg-sage-200`}
+                className={`w-full py-3 rounded-lg border-2 border-dashed font-semibold transition-colors border-forest-500 text-forest-600 hover:bg-sage-200`}
               >
                 {newDisposableImage ? 'Change Uploaded Image' : 'Upload Product Image'}
               </motion.button>
@@ -301,7 +301,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
                 Add To Disposables
               </button>
               {addStatus && (
-                <p className={`text-sm ${addStatus.includes('successfully') ? 'text-eco-500' : 'text-red-500'}`}>
+                <p className={`text-sm ${addStatus.includes('successfully') ? 'text-forest-500' : 'text-danger-500'}`}>
                   {addStatus}
                 </p>
               )}
@@ -321,7 +321,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
             >
               <button
                 onClick={() => setSelectedDevice(null)}
-                className={`flex items-center space-x-2 mb-6 px-4 py-2 rounded-lg transition-colors text-eco-600 hover:bg-sage-100`}
+                className={`flex items-center space-x-2 mb-6 px-4 py-2 rounded-lg transition-colors text-forest-600 hover:bg-sage-100`}
               >
                 <X size={18} />
                 <span>Back to search</span>
@@ -335,7 +335,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <div className="flex items-center space-x-2 mb-6">
-                  <RotateCcw className="w-5 h-5 text-eco-500 flex-shrink-0" />
+                  <RotateCcw className="w-5 h-5 text-forest-500 flex-shrink-0" />
                   <h4 className={`text-xl font-bold text-ink-900`}>Step-by-Step Disposal Guide</h4>
                 </div>
                 <div className="space-y-4">
@@ -348,7 +348,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.02 }}
                     >
-                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-eco flex items-center justify-center text-white font-bold text-sm">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-forest flex items-center justify-center text-white font-bold text-sm">
                         {index + 1}
                       </div>
                       <p className={`flex-1 pt-0.5 text-ink-700`}>
@@ -357,6 +357,50 @@ export default function DeviceSearch({ initialQuery = '' }) {
                     </motion.div>
                   ))}
                 </div>
+              </motion.div>
+
+              {/* Safety & Hazard Severity — unmistakable at a glance */}
+              <motion.div
+                className="mt-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.25 }}
+              >
+                {selectedDevice.disposal.type === 'Hazardous' ? (
+                  <div className="rounded-2xl border-2 border-danger-500 bg-danger-50 p-6">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <TriangleAlert className="w-6 h-6 text-danger-500 flex-shrink-0" />
+                      <h4 className="text-xl font-bold text-danger-700">
+                        Highly Hazardous — Handle with Care
+                      </h4>
+                    </div>
+                    <ul className="space-y-3">
+                      {selectedDevice.disposal.safety?.map((tip, index) => (
+                        <li key={index} className="flex gap-3 text-danger-800">
+                          <span className="flex-shrink-0 mt-1 w-2 h-2 rounded-full bg-danger-500" />
+                          <span className="text-body">{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="rounded-2xl border-2 border-warning-300 bg-warning-100/60 p-6">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <ShieldAlert className="w-6 h-6 text-warning-600 flex-shrink-0" />
+                      <h4 className="text-xl font-bold text-ink-900">
+                        Safety Tips
+                      </h4>
+                    </div>
+                    <ul className="space-y-3">
+                      {selectedDevice.disposal.safety?.map((tip, index) => (
+                        <li key={index} className="flex gap-3 text-ink-700">
+                          <span className="flex-shrink-0 mt-1 w-2 h-2 rounded-full bg-warning-500" />
+                          <span className="text-body">{tip}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </motion.div>
 
               {/* Action Buttons */}
@@ -403,10 +447,10 @@ export default function DeviceSearch({ initialQuery = '' }) {
                     </p>
                     <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
                       device.disposal.type === 'Hazardous'
-                        ? 'bg-red-100 text-red-700'
+                        ? 'bg-danger-500 text-white'
                         : device.disposal.type === 'Reuse/Recycle'
                         ? 'bg-gold-100 text-gold-700'
-                        : 'bg-eco-100 text-eco-700'
+                        : 'bg-forest-100 text-forest-700'
                     }`}>
                       {device.disposal.type}
                     </span>
@@ -457,10 +501,10 @@ export default function DeviceSearch({ initialQuery = '' }) {
                   </p>
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
                     device.disposal.type === 'Hazardous'
-                      ? 'bg-red-100 text-red-700'
+                      ? 'bg-danger-500 text-white'
                       : device.disposal.type === 'Reuse/Recycle'
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'bg-eco-100 text-eco-700'
+                      ? 'bg-gold-100 text-gold-700'
+                      : 'bg-forest-100 text-forest-700'
                   }`}>
                     {device.disposal.type}
                   </span>

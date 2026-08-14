@@ -14,7 +14,7 @@ const MapTeaser = lazy(() => import('../components/MapTeaser'));
 
 function MapTeaserSkeleton() {
   return (
-    <section className="py-20 bg-cream-50" aria-hidden="true">
+    <section className="py-16 lg:py-24 bg-cream-50" aria-hidden="true">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="h-10 w-2/3 max-w-md mx-auto rounded-full bg-white animate-pulse mb-14" />
         <div className="grid lg:grid-cols-2 gap-10 items-center">
@@ -50,6 +50,13 @@ export default function Home() {
         <div className="relative z-10">
           <Hero transparentBackground />
         </div>
+
+        {/* Fade the dark hero into the cream canvas below — a transition,
+            not a cut (redesign report 5.2) */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-cream-50"
+          aria-hidden="true"
+        />
       </div>
 
       {/* Below-the-fold sections */}

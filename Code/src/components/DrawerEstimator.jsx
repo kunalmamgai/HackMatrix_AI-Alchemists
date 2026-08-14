@@ -30,7 +30,7 @@ export default function DrawerEstimator() {
   const kmDriven = Math.round(totalCarbon * KM_PER_KG);
 
   return (
-    <section id="drawer-estimator" className={`py-20 bg-cream-50`}>
+    <section id="drawer-estimator" className={`py-16 lg:py-24 bg-cream-50`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -40,7 +40,7 @@ export default function DrawerEstimator() {
           transition={{ duration: 0.6 }}
         >
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
-            What's in Your <span className="text-eco-500">Drawer?</span>
+            What's in Your <span className="text-forest-500">Drawer?</span>
           </h2>
           <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
             Tap the old devices you own and watch their recovery value and carbon savings add up.
@@ -61,8 +61,8 @@ export default function DrawerEstimator() {
                     aria-pressed={isSelected}
                     className={`relative text-left rounded-2xl p-5 border-2 transition-all ${
                       isSelected
-                        ? 'border-eco-500 bg-eco-500/10 shadow-lg'
-                        : 'border-sage-200 bg-white hover:border-eco-500/50'
+                        ? 'border-forest-500 bg-forest-500/10 shadow-lg'
+                        : 'border-sage-200 bg-white hover:border-forest-500/50'
                     }`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -72,12 +72,12 @@ export default function DrawerEstimator() {
                   >
                     {isSelected && (
                       <CheckCircle2
-                        className="absolute top-3 right-3 w-6 h-6 text-eco-500"
+                        className="absolute top-3 right-3 w-6 h-6 text-forest-500"
                         aria-hidden="true"
                       />
                     )}
                     <device.icon
-                      className={`w-8 h-8 mb-3 ${isSelected ? 'text-eco-500' : 'text-eco-400'}`}
+                      className={`w-8 h-8 mb-3 ${isSelected ? 'text-forest-500' : 'text-forest-400'}`}
                     />
                     <h3 className={`font-bold mb-0.5 text-ink-900`}>
                       {device.name}
@@ -86,7 +86,7 @@ export default function DrawerEstimator() {
                       {device.category}
                     </p>
                     <div className={`flex items-center justify-between text-sm text-ink-700`}>
-                      <span className="font-semibold text-eco-500">₹{device.recoveryValue.toLocaleString('en-IN')}</span>
+                      <span className="font-semibold text-forest-500">₹{device.recoveryValue.toLocaleString('en-IN')}</span>
                       <span className="text-xs">{device.carbonSaved} kg CO₂</span>
                     </div>
                   </motion.button>
@@ -101,14 +101,14 @@ export default function DrawerEstimator() {
 
           {/* Live total */}
           <motion.div
-            className={`lg:sticky lg:top-24 rounded-3xl p-8 shadow-xl border-2 bg-white border-sage-200`}
+            className={`lg:sticky lg:top-24 rounded-2xl p-8 shadow-xl border-2 bg-white border-sage-200`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className={`text-xl font-bold mb-6 flex items-center gap-2 text-ink-900`}>
-              <Coins className="w-5 h-5 text-eco-500" />
+              <Coins className="w-5 h-5 text-forest-500" />
               Your Drawer's Worth
             </h3>
 
@@ -138,7 +138,7 @@ export default function DrawerEstimator() {
                     <p className={`text-sm mb-1 text-ink-500`}>
                       Recoverable material value
                     </p>
-                    <p className="text-3xl font-bold text-eco-500">
+                    <p className="text-3xl font-bold text-forest-500">
                       <CountUp target={totalValue} prefix="₹" observe={false} />
                     </p>
                   </div>
@@ -154,17 +154,17 @@ export default function DrawerEstimator() {
                   </div>
 
                   <div className={`rounded-2xl p-4 bg-cream-50`}>
-                    <p className={`text-sm font-semibold mb-2 flex items-center gap-1.5 text-eco-600`}>
+                    <p className={`text-sm font-semibold mb-2 flex items-center gap-1.5 text-forest-600`}>
                       <Leaf className="w-4 h-4" />
                       That's roughly equivalent to:
                     </p>
                     <div className="space-y-1.5 text-sm">
                       <p className={`flex items-center gap-2 text-ink-700`}>
-                        <TreePine className="w-4 h-4 text-eco-500" />
+                        <TreePine className="w-4 h-4 text-forest-500" />
                         <CountUp target={treeYears} observe={false} /> {treeYears === 1 ? 'tree' : 'trees'} absorbing CO₂ for a year
                       </p>
                       <p className={`flex items-center gap-2 text-ink-700`}>
-                        <Car className="w-4 h-4 text-eco-500" />
+                        <Car className="w-4 h-4 text-forest-500" />
                         <CountUp target={kmDriven} observe={false} /> km not driven by car
                       </p>
                     </div>
@@ -174,7 +174,7 @@ export default function DrawerEstimator() {
                 <button
                   type="button"
                   onClick={() => setSelected(new Set())}
-                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-colors border-sage-200 text-ink-500 hover:border-red-500 hover:text-red-400"
+                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-colors border-sage-200 text-ink-500 hover:border-danger-500 hover:text-danger-400"
                 >
                   <RotateCcw size={16} />
                   Reset

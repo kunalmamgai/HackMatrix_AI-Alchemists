@@ -62,7 +62,7 @@ export default function NearbyLocations() {
   return (
     <section
       id="locations"
-      className={`py-20 bg-cream-50`}
+      className={`py-16 lg:py-24 bg-cream-50`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -72,7 +72,7 @@ export default function NearbyLocations() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="section-title mb-4 text-eco-600">Find Nearby Recycling Centers</h2>
+          <h2 className="section-title mb-4 text-forest-600">Find Nearby Recycling Centers</h2>
           <p className={`section-subtitle text-ink-500`}>
             Locate certified e-waste recycling centers near you with real-time information
           </p>
@@ -103,10 +103,35 @@ export default function NearbyLocations() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
+            {/* Selected-center action panel — actions stay beside the map */}
+            {selectedLocation && (
+              <div className="rounded-2xl bg-forest-800 text-white p-5 shadow-lg">
+                <h4 className="font-bold mb-1 text-white">{selectedLocation.name}</h4>
+                <div className="text-xs text-forest-100/80 mb-3">
+                  <span className="text-gold-400">★</span> {selectedLocation.rating} ({selectedLocation.reviews}) · {selectedLocation.distance} km
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleGetDirections}
+                    className="flex-1 text-xs font-semibold py-2 rounded-lg bg-gradient-forest text-white hover:shadow-glow transition-all"
+                  >
+                    <Navigation size={14} className="inline mr-1 -mt-0.5" />
+                    Directions
+                  </button>
+                  <button
+                    onClick={handleRequestPickup}
+                    className="flex-1 text-xs font-semibold py-2 rounded-lg border border-white/40 text-white hover:bg-white/10 transition-all"
+                  >
+                    Pickup
+                  </button>
+                </div>
+              </div>
+            )}
+
             {/* Filters */}
             <div className={`p-4 rounded-xl bg-white shadow-lg`}>
               <div className="flex items-center space-x-2 mb-3">
-                <Filter size={18} className="text-eco-500" />
+                <Filter size={18} className="text-forest-500" />
                 <h3 className={`font-semibold text-ink-900`}>Filters</h3>
               </div>
 
@@ -138,7 +163,7 @@ export default function NearbyLocations() {
                       onClick={() => setFilterService(service)}
                       className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
                         filterService === service
-                          ? 'bg-eco-500 text-white'
+                          ? 'bg-forest-500 text-white'
                           : 'bg-sage-100 text-ink-700 hover:bg-sage-200'
                       }`}
                     >
@@ -157,7 +182,7 @@ export default function NearbyLocations() {
                   onClick={() => setSelectedLocation(location)}
                   className={`w-full text-left overflow-hidden rounded-xl transition-all transform ${
                     selectedLocation?.id === location.id
-                      ? 'bg-eco-600/20 border-2 border-eco-500 scale-105 shadow-lg'
+                      ? 'bg-forest-600/20 border-2 border-forest-500 scale-105 shadow-lg'
                       : 'bg-white hover:bg-sage-100 border border-sage-200'
                   }`}
                   initial={{ opacity: 0, x: -20 }}
@@ -182,8 +207,8 @@ export default function NearbyLocations() {
                       </h4>
                       <span className={`text-xs font-semibold px-2 py-1 rounded-lg ${
                         selectedLocation?.id === location.id
-                          ? 'bg-eco-500 text-white'
-                          : 'bg-eco-100 text-eco-700'
+                          ? 'bg-forest-500 text-white'
+                          : 'bg-forest-100 text-forest-700'
                       }`}>
                         {location.distance} km
                       </span>
@@ -195,7 +220,7 @@ export default function NearbyLocations() {
                         <Star
                           key={i}
                           size={14}
-                          className={i < Math.floor(location.rating) ? 'fill-amber-400 text-amber-400' : 'text-ink-700'}
+                          className={i < Math.floor(location.rating) ? 'fill-gold-400 text-gold-400' : 'text-ink-700'}
                         />
                       ))}
                       <span className={`text-xs ml-1 text-ink-500`}>
@@ -254,23 +279,23 @@ export default function NearbyLocations() {
                 <div>
                   <div className="space-y-3">
                   <div className="flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 text-eco-500 flex-shrink-0 mt-0.5" />
+                    <MapPin className="w-5 h-5 text-forest-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className={`text-xs font-semibold text-ink-500 uppercase`}>Address</p>
                       <p className={'text-ink-900'}>{selectedLocation.address}</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Phone className="w-5 h-5 text-eco-500 flex-shrink-0 mt-0.5" />
+                    <Phone className="w-5 h-5 text-forest-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className={`text-xs font-semibold text-ink-500 uppercase`}>Phone</p>
-                      <a href={`tel:${selectedLocation.phone}`} className={`hover:text-eco-500 transition-colors text-ink-900`}>
+                      <a href={`tel:${selectedLocation.phone}`} className={`hover:text-forest-500 transition-colors text-ink-900`}>
                         {selectedLocation.phone}
                       </a>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <Clock className="w-5 h-5 text-eco-500 flex-shrink-0 mt-0.5" />
+                    <Clock className="w-5 h-5 text-forest-500 flex-shrink-0 mt-0.5" />
                     <div>
                       <p className={`text-xs font-semibold text-ink-500 uppercase`}>Hours</p>
                       <p className={'text-ink-900'}>{selectedLocation.hours}</p>
@@ -284,7 +309,7 @@ export default function NearbyLocations() {
                   {selectedLocation.services.map((service, index) => (
                     <motion.span
                       key={index}
-                      className="px-3 py-2 rounded-lg bg-gradient-eco text-white text-sm font-medium"
+                      className="px-3 py-2 rounded-lg bg-gradient-forest text-white text-sm font-medium"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.1 }}

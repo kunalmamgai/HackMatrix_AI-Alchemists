@@ -39,7 +39,7 @@ export default function HomeFeatures() {
   const navigate = useNavigate();
 
   return (
-    <section id="features" className={`py-20 bg-white`}>
+    <section id="features" className={`py-16 lg:py-24 bg-white`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-14"
@@ -49,7 +49,7 @@ export default function HomeFeatures() {
           transition={{ duration: 0.6 }}
         >
           <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
-            Everything You Need to <span className="text-eco-500">Go Circular</span>
+            Everything You Need to <span className="text-forest-500">Go Circular</span>
           </h2>
           <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
             One platform for the whole e-waste journey — from finding a recycler to buying a second-life device.
@@ -61,14 +61,14 @@ export default function HomeFeatures() {
             <motion.button
               key={feature.title}
               onClick={() => navigate(feature.href)}
-              className={`text-left rounded-2xl p-8 shadow-lg border-2 transition-all bg-cream-50 border-sage-200 hover:border-eco-500`}
+              className={`text-left rounded-2xl p-8 shadow-lg border-2 transition-all bg-cream-50 border-sage-200 hover:border-forest-500`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.08 }}
               whileHover={{ scale: 1.03, y: -4 }}
             >
-              <div className="p-4 rounded-xl bg-gradient-eco w-fit mb-5">
+              <div className="p-4 rounded-xl bg-gradient-forest w-fit mb-5">
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
               <h3 className={`text-xl font-bold mb-2 text-ink-900`}>
@@ -77,7 +77,7 @@ export default function HomeFeatures() {
               <p className={`text-sm mb-4 text-ink-500`}>
                 {feature.description}
               </p>
-              <span className={`inline-flex items-center gap-1 text-sm font-semibold text-eco-600`}>
+              <span className={`inline-flex items-center gap-1 text-sm font-semibold text-forest-600`}>
                 Explore <ArrowRight size={16} />
               </span>
             </motion.button>
@@ -85,7 +85,7 @@ export default function HomeFeatures() {
 
           {/* CTA card to fill the grid */}
           <motion.div
-            className="rounded-2xl p-8 bg-gradient-eco text-white flex flex-col justify-between shadow-lg"
+            className="rounded-2xl p-8 bg-gradient-forest text-white flex flex-col justify-between shadow-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -100,7 +100,7 @@ export default function HomeFeatures() {
             </div>
             <button
               onClick={() => navigate('/pickup-network')}
-              className="w-full bg-white text-eco-700 font-semibold py-3 px-4 rounded-xl hover:bg-eco-50 transition-colors"
+              className="w-full bg-white text-forest-700 font-semibold py-3 px-4 rounded-xl hover:bg-forest-50 transition-colors"
             >
               Schedule a Pickup
             </button>

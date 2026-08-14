@@ -49,7 +49,7 @@ export default function DisposablesBar() {
           </h3>
           <button
             onClick={() => navigate('/disposables')}
-            className={`text-sm font-semibold transition-colors text-eco-600 hover:text-eco-500`}
+            className={`text-sm font-semibold transition-colors text-forest-600 hover:text-forest-500`}
           >
             View All →
           </button>
@@ -112,7 +112,7 @@ export default function DisposablesBar() {
 
                     {/* Price */}
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-bold text-eco-500">{item.price}</span>
+                      <span className="text-lg font-bold text-forest-500">{item.price}</span>
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
@@ -120,7 +120,7 @@ export default function DisposablesBar() {
                           e.stopPropagation();
                           navigate('/disposables');
                         }}
-                        className="px-2 py-1 text-xs rounded bg-eco-500 text-white hover:bg-eco-600 transition-colors"
+                        className="px-2 py-1 text-xs rounded bg-forest-500 text-white hover:bg-forest-600 transition-colors"
                       >
                         View
                       </motion.button>

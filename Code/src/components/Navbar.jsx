@@ -13,7 +13,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
     { label: 'Locations', href: '/nearby-locations' },
     { label: 'Pickup', href: '/pickup-network' },
     { label: 'Disposables', href: '/disposables' },
-    { label: 'About', href: '/circular-economy' },
+    { label: 'Circular Economy', href: '/circular-economy' },
   ];
 
   const handleLogout = () => {
@@ -34,7 +34,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="w-10 h-10 bg-gradient-eco rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-forest rounded-xl flex items-center justify-center">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold text-ink-900">E-Scrape Mart</span>
@@ -46,7 +46,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
             {navItems.map((item, index) => (
               <Link key={index} to={item.href}>
                 <motion.div
-                  className="font-medium text-ink-700 transition-colors hover:text-eco-600"
+                  className="font-medium text-ink-700 transition-colors hover:text-forest-600"
                   whileHover={{ scale: 1.05 }}
                 >
                   {item.label}
@@ -58,9 +58,11 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
           {/* Theme Toggle and Mobile Menu */}
           <div className="flex items-center space-x-4">
             {isLoggedIn ? (
+              /* Danger outline by default — solid red as a persistent nav
+                 element is louder than a logout action needs to be. */
               <motion.button
                 onClick={handleLogout}
-                className="hidden md:inline-flex px-4 py-2 rounded-lg font-semibold text-white bg-red-500 hover:bg-red-600 transition-all duration-300"
+                className="hidden md:inline-flex px-4 py-2 rounded-full font-semibold text-danger-600 border-2 border-danger-500/40 hover:bg-danger-50 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -70,7 +72,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
             ) : (
               <motion.button
                 onClick={() => navigate('/login')}
-                className="hidden md:inline-flex px-4 py-2 rounded-lg font-semibold text-white bg-gradient-eco hover:shadow-glow transition-all duration-300"
+                className="hidden md:inline-flex px-4 py-2 rounded-lg font-semibold text-white bg-gradient-forest hover:shadow-glow transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -108,7 +110,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   handleLogout();
                   setIsOpen(false);
                 }}
-                className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 bg-red-500 text-white hover:opacity-90"
+                className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 text-danger-600 bg-danger-50 hover:bg-danger-100"
               >
                 <LogOut size={18} />
                 <span>Logout</span>
@@ -119,7 +121,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
                   navigate('/login');
                   setIsOpen(false);
                 }}
-                className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 bg-gradient-eco text-white hover:opacity-90"
+                className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 bg-gradient-forest text-white hover:opacity-90"
               >
                 <LogIn size={18} />
                 <span>Login</span>

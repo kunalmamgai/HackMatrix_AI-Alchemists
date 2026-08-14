@@ -38,8 +38,13 @@ h1, h2, h3, h4, h5 {
 
 /* Smooth transitions */
 @layer components {
+  /* Section rhythm: py-16 mobile → py-24 desktop */
+  .section {
+    @apply py-16 lg:py-24;
+  }
+
   .btn-primary {
-    @apply px-7 py-3.5 rounded-full font-semibold text-white bg-gradient-eco shadow-soft hover:shadow-glow transform hover:scale-105 transition-all duration-300;
+    @apply px-7 py-3.5 rounded-full font-semibold text-white bg-gradient-forest shadow-soft hover:shadow-glow transform hover:scale-105 transition-all duration-300;
   }
   
   .btn-secondary {
@@ -49,13 +54,19 @@ h1, h2, h3, h4, h5 {
   .btn-outline {
     @apply px-7 py-3.5 rounded-full font-semibold text-forest-700 border-2 border-forest-600 hover:bg-forest-50 transform hover:scale-105 transition-all duration-300;
   }
-  
+
+  /* Content cards read as containers: rounded-2xl (20px), not blobs */
   .card {
-    @apply bg-white rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 p-6 border border-sage-200;
+    @apply bg-white rounded-2xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 p-6 border border-sage-200;
   }
   
   .card-interactive {
-    @apply bg-white rounded-3xl shadow-soft hover:shadow-soft-lg hover:-translate-y-2 transition-all duration-300 p-6 cursor-pointer border border-sage-200;
+    @apply bg-white rounded-2xl shadow-soft hover:shadow-soft-lg hover:-translate-y-2 transition-all duration-300 p-6 cursor-pointer border border-sage-200;
+  }
+
+  /* Feature/marketing cards get more breathing room */
+  .card-lg {
+    @apply bg-white rounded-2xl shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 p-8 border border-sage-200;
   }
   
   .glass {
@@ -63,11 +74,11 @@ h1, h2, h3, h4, h5 {
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl font-bold text-ink-900;
+    @apply text-h1 text-ink-900;
   }
 
   .section-subtitle {
-    @apply text-lg md:text-xl text-ink-500 max-w-2xl mx-auto;
+    @apply text-body text-ink-500 max-w-2xl mx-auto;
   }
 }
 

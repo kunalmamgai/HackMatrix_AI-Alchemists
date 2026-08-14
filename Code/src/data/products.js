@@ -96,7 +96,7 @@ export const products = [
     price: '₹260',
     icon: Headphones,
     image: 'https://beebom.com/wp-content/uploads/2019/11/AirPods-Pro-Repair-website.jpg?w=750&quality=75',
-    color: 'from-red-400 to-rose-600',
+    color: 'from-danger-400 to-rose-600',
     condition: 'Excellent',
     stock: 2,
   },

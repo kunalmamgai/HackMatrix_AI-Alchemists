@@ -7,8 +7,8 @@ export default function Toast({ message, type = 'success', onClose }) {
   const isSuccess = type === 'success';
   const icon = isSuccess ? CheckCircle : AlertCircle;
   const bgColor = isSuccess
-    ? 'bg-eco-500'
-    : 'bg-red-500';
+    ? 'bg-forest-500'
+    : 'bg-danger-500';
 
   return (
     <AnimatePresence>
