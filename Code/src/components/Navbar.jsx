@@ -8,12 +8,11 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const navItems = [
-    { label: 'Home', href: '/' },
     { label: 'Device Guide', href: '/device-search' },
     { label: 'Locations', href: '/nearby-locations' },
     { label: 'Pickup', href: '/pickup-network' },
     { label: 'Disposables', href: '/disposables' },
-    { label: 'Circular Economy', href: '/circular-economy' },
+    { label: 'About', href: '/circular-economy' },
   ];
 
   const handleLogout = () => {
