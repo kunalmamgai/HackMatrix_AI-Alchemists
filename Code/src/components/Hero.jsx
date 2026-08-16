@@ -1,29 +1,10 @@
-import { Component, lazy, Suspense, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Search, Zap, Leaf } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { devices } from '../data/devices';
 import { transitions } from '../utils/motion';
 
-// HeroScene pulls in three.js (~132 KB gzip) — keep it out of the first
-// paint by loading it as its own chunk, exactly like the lazy Leaflet map.
-const HeroScene = lazy(() => import('./HeroScene'));
-
-// A WebGL failure must never take down the whole page.
-class SceneErrorBoundary extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { failed: false };
-  }
-
-  static getDerivedStateFromError() {
-    return { failed: true };
-  }
-
-  render() {
-    return this.state.failed ? null : this.props.children;
-  }
-}
 
 export default function Hero({ transparentBackground = false }) {
   const navigate = useNavigate();
@@ -223,13 +204,6 @@ export default function Hero({ transparentBackground = false }) {
               Schedule Pickup
             </motion.button>
           </motion.div>
-
-          {/* 3D Material Recovery Scene — replaces the old illustration slot */}
-          <SceneErrorBoundary>
-            <Suspense fallback={null}>
-              <HeroScene />
-            </Suspense>
-          </SceneErrorBoundary>
 
           {/* Featured Stats — real figures from the in-repo datasets */}
           <motion.div

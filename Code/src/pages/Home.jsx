@@ -51,12 +51,7 @@ export default function Home() {
           <Hero transparentBackground />
         </div>
 
-        {/* Fade the dark hero into the cream canvas below — a transition,
-            not a cut (redesign report 5.2) */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-cream-50"
-          aria-hidden="true"
-        />
+
       </div>
 
       {/* Below-the-fold sections */}
