@@ -40,11 +40,11 @@ const STATS = [
 ];
 
 const WAYS = [
-  { step: '1️⃣', action: 'Buy Responsibly', desc: 'Choose durable, repairable devices' },
-  { step: '2️⃣', action: 'Extend Life', desc: 'Keep devices working as long as possible' },
-  { step: '3️⃣', action: 'Donate Used', desc: 'Give devices to those who need them' },
-  { step: '4️⃣', action: "Repair, Don't Replace", desc: 'Get items fixed instead of buying new' },
-  { step: '5️⃣', action: 'Recycle Properly', desc: 'Use certified e-waste recyclers' },
+  { number: 1, action: 'Buy Responsibly', desc: 'Choose durable, repairable devices' },
+  { number: 2, action: 'Extend Life', desc: 'Keep devices working as long as possible' },
+  { number: 3, action: 'Donate Used', desc: 'Give devices to those who need them' },
+  { number: 4, action: "Repair, Don't Replace", desc: 'Get items fixed instead of buying new' },
+  { number: 5, action: 'Recycle Properly', desc: 'Use certified e-waste recyclers' },
 ];
 
 export default function CircularEconomy() {
@@ -173,7 +173,9 @@ export default function CircularEconomy() {
                 transition={{ delay: index * 0.08 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="text-3xl mb-2">{item.step}</div>
+                <div className="w-10 h-10 rounded-full bg-gradient-forest text-white font-bold flex items-center justify-center mx-auto mb-2">
+                  {item.number}
+                </div>
                 <h4 className="font-bold text-small mb-1 text-ink-900">{item.action}</h4>
                 <p className="text-xs text-ink-500">{item.desc}</p>
               </motion.div>

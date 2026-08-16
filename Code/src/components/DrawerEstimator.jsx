@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Coins, Leaf, RotateCcw, TreePine, Car, CheckCircle2 } from 'lucide-react';
+import { Coins, Leaf, RotateCcw, TreePine, Car, CheckCircle2, Archive } from 'lucide-react';
 import CountUp from './CountUp';
 import { devices } from '../data/devices';
 
@@ -114,7 +114,7 @@ export default function DrawerEstimator() {
 
             {selectedDevices.length === 0 ? (
               <div className={`text-center py-8 px-4 rounded-2xl border-2 border-dashed border-sage-200`}>
-                <p className="text-4xl mb-3">🗄️</p>
+                <Archive className="w-12 h-12 text-forest-300 mx-auto mb-3" />
                 <p className={`text-sm text-ink-500`}>
                   Tap the devices you own to see their recovery value and carbon savings add up.
                 </p>

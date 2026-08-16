@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { MapPin, ShieldCheck, Database, Recycle, ArrowRight } from 'lucide-react';
+import { MapPin, ShieldCheck, Database, Recycle, ArrowRight, Star } from 'lucide-react';
 import MapComponent from './MapComponent';
 import { centers } from '../data/centers';
 import 'leaflet/dist/leaflet.css';
@@ -55,7 +55,11 @@ export default function MapTeaser() {
                       {center.name}
                     </p>
                     <p className={`text-sm truncate text-ink-500`}>
-                      {center.address} · ★ {center.rating} ({center.reviews})
+                      {center.address} ·
+                      <span className="inline-flex items-center gap-1 ml-1">
+                        <Star size={12} className="fill-gold-400 text-gold-400" />
+                        {center.rating} ({center.reviews})
+                      </span>
                     </p>
                   </div>
                 </li>

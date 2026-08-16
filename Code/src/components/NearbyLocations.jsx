@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Navigation, Phone, Clock, Star, Filter } from 'lucide-react';
+import { MapPin, Navigation, Phone, Clock, Star, Filter, CheckCircle2 } from 'lucide-react';
 import MapComponent from './MapComponent';
 import { centers } from '../data/centers';
 import 'leaflet/dist/leaflet.css';
@@ -309,12 +309,13 @@ export default function NearbyLocations() {
                   {selectedLocation.services.map((service, index) => (
                     <motion.span
                       key={index}
-                      className="px-3 py-2 rounded-lg bg-gradient-forest text-white text-sm font-medium"
+                      className="px-3 py-2 rounded-lg bg-gradient-forest text-white text-sm font-medium inline-flex items-center gap-1.5"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: index * 0.1 }}
                     >
-                      ✓ {service}
+                      <CheckCircle2 size={16} />
+                      {service}
                     </motion.span>
                   ))}
                 </div>

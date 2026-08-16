@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Recycle } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
@@ -44,8 +44,9 @@ export default function DisposablesBar() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-4">
-          <h3 className={`text-lg font-bold text-ink-900`}>
-            💚 Available Disposables
+          <h3 className={`text-lg font-bold text-ink-900 flex items-center gap-2`}>
+            <Recycle className="w-5 h-5 text-forest-500" />
+            Available Disposables
           </h3>
           <button
             onClick={() => navigate('/disposables')}
@@ -98,7 +99,7 @@ export default function DisposablesBar() {
                       <div
                         className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-3`}
                       >
-                        <item.icon className="w-6 h-6 text-ink-900" />
+                        <item.icon className="w-6 h-6 text-white" />
                       </div>
                     )}
 

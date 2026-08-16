@@ -70,7 +70,7 @@ export const devices = [
         'Never attempt to recharge damaged batteries',
       ],
       safety: [
-        '⚠️ HIGHLY HAZARDOUS - Risk of fire and explosion',
+        'HIGHLY HAZARDOUS - Risk of fire and explosion',
         'Never dispose in regular trash',
         'Tape terminals to prevent short circuit',
         'Keep away from children and pets',

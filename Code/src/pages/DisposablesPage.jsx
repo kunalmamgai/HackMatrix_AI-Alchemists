@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ShoppingCart, Heart } from 'lucide-react';
+import { ShoppingCart, Heart, Recycle } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
@@ -70,8 +70,9 @@ export default function DisposablesPage({ isLoggedIn }) {
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
-            💚 Available Disposables
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900 flex items-center gap-3`}>
+            <Recycle className="w-10 h-10 text-forest-500" />
+            Available Disposables
           </h1>
           <p className={`text-lg text-ink-500`}>
             Browse our collection of refurbished electronics at great prices

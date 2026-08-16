@@ -68,7 +68,7 @@ export default function PickupNetwork({ onNotification }) {
     e.preventDefault();
     setSubmitted(true);
     if (onNotification) {
-      onNotification('Pickup scheduled successfully! ✅');
+      onNotification('Pickup scheduled successfully!');
     }
     setTimeout(() => {
       setFormData({
@@ -266,7 +266,7 @@ export default function PickupNetwork({ onNotification }) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
             >
-              <div className="text-5xl mb-4">✅</div>
+              <CheckCircle className="w-16 h-16 text-forest-500 mx-auto mb-4" />
               <h3 className={`text-2xl font-bold mb-2 text-ink-900`}>
                 Pickup Scheduled!
               </h3>
@@ -478,7 +478,14 @@ export default function PickupNetwork({ onNotification }) {
                               whileHover={{ scale: 1.02 }}
                               whileTap={{ scale: 0.98 }}
                             >
-                              {formData.pickupType === partner.id ? '✓ Selected' : 'Select'}
+                              {formData.pickupType === partner.id ? (
+                                <span className="inline-flex items-center gap-1.5">
+                                  <CheckCircle size={16} />
+                                  Selected
+                                </span>
+                              ) : (
+                                'Select'
+                              )}
                             </motion.button>
                           </motion.div>
                         ))}

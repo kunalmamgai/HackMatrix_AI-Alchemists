@@ -199,11 +199,10 @@ export default function CheckoutPage({ isLoggedIn }) {
 
             {/* Payment Methods */}
             <div className="mb-6 space-y-3">
-              <label className="flex items-center p-3 rounded-lg border-2 cursor-pointer transition-colors"
-                style={{
-                  borderColor: paymentMethod === 'card' ? '#1e4033' : '#c3d9c0',
-                  backgroundColor: paymentMethod === 'card' ? 'rgba(30, 64, 51, 0.08)' : 'transparent'
-                }}
+              <label
+                className={`flex items-center p-3 rounded-lg border-2 cursor-pointer transition-colors ${
+                  paymentMethod === 'card' ? 'border-forest-800 bg-forest-800/10' : 'border-sage-300 bg-transparent'
+                }`}
               >
                 <input
                   type="radio"
@@ -218,11 +217,10 @@ export default function CheckoutPage({ isLoggedIn }) {
                 </span>
               </label>
 
-              <label className="flex items-center p-3 rounded-lg border-2 cursor-pointer transition-colors"
-                style={{
-                  borderColor: paymentMethod === 'upi' ? '#1e4033' : '#c3d9c0',
-                  backgroundColor: paymentMethod === 'upi' ? 'rgba(30, 64, 51, 0.08)' : 'transparent'
-                }}
+              <label
+                className={`flex items-center p-3 rounded-lg border-2 cursor-pointer transition-colors ${
+                  paymentMethod === 'upi' ? 'border-forest-800 bg-forest-800/10' : 'border-sage-300 bg-transparent'
+                }`}
               >
                 <input
                   type="radio"

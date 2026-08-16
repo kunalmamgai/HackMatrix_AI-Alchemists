@@ -2,6 +2,19 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageCircle, X, Send, Loader } from 'lucide-react';
 
+// The canned responses use `**bold**` markdown; render it as real bold
+// instead of letting the asterisks leak into the message bubbles.
+function renderMessageText(text) {
+  const parts = text.split(/\*\*(.+?)\*\*/g);
+  return parts.map((part, index) =>
+    index % 2 === 1 ? (
+      <strong key={index}>{part}</strong>
+    ) : (
+      part
+    )
+  );
+}
+
 export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
@@ -154,7 +167,7 @@ export default function ChatBot() {
                         : 'bg-sage-100 text-ink-900 rounded-bl-none'
                     }`}
                   >
-                    <p className="text-sm whitespace-pre-wrap break-words">{message.text}</p>
+                    <p className="text-sm whitespace-pre-wrap break-words">{renderMessageText(message.text)}</p>
                     <span className="text-xs opacity-70 mt-1 block">
                       {message.timestamp.toLocaleTimeString([], {
                         hour: '2-digit',
