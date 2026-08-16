@@ -1,15 +1,17 @@
-import { Smartphone, Battery, Laptop, Headphones, TabletSmartphone, Zap } from 'lucide-react';
+import { Smartphone, Battery, Laptop, Headphones, TabletSmartphone, Monitor } from 'lucide-react';
 
 export const devices = [
   {
     id: 1,
+    slug: 'smartphone',
     name: 'Smartphone',
     icon: Smartphone,
     category: 'Electronics',
+    aliases: ['phone', 'mobile', 'iphone', 'android', 'cell', 'cellphone', 'samsung', 'mi', 'oneplus'],
     // Estimated recoverable material value (₹) and CO2e avoided by recycling (kg)
     recoveryValue: 350,
     carbonSaved: 40,
-    image: 'https://5.imimg.com/data5/SELLER/Default/2024/10/459096182/RX/JQ/MT/233814724/mobile-phone-scrap.jpg',
+    image: '/images/devices/smartphone.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -29,12 +31,14 @@ export const devices = [
   },
   {
     id: 2,
+    slug: 'laptop',
     name: 'Laptop',
     icon: Laptop,
     category: 'Electronics',
+    aliases: ['computer', 'macbook', 'notebook', 'mac', 'pc', 'dell', 'hp', 'thinkpad', 'chromebook'],
     recoveryValue: 1200,
     carbonSaved: 160,
-    image: 'https://tiimg.tistatic.com/fp/2/008/585/lightweight-high-tensile-strength-waste-laptop-scrap-779.jpg',
+    image: '/images/devices/laptop.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -54,12 +58,14 @@ export const devices = [
   },
   {
     id: 3,
+    slug: 'battery',
     name: 'Battery',
     icon: Battery,
     category: 'Hazardous',
+    aliases: ['lithium', 'li-ion', 'lithium-ion', 'power bank', 'powerbank', 'cell battery', '18650'],
     recoveryValue: 75,
     carbonSaved: 5,
-    image:'https://media.istockphoto.com/id/2189249426/photo/stack-of-many-used-car-lead-batteries-for-recycling-in-a-hazardous-waste-facility.jpg?s=612x612&w=0&k=20&c=fc7OcWkM0DYHZUm7YkTBqffyKItwb46Di3eM942_Q-A=',
+    image: '/images/devices/battery.jpg',
     disposal: {
       type: 'Hazardous',
       steps: [
@@ -80,12 +86,14 @@ export const devices = [
   },
   {
     id: 4,
+    slug: 'tablet',
     name: 'Tablet',
     icon: TabletSmartphone,
     category: 'Electronics',
+    aliases: ['ipad', 'tab', 'kindle', 'slate', 'e-reader'],
     recoveryValue: 400,
     carbonSaved: 60,
-    image:'data:image/jpeg;base64,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',
+    image: '/images/devices/tablet.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -105,12 +113,14 @@ export const devices = [
   },
   {
     id: 5,
+    slug: 'headphones',
     name: 'Headphones',
     icon: Headphones,
     category: 'Electronics',
+    aliases: ['earphones', 'earbuds', 'airpods', 'headset', 'earpods', 'audio'],
     recoveryValue: 60,
     carbonSaved: 10,
-    image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsV9bWcPHsslOdXpW5cHOEJbaNJLG-3XLVLg&s',
+    image: '/images/devices/headphones.jpg',
     disposal: {
       type: 'Reuse/Recycle',
       steps: [
@@ -130,12 +140,14 @@ export const devices = [
   },
   {
     id: 6,
+    slug: 'monitor',
     name: 'Monitor',
-    icon: Zap,
+    icon: Monitor,
     category: 'Electronics',
+    aliases: ['screen', 'display', 'lcd', 'led', 'tv', 'television', 'crt'],
     recoveryValue: 450,
     carbonSaved: 45,
-    image:'https://5.imimg.com/data5/SELLER/Default/2022/10/JG/XB/GJ/12177215/lcd-screen-waste-recycling-service.jpg',
+    image: '/images/devices/monitor.jpg',
     disposal: {
       type: 'Recycle',
       steps: [

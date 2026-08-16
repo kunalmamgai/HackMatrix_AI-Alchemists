@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { products, productCategories } from '../data/products';
+import DeviceImage from '../components/DeviceImage';
 
 export default function DisposablesPage({ isLoggedIn }) {
   const [wishlist, setWishlist] = useState(new Set());
@@ -125,13 +126,15 @@ export default function DisposablesPage({ isLoggedIn }) {
                 >
                   {/* Icon Background */}
                   <div className={`h-40 bg-gradient-to-br ${product.color} flex items-center justify-center relative overflow-hidden`}>
-                    {product.image ? (
-                      <img
+                    {product.image && (
+                      <DeviceImage
                         src={product.image}
                         alt={product.name}
+                        icon={Icon}
                         className="absolute inset-0 w-full h-full object-cover opacity-90 z-0"
+                        iconClassName="w-16 h-16 text-white opacity-80"
                       />
-                    ) : null}
+                    )}
 
                     {!product.image && (
                       <Icon className="w-16 h-16 text-white opacity-80 relative z-10" />

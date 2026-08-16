@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { Trash2, Plus, Minus, ArrowLeft, CreditCard, HelpCircle, Check } from 'lucide-react';
+import DeviceImage from '../components/DeviceImage';
 
 export default function CheckoutPage({ isLoggedIn }) {
   const navigate = useNavigate();
@@ -124,7 +125,7 @@ export default function CheckoutPage({ isLoggedIn }) {
                       animate={{ opacity: 1, x: 0 }}
                       className={`flex items-center gap-4 p-4 rounded-xl border bg-sage-100 border-sage-200`}
                     >
-                      <img
+                      <DeviceImage
                         src={item.image}
                         alt={item.name}
                         className="w-20 h-20 rounded-lg object-cover"

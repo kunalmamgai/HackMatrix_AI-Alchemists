@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Recycle } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { products } from '../data/products';
+import DeviceImage from './DeviceImage';
 
 export default function DisposablesBar() {
   const navigate = useNavigate();
@@ -91,17 +92,15 @@ export default function DisposablesBar() {
                     className={`w-48 p-4 rounded-xl cursor-pointer transition-all bg-sage-100/50 border border-sage-200`}
                   >
                     {/* Image or Icon */}
-                    {item.image ? (
-                      <div className="w-12 h-12 rounded-lg overflow-hidden mb-3">
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                      </div>
-                    ) : (
-                      <div
-                        className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center mb-3`}
-                      >
-                        <item.icon className="w-6 h-6 text-white" />
-                      </div>
-                    )}
+                    <div className="w-12 h-12 rounded-lg overflow-hidden mb-3">
+                      <DeviceImage
+                        src={item.image}
+                        alt={item.name}
+                        icon={item.icon}
+                        className="w-full h-full object-cover"
+                        iconClassName="w-6 h-6 text-white"
+                      />
+                    </div>
 
                     {/* Product Info */}
                     <h4 className={`font-semibold text-sm mb-1 text-ink-900`}>
