@@ -9,7 +9,7 @@ export const centers = [
     phone: '+91 (120) 456-7890',
     hours: 'Mon-Sat: 9AM-6PM',
     services: ['Drop-off', 'Dismantling', 'Refurbishing', 'Component Testing', 'Plastic Recovery', 'Second-hand Electronics Market'],
-    coordinates: { lat: 28.5921, lng: 77.3693 },
+    coordinates: { lat: 28.7759, lng: 77.1339 },
     image: 'https://images.news18.com/ibnlive/uploads/2025/06/Delhi-forest-park-2025-06-3a0fa58fc26fffe73108773502cfb9d3.jpg',
     description: "India's first state-of-the-art E-Waste Eco Park at Holambi Kalan, spanning 11.4 acres with Rs 150 crore investment. Processes 51,000 metric tonnes of e-waste annually covering all 106 categories under E-Waste Management Rules 2022. Features dedicated zones for dismantling, refurbishing, component testing, plastic recovery, and second-hand electronics market. Includes skilling centers to train thousands of informal workers. Expected to generate Rs 350 crore in revenue and create thousands of green jobs. PPP model with 18-month construction timeline.",
   },
@@ -49,7 +49,7 @@ export const centers = [
     phone: '+91 (040) 3456-7890',
     hours: 'Mon-Sun: 9AM-9PM',
     services: ['Drop-off', 'Free Assessment', 'Buy Used Electronics'],
-    coordinates: { lat: 17.3850, lng: 78.4867 },
+    coordinates: { lat: 17.4483, lng: 78.3785 },
   },
   {
     id: 5,
@@ -61,7 +61,7 @@ export const centers = [
     phone: '+91 (044) 5678-9012',
     hours: 'Tue-Sat: 11AM-6PM',
     services: ['Drop-off', 'Refurbishment Services', 'Community Programs'],
-    coordinates: { lat: 13.0827, lng: 80.2707 },
+    coordinates: { lat: 13.0057, lng: 80.2077 },
   },
   {
     id: 6,
@@ -73,7 +73,7 @@ export const centers = [
     phone: '+91 (033) 7890-1234',
     hours: 'Wed-Mon: 10AM-5PM',
     services: ['Drop-off', 'Data Secure Destruction', 'Environmental Reports'],
-    coordinates: { lat: 22.5726, lng: 88.3639 },
+    coordinates: { lat: 22.5790, lng: 88.4196 },
   },
   {
     id: 7,
@@ -85,7 +85,7 @@ export const centers = [
     phone: '+91 (020) 2890-3456',
     hours: 'Mon-Sat: 8AM-7PM',
     services: ['Drop-off', 'Scheduled Pickup', 'Refurbishment Services'],
-    coordinates: { lat: 18.5904, lng: 73.8129 },
+    coordinates: { lat: 18.5905, lng: 73.7389 },
   },
   {
     id: 8,
@@ -109,7 +109,7 @@ export const centers = [
     phone: '+91 (079) 6789-2345',
     hours: 'Mon-Fri: 8AM-7PM',
     services: ['Drop-off', 'Bulk Pickup', 'Certified Recycling'],
-    coordinates: { lat: 23.0225, lng: 72.5714 },
+    coordinates: { lat: 22.9569, lng: 72.6462 },
   },
   {
     id: 10,
@@ -121,7 +121,7 @@ export const centers = [
     phone: '+91 (522) 1234-5678',
     hours: 'Mon-Sat: 9AM-6PM',
     services: ['Drop-off', 'Repair Program', 'Community Programs'],
-    coordinates: { lat: 26.8467, lng: 80.9462 },
+    coordinates: { lat: 26.7733, lng: 80.8952 },
   },
   {
     id: 11,
@@ -133,7 +133,7 @@ export const centers = [
     phone: '+91 (484) 3456-7890',
     hours: 'Tue-Sun: 10AM-7PM',
     services: ['Drop-off', 'Refurbishment Services', 'Data Destruction'],
-    coordinates: { lat: 9.9312, lng: 76.2673 },
+    coordinates: { lat: 10.0099, lng: 76.3617 },
   },
   {
     id: 12,
@@ -145,7 +145,7 @@ export const centers = [
     phone: '+91 (261) 5678-9012',
     hours: 'Mon-Fri: 9AM-8PM',
     services: ['Drop-off', 'Bulk Pickup', 'Free Assessment'],
-    coordinates: { lat: 21.1458, lng: 72.8336 },
+    coordinates: { lat: 21.2103, lng: 72.8280 },
   },
   {
     id: 13,
@@ -169,7 +169,7 @@ export const centers = [
     phone: '+91 (755) 5678-9012',
     hours: 'Tue-Sun: 9AM-6PM',
     services: ['Drop-off', 'Free Assessment', 'Repair Program'],
-    coordinates: { lat: 23.1815, lng: 79.9864 },
+    coordinates: { lat: 23.2599, lng: 77.4126 },
   },
   {
     id: 15,
@@ -193,7 +193,7 @@ export const centers = [
     phone: '+91 (657) 6789-0123',
     hours: 'Mon-Sat: 9AM-6PM',
     services: ['Drop-off', 'Bulk Pickup', 'Refurbishment Services'],
-    coordinates: { lat: 22.8047, lng: 84.3330 },
+    coordinates: { lat: 22.8046, lng: 86.2029 },
   },
   {
     id: 17,
@@ -205,6 +205,6 @@ export const centers = [
     phone: '+91 (651) 2345-6789',
     hours: 'Tue-Sun: 10AM-7PM',
     services: ['Drop-off', 'Scheduled Pickup', 'Data Destruction'],
-    coordinates: { lat: 23.3645, lng: 85.3340 },
+    coordinates: { lat: 23.3441, lng: 85.3096 },
   },
 ];
