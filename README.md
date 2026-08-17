@@ -43,17 +43,24 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 
 ### 2. Device Disposal Guide
 
-- Searchable list of device types.
-- Step-by-step disposal instructions.
+- Searchable list of device types with **category filter chips** (Recycle / Hazardous / Reuse) and **alias matching** ("mobile", "iphone", "macbook" all resolve).
+- Step-by-step disposal instructions rendered as an **interactive checklist** with a live progress bar per device.
 - Safety warnings for hazardous items.
-- Device-specific metadata and user-facing guidance.
+- **Value band** per device: recovery value (₹), CO₂ avoided (kg), and materials recovered.
+- Related-device suggestions and a print-friendly guide view.
+- URL-synced selection so guides can be deep-linked (`?device=battery`).
+- Device photos are bundled locally (`public/images/devices/`) with a branded gradient fallback via the shared `DeviceImage` component.
+- "Sell a device" flow separated into a modal that adds custom disposables to the marketplace.
 
 ### 3. Nearby Recycling Centers
 
-- Interactive Leaflet map with custom markers.
+- Interactive Leaflet map with custom recycle-glyph markers.
+- **Auto-fitting viewport** — the camera fits the current marker set on load and whenever filters change.
+- **Zoom-to-selected** — picking a center from the list or map zooms in on it.
+- Map controls: **recenter** button, live **zoom-level indicator**, and **geolocation** to center on the user's actual position with a pulsing "You are here" marker.
+- Corrected, locality-accurate coordinates for all centers.
 - Location cards with ratings, services, contact details, and timings.
 - Filter and sort options.
-- Fixed India-first map starting viewport.
 
 ### 4. Pickup and Reuse Network
 
@@ -87,7 +94,9 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 
 ### 9. UI and Experience
 
-- Light botanical theme (forest / sage / cream / ink / gold design tokens, Poppins display over Manrope body).
+- Light botanical theme (forest / sage / cream / ink / gold design tokens, Poppins display over Manrope body), with a named type scale and semantic color tokens used across all surfaces.
+- Lucide icons throughout — no raw emoji or text glyphs in UI chrome.
+- Chatbot renders response emphasis as real bold text (no literal markdown asterisks).
 - Toast notifications for feedback.
 - Floating chatbot for quick user assistance.
 - Mobile-responsive navigation and section layouts.
@@ -130,6 +139,8 @@ HackMatrix_AI-Alchemists/
 |  |- package.json
 |  |- public/
 |  |  |- favicon.svg
+|  |  |- icons.svg
+|  |  |- images/devices/   (locally bundled device photos)
 |  |- src/
 |     |- App.jsx
 |     |- context/CartContext.jsx
@@ -149,8 +160,7 @@ HackMatrix_AI-Alchemists/
 
 - `isLoggedIn`
 - `cartItems`
-- `deviceImages`
-- `customDisposables`
+- `customDisposables` (custom disposables added via the sell-a-device flow)
 
 ## Backend Architecture Summary
 
