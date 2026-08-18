@@ -1,13 +1,12 @@
-import { useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { GoogleOAuthProvider } from '@react-oauth/google';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
 import ChatBot from './components/ChatBot';
 import { CartProvider } from './context/CartContext';
-import { AuthProvider, GOOGLE_CLIENT_ID } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 
 // Pages
 // Home stays eager for the fastest first paint; everything else is
@@ -92,13 +91,11 @@ function AppContent() {
 function App() {
   return (
     <BrowserRouter>
-      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-        <AuthProvider>
-          <CartProvider>
-            <AppContent />
-          </CartProvider>
-        </AuthProvider>
-      </GoogleOAuthProvider>
+      <AuthProvider>
+        <CartProvider>
+          <AppContent />
+        </CartProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

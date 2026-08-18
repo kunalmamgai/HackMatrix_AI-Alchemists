@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, User, Lock, ArrowRight } from 'lucide-react';
-import { GoogleLogin } from '@react-oauth/google';
 import { useAuth, GOOGLE_CLIENT_ID } from '../context/AuthContext';
 
 export default function LoginPage() {
@@ -36,16 +35,58 @@ export default function LoginPage() {
     navigate(-1);
   };
 
-  const handleGoogleSuccess = (credentialResponse) => {
-    loginWithGoogle(credentialResponse);
-    navigate(-1);
-  };
+  const googleButtonRef = useRef(null);
 
-  const handleGoogleError = () => {
-    setError('Google sign-in was cancelled or failed. Please try again.');
-  };
+  const handleGoogleCredential = useCallback((response) => {
+    loginWithGoogle(response);
+    navigate(-1);
+  }, [loginWithGoogle, navigate]);
 
   const isGoogleConfigured = GOOGLE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+
+  // Load Google Identity Services script and render the button
+  useEffect(() => {
+    if (!isGoogleConfigured) return;
+
+    const loadGoogleScript = () => {
+      if (window.google?.accounts?.id) {
+        initializeGoogleSignIn();
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = 'https://accounts.google.com/gsi/client';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => initializeGoogleSignIn();
+      script.onerror = () => setError('Failed to load Google Sign-In. Check your connection.');
+      document.body.appendChild(script);
+    };
+
+    const initializeGoogleSignIn = () => {
+      window.google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleGoogleCredential,
+        auto_select: false,
+        cancel_on_tap_outside: true,
+      });
+
+      if (googleButtonRef.current) {
+        window.google.accounts.id.renderButton(
+          googleButtonRef.current,
+          {
+            theme: 'outline',
+            size: 'large',
+            text: 'signin_with',
+            shape: 'rectangular',
+            width: googleButtonRef.current.offsetWidth || 300,
+          }
+        );
+      }
+    };
+
+    loadGoogleScript();
+  }, [isGoogleConfigured, handleGoogleCredential]);
 
   return (
     <motion.main
@@ -87,16 +128,7 @@ export default function LoginPage() {
             </div>
 
             <div className="flex justify-center">
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={handleGoogleError}
-                useOneTap
-                theme="outline"
-                size="large"
-                text="signin_with"
-                shape="rectangular"
-                width="100%"
-              />
+              <div ref={googleButtonRef} className="w-full" />
             </div>
 
             <div className="relative">
