@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { Menu, X, Leaf, LogIn, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { isLoggedIn, user, logout } = useAuth();
 
   const navItems = [
     { label: 'Device Guide', href: '/device-search' },
@@ -16,8 +18,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
   ];
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('isLoggedIn');
+    logout();
     navigate('/');
   };
 
@@ -57,17 +58,30 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
           {/* Theme Toggle and Mobile Menu */}
           <div className="flex items-center space-x-4">
             {isLoggedIn ? (
-              /* Danger outline by default — solid red as a persistent nav
-                 element is louder than a logout action needs to be. */
-              <motion.button
-                onClick={handleLogout}
-                className="hidden md:inline-flex px-4 py-2 rounded-full font-semibold text-danger-600 border-2 border-danger-500/40 hover:bg-danger-50 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <LogOut size={18} className="mr-2" />
-                Logout
-              </motion.button>
+              <div className="hidden md:flex items-center space-x-3">
+                {user?.picture ? (
+                  <img
+                    src={user.picture}
+                    alt={user.name || 'User'}
+                    className="w-9 h-9 rounded-full border-2 border-sage-200 object-cover"
+                  />
+                ) : (
+                  <div className="w-9 h-9 rounded-full bg-gradient-forest flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">
+                      {(user?.name || 'U').charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                )}
+                <motion.button
+                  onClick={handleLogout}
+                  className="px-4 py-2 rounded-full font-semibold text-danger-600 border-2 border-danger-500/40 hover:bg-danger-50 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <LogOut size={18} className="mr-2" />
+                  Logout
+                </motion.button>
+              </div>
             ) : (
               <motion.button
                 onClick={() => navigate('/login')}
@@ -104,16 +118,39 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
         >
           <div className="px-4 pt-2 pb-3 space-y-1">
             {isLoggedIn ? (
-              <motion.button
-                onClick={() => {
-                  handleLogout();
-                  setIsOpen(false);
-                }}
-                className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 text-danger-600 bg-danger-50 hover:bg-danger-100"
-              >
-                <LogOut size={18} />
-                <span>Logout</span>
-              </motion.button>
+              <>
+                {user && (
+                  <div className="flex items-center space-x-3 px-3 py-2">
+                    {user.picture ? (
+                      <img
+                        src={user.picture}
+                        alt={user.name || 'User'}
+                        className="w-8 h-8 rounded-full border-2 border-sage-200 object-cover"
+                      />
+                    ) : (
+                      <div className="w-8 h-8 rounded-full bg-gradient-forest flex items-center justify-center">
+                        <span className="text-white text-sm font-bold">
+                          {(user.name || 'U').charAt(0).toUpperCase()}
+                        </span>
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-semibold text-ink-900">{user.name}</p>
+                      <p className="text-xs text-ink-500">{user.email}</p>
+                    </div>
+                  </div>
+                )}
+                <motion.button
+                  onClick={() => {
+                    handleLogout();
+                    setIsOpen(false);
+                  }}
+                  className="w-full text-left px-3 py-2 rounded-lg font-semibold transition-colors flex items-center space-x-2 text-danger-600 bg-danger-50 hover:bg-danger-100"
+                >
+                  <LogOut size={18} />
+                  <span>Logout</span>
+                </motion.button>
+              </>
             ) : (
               <motion.button
                 onClick={() => {

@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { Trash2, Plus, Minus, ArrowLeft, CreditCard, HelpCircle, Check } from 'lucide-react';
 import DeviceImage from '../components/DeviceImage';
 
-export default function CheckoutPage({ isLoggedIn }) {
+export default function CheckoutPage() {
+  const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
   const { cartItems, removeFromCart, updateQuantity, clearCart, getTotalPrice } = useCart();
   const [paymentMethod, setPaymentMethod] = useState('card');

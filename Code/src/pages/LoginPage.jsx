@@ -2,17 +2,27 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, User, Lock, ArrowRight } from 'lucide-react';
+import { GoogleLogin } from '@react-oauth/google';
+import { useAuth, GOOGLE_CLIENT_ID } from '../context/AuthContext';
 
-export default function LoginPage({ setIsLoggedIn }) {
+export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { setIsLoggedIn, loginWithGoogle, user } = useAuth();
 
   // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate(-1);
+    }
+  }, [user, navigate]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,8 +33,19 @@ export default function LoginPage({ setIsLoggedIn }) {
     // Simulate API Login
     setIsLoggedIn(true);
     localStorage.setItem('isLoggedIn', 'true');
-    navigate(-1); // Go back to the previous page
+    navigate(-1);
   };
+
+  const handleGoogleSuccess = (credentialResponse) => {
+    loginWithGoogle(credentialResponse);
+    navigate(-1);
+  };
+
+  const handleGoogleError = () => {
+    setError('Google sign-in was cancelled or failed. Please try again.');
+  };
+
+  const isGoogleConfigured = GOOGLE_CLIENT_ID !== 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
 
   return (
     <motion.main
@@ -47,12 +68,53 @@ export default function LoginPage({ setIsLoggedIn }) {
           </p>
         </div>
 
-        <form className="mt-8 space-y-6" onSubmit={handleLogin}>
-          {error && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-3 rounded-lg bg-danger-100 text-danger-700 text-sm text-center">
-              {error}
-            </motion.div>
-          )}
+        {error && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="p-3 rounded-lg bg-danger-100 text-danger-700 text-sm text-center">
+            {error}
+          </motion.div>
+        )}
+
+        {/* Google Sign-In */}
+        {isGoogleConfigured ? (
+          <div className="space-y-4">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-sage-200" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-3 bg-white text-ink-500">or continue with</span>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <GoogleLogin
+                onSuccess={handleGoogleSuccess}
+                onError={handleGoogleError}
+                useOneTap
+                theme="outline"
+                size="large"
+                text="signin_with"
+                shape="rectangular"
+                width="100%"
+              />
+            </div>
+
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-sage-200" />
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-3 bg-white text-ink-500">or sign in with email</span>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="p-3 rounded-lg bg-forest-50 text-forest-700 text-xs text-center border border-forest-200">
+            To enable Google Sign-In, set <code className="font-mono bg-forest-100 px-1 rounded">VITE_GOOGLE_CLIENT_ID</code> in your <code className="font-mono bg-forest-100 px-1 rounded">.env</code> file.
+          </div>
+        )}
+
+        <form className="space-y-6" onSubmit={handleLogin}>
 
           <div className="space-y-4">
             <div>
@@ -123,6 +185,13 @@ export default function LoginPage({ setIsLoggedIn }) {
             <ArrowRight className="ml-2 h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1" />
           </button>
         </form>
+
+        <p className="text-center text-sm text-ink-500">
+          Don't have an account?{' '}
+          <a href="#" className="font-medium text-forest-600 hover:text-forest-500">
+            Sign up
+          </a>
+        </p>
       </div>
     </motion.main>
   );

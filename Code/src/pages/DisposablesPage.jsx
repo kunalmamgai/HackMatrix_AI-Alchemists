@@ -3,10 +3,12 @@ import { ShoppingCart, Heart, Recycle } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { products, productCategories } from '../data/products';
 import DeviceImage from '../components/DeviceImage';
 
-export default function DisposablesPage({ isLoggedIn }) {
+export default function DisposablesPage() {
+  const { isLoggedIn } = useAuth();
   const [wishlist, setWishlist] = useState(new Set());
   const [filter, setFilter] = useState('All');
   const navigate = useNavigate();

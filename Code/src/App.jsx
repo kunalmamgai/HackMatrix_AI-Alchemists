@@ -1,11 +1,13 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Toast from './components/Toast';
 import ChatBot from './components/ChatBot';
 import { CartProvider } from './context/CartContext';
+import { AuthProvider, GOOGLE_CLIENT_ID } from './context/AuthContext';
 
 // Pages
 // Home stays eager for the fastest first paint; everything else is
@@ -31,10 +33,6 @@ function PageLoader() {
 }
 
 function AppContent() {
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return localStorage.getItem('isLoggedIn') === 'true';
-  });
-
   const [notification, setNotification] = useState(null);
   const [notificationType, setNotificationType] = useState('success');
 
@@ -56,7 +54,7 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-cream-50 text-ink-900 transition-colors duration-300">
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar />
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -71,9 +69,9 @@ function AppContent() {
             <Route path="/pickup-network" element={<PickupNetworkPage onNotification={handleNotification} />} />
             <Route path="/circular-economy" element={<CircularEconomyPage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/disposables" element={<DisposablesPage isLoggedIn={isLoggedIn} />} />
-            <Route path="/checkout" element={<CheckoutPage isLoggedIn={isLoggedIn} />} />
-            <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/disposables" element={<DisposablesPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Routes>
         </Suspense>
       </motion.div>
@@ -94,9 +92,13 @@ function AppContent() {
 function App() {
   return (
     <BrowserRouter>
-      <CartProvider>
-        <AppContent />
-      </CartProvider>
+      <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+        <AuthProvider>
+          <CartProvider>
+            <AppContent />
+          </CartProvider>
+        </AuthProvider>
+      </GoogleOAuthProvider>
     </BrowserRouter>
   );
 }
