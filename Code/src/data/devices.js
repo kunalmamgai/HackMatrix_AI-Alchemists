@@ -174,7 +174,7 @@ export const devices = [
     aliases: ['watch', 'wearable', 'fitness tracker', 'apple watch', 'galaxy watch', 'band'],
     recoveryValue: 120,
     carbonSaved: 12,
-    image: null,
+    image: '/images/devices/smartwatch.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -201,7 +201,7 @@ export const devices = [
     aliases: ['dslr', 'mirrorless', 'digital camera', 'gopro', 'action cam', 'webcam', 'camcorder'],
     recoveryValue: 500,
     carbonSaved: 35,
-    image: null,
+    image: '/images/devices/camera.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -228,7 +228,7 @@ export const devices = [
     aliases: ['scanner', 'copier', 'all-in-one', '3d printer', 'inkjet', 'laser printer', 'fax'],
     recoveryValue: 300,
     carbonSaved: 50,
-    image: null,
+    image: '/images/devices/printer.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -255,7 +255,7 @@ export const devices = [
     aliases: ['mechanical keyboard', 'bluetooth keyboard', 'wired keyboard', 'numpad'],
     recoveryValue: 40,
     carbonSaved: 5,
-    image: null,
+    image: '/images/devices/keyboard.jpg',
     disposal: {
       type: 'Reuse/Recycle',
       steps: [
@@ -282,7 +282,7 @@ export const devices = [
     aliases: ['wireless mouse', 'gaming mouse', 'trackball', 'touchpad'],
     recoveryValue: 25,
     carbonSaved: 3,
-    image: null,
+    image: '/images/devices/mouse.jpg',
     disposal: {
       type: 'Reuse/Recycle',
       steps: [
@@ -309,7 +309,7 @@ export const devices = [
     aliases: ['bluetooth speaker', 'soundbar', 'subwoofer', 'bookshelf speaker', 'smart speaker', 'echo', 'alexa'],
     recoveryValue: 150,
     carbonSaved: 15,
-    image: null,
+    image: '/images/devices/speaker.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -336,7 +336,7 @@ export const devices = [
     aliases: ['playstation', 'xbox', 'nintendo switch', 'ps5', 'ps4', 'xbox series', 'wii', 'retro console'],
     recoveryValue: 500,
     carbonSaved: 40,
-    image: null,
+    image: '/images/devices/console.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -363,7 +363,7 @@ export const devices = [
     aliases: ['tower', 'cpu', 'desktop pc', 'imac', 'workstation', 'server'],
     recoveryValue: 800,
     carbonSaved: 120,
-    image: null,
+    image: '/images/devices/desktop.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -390,7 +390,7 @@ export const devices = [
     aliases: ['charger', 'usb cable', 'lightning cable', 'power adapter', 'extension cord', 'power strip', 'surge protector'],
     recoveryValue: 10,
     carbonSaved: 2,
-    image: null,
+    image: '/images/devices/cable.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
@@ -417,7 +417,7 @@ export const devices = [
     aliases: ['beamer', 'digital projector', 'mini projector', 'home theater projector', 'smart projector'],
     recoveryValue: 350,
     carbonSaved: 30,
-    image: null,
+    image: '/images/devices/projector.jpg',
     disposal: {
       type: 'Recycle',
       steps: [
