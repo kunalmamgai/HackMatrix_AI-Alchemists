@@ -12,7 +12,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
     { label: 'Locations', href: '/nearby-locations' },
     { label: 'Pickup', href: '/pickup-network' },
     { label: 'Disposables', href: '/disposables' },
-    { label: 'About', href: '/circular-economy' },
+    { label: 'About', href: '/about' },
   ];
 
   const handleLogout = () => {

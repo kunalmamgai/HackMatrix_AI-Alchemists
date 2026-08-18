@@ -19,6 +19,7 @@ export default function Footer() {
     {
       category: 'Learn',
       links: [
+        { label: 'About Us', href: '/about' },
         { label: 'Circular Economy', href: '/circular-economy' },
         { label: 'Disposal Safety', href: '/device-search' },
       ],

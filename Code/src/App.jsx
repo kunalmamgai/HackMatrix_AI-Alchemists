@@ -15,6 +15,7 @@ const DeviceSearchPage = lazy(() => import('./pages/DeviceSearchPage'));
 const NearbyLocationsPage = lazy(() => import('./pages/NearbyLocationsPage'));
 const PickupNetworkPage = lazy(() => import('./pages/PickupNetworkPage'));
 const CircularEconomyPage = lazy(() => import('./pages/CircularEconomyPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
 const DisposablesPage = lazy(() => import('./pages/DisposablesPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
@@ -69,6 +70,7 @@ function AppContent() {
             <Route path="/nearby-locations" element={<NearbyLocationsPage />} />
             <Route path="/pickup-network" element={<PickupNetworkPage onNotification={handleNotification} />} />
             <Route path="/circular-economy" element={<CircularEconomyPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/disposables" element={<DisposablesPage isLoggedIn={isLoggedIn} />} />
             <Route path="/checkout" element={<CheckoutPage isLoggedIn={isLoggedIn} />} />
             <Route path="/login" element={<LoginPage setIsLoggedIn={setIsLoggedIn} />} />
