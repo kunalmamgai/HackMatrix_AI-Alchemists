@@ -25,7 +25,7 @@ const CATEGORY_CHIPS = [
   { label: 'Hazardous', value: 'Hazardous' },
   { label: 'Reuse/Recycle', value: 'Reuse/Recycle' },
 ];
-const POPULAR_SEARCHES = ['iPhone', 'Laptop', 'Battery', 'iPad'];
+const POPULAR_SEARCHES = ['iPhone', 'Laptop', 'Battery', 'Printer', 'Camera', 'Console'];
 
 const matchesKeyword = (device, query) => {
   const needle = query.trim().toLowerCase();
@@ -674,7 +674,7 @@ export default function DeviceSearch({ initialQuery = '' }) {
                     No devices found for "{searchTerm}".
                   </p>
                   <p className="text-sm text-ink-400 mb-6">
-                    Try one of these: phone, laptop, battery, tablet, headphones, monitor.
+                    Try: phone, laptop, battery, printer, camera, console, speaker, cable.
                   </p>
                   <button
                     type="button"
@@ -755,10 +755,20 @@ export default function DeviceSearch({ initialQuery = '' }) {
                   >
                     <option value="Smartphone">Smartphone</option>
                     <option value="Laptop">Laptop</option>
-                    <option value="Battery">Battery</option>
-                    <option value="Headphones">Headphones</option>
                     <option value="Tablet">Tablet</option>
                     <option value="Monitor">Monitor</option>
+                    <option value="Smartwatch">Smartwatch</option>
+                    <option value="Camera">Camera</option>
+                    <option value="Printer">Printer</option>
+                    <option value="Keyboard">Keyboard</option>
+                    <option value="Mouse">Mouse</option>
+                    <option value="Speaker">Speaker</option>
+                    <option value="Game Console">Game Console</option>
+                    <option value="Desktop">Desktop</option>
+                    <option value="Headphones">Headphones</option>
+                    <option value="Cables & Chargers">Cables & Chargers</option>
+                    <option value="Projector">Projector</option>
+                    <option value="Battery">Battery</option>
                   </select>
 
                   <select
