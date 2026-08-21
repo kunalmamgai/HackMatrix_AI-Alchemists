@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
@@ -7,6 +7,7 @@ import Toast from './components/Toast';
 import ChatBot from './components/ChatBot';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
+import { NotificationProvider, useNotification } from './context/NotificationContext';
 
 // Pages
 // Home stays eager for the fastest first paint; everything else is
@@ -20,6 +21,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const DisposablesPage = lazy(() => import('./pages/DisposablesPage'));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 import './index.css';
 
@@ -32,27 +34,25 @@ function PageLoader() {
 }
 
 function AppContent() {
-  const [notification, setNotification] = useState(null);
-  const [notificationType, setNotificationType] = useState('success');
-
-  // The site is fully light-first (botanical palette) — no forced dark class.
+  const { notification, notificationType, clear } = useNotification();
 
   useEffect(() => {
     if (notification) {
-      const timer = setTimeout(() => {
-        setNotification(null);
-      }, 4000);
+      const timer = setTimeout(clear, 4000);
       return () => clearTimeout(timer);
     }
-  }, [notification]);
-
-  const handleNotification = (message, type = 'success') => {
-    setNotification(message);
-    setNotificationType(type);
-  };
+  }, [notification, clear]);
 
   return (
     <div className="min-h-screen bg-cream-50 text-ink-900 transition-colors duration-300">
+      {/* Skip to content — accessibility: keyboard users can jump past the navbar */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-forest-500 focus:text-white focus:outline-none focus:ring-2 focus:ring-forest-300"
+      >
+        Skip to main content
+      </a>
+
       <Navbar />
 
       <motion.div
@@ -60,19 +60,22 @@ function AppContent() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/device-search" element={<DeviceSearchPage />} />
-            <Route path="/nearby-locations" element={<NearbyLocationsPage />} />
-            <Route path="/pickup-network" element={<PickupNetworkPage onNotification={handleNotification} />} />
-            <Route path="/circular-economy" element={<CircularEconomyPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/disposables" element={<DisposablesPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-        </Suspense>
+        <main id="main-content">
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/device-search" element={<DeviceSearchPage />} />
+              <Route path="/nearby-locations" element={<NearbyLocationsPage />} />
+              <Route path="/pickup-network" element={<PickupNetworkPage />} />
+              <Route path="/circular-economy" element={<CircularEconomyPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/disposables" element={<DisposablesPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </main>
       </motion.div>
 
       <Footer />
@@ -82,7 +85,7 @@ function AppContent() {
       <Toast
         message={notification}
         type={notificationType}
-        onClose={() => setNotification(null)}
+        onClose={clear}
       />
     </div>
   );
@@ -93,7 +96,9 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <CartProvider>
-          <AppContent />
+          <NotificationProvider>
+            <AppContent />
+          </NotificationProvider>
         </CartProvider>
       </AuthProvider>
     </BrowserRouter>
@@ -101,4 +106,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { Menu, X, Leaf, LogIn, LogOut } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { isLoggedIn, user, logout } = useAuth();
+
+  const isActive = (href) => location.pathname === href;
 
   const navItems = [
     { label: 'Device Guide', href: '/device-search' },
@@ -46,8 +49,13 @@ export default function Navbar() {
             {navItems.map((item, index) => (
               <Link key={index} to={item.href}>
                 <motion.div
-                  className="font-medium text-ink-700 transition-colors hover:text-forest-600"
+                  className={`font-medium transition-colors relative pb-1 ${
+                    isActive(item.href)
+                      ? 'text-forest-600 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-forest-500 after:rounded-full'
+                      : 'text-ink-700 hover:text-forest-600'
+                  }`}
                   whileHover={{ scale: 1.05 }}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
                 >
                   {item.label}
                 </motion.div>
@@ -167,8 +175,13 @@ export default function Navbar() {
               <Link
                 key={index}
                 to={item.href}
-                className={`block px-3 py-2 rounded-lg transition-colors text-ink-700 hover:bg-sage-100`}
+                className={`block px-3 py-2 rounded-lg transition-colors ${
+                  isActive(item.href)
+                    ? 'bg-forest-50 text-forest-600 font-semibold'
+                    : 'text-ink-700 hover:bg-sage-100'
+                }`}
                 onClick={() => setIsOpen(false)}
+                aria-current={isActive(item.href) ? 'page' : undefined}
               >
                 {item.label}
               </Link>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Truck, User, Shield, CheckCircle, ArrowRight, AlertCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNotification } from '../context/NotificationContext';
 
 const DEVICE_TYPES = ['Smartphone', 'Laptop', 'Tablet', 'Monitor', 'Battery', 'Headphones', 'Other'];
 const CONDITIONS = ['Like New', 'Good', 'Fair', 'Poor', 'For Parts'];
@@ -41,7 +42,8 @@ const PARTNERS = [
   }
 ];
 
-export default function PickupNetwork({ onNotification }) {
+export default function PickupNetwork() {
+  const { notify } = useNotification();
   const [formData, setFormData] = useState({
     deviceType: '',
     condition: '',
@@ -67,9 +69,7 @@ export default function PickupNetwork({ onNotification }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    if (onNotification) {
-      onNotification('Pickup scheduled successfully!');
-    }
+    notify('Pickup scheduled successfully!');
     setTimeout(() => {
       setFormData({
         deviceType: '',
