@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { LogIn, User, Lock, ArrowRight } from 'lucide-react';
 import { useAuth, GOOGLE_CLIENT_ID } from '../context/AuthContext';
+import Breadcrumb from '../components/Breadcrumb';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -94,8 +95,17 @@ export default function LoginPage() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
-      className={`min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 bg-cream-50`}
+      className={`min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-cream-50`}
     >
+      <div className="max-w-md mx-auto mt-4">
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Login' },
+          ].filter((item) => item.label !== 'Home')}
+        />
+      </div>
+      <div className="flex items-center justify-center">
       <div className={`max-w-md w-full space-y-8 p-10 rounded-2xl shadow-2xl bg-white border border-sage-200`}>
         <div className="text-center">
           <div className="mx-auto w-16 h-16 bg-gradient-forest rounded-2xl flex items-center justify-center shadow-lg mb-6">
@@ -224,6 +234,7 @@ export default function LoginPage() {
             Sign up
           </a>
         </p>
+      </div>
       </div>
     </motion.main>
   );

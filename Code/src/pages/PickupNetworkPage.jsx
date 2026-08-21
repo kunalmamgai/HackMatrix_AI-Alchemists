@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import PickupNetwork from '../components/PickupNetwork';
+import Breadcrumb from '../components/Breadcrumb';
 
-export default function PickupNetworkPage({ onNotification }) {
+export default function PickupNetworkPage() {
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -9,7 +10,15 @@ export default function PickupNetworkPage({ onNotification }) {
       transition={{ duration: 0.5 }}
     >
       <div className="pt-20">
-        <PickupNetwork onNotification={onNotification} />
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-4">
+          <Breadcrumb
+            items={[
+              { label: 'Home', href: '/' },
+              { label: 'Pickup Network' },
+            ].filter((item) => item.label !== 'Home')}
+          />
+        </div>
+        <PickupNetwork />
       </div>
     </motion.main>
   );

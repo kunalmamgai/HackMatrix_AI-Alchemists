@@ -15,6 +15,7 @@ import {
   Target,
   ArrowRight,
 } from 'lucide-react';
+import Breadcrumb from '../components/Breadcrumb';
 
 const PILLARS = [
   {
@@ -99,6 +100,16 @@ export default function AboutPage() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Breadcrumb */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32">
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'About' },
+          ].filter((item) => item.label !== 'Home')}
+        />
+      </div>
+
       {/* Hero — dark forest backdrop with the campaign message */}
       <section className="relative overflow-hidden bg-forest-900 pt-28 pb-20 lg:pt-36 lg:pb-28">
         <div className="absolute inset-0 bg-gradient-hero" aria-hidden="true" />

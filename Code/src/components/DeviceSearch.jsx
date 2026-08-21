@@ -6,6 +6,7 @@ import { devices } from '../data/devices';
 import DeviceImage from './DeviceImage';
 import DeviceDetail from './DeviceDetail';
 import SellModal from './SellModal';
+import Breadcrumb from './Breadcrumb';
 
 const CATEGORY_CHIPS = [
   { label: 'All', value: 'all' },
@@ -102,6 +103,13 @@ export default function DeviceSearch({ initialQuery = '' }) {
   return (
     <section id="device-search" className="py-16 lg:py-24 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Device Guide', href: '/device-search' },
+            ...(selectedDevice ? [{ label: selectedDevice.name }] : []),
+          ].filter((item) => item.label !== 'Home')}
+        />
         <div className="rounded-3xl p-8 md:p-16 mb-12 mt-4 text-center shadow-xl bg-sage-100/80 border border-sage-200 relative overflow-hidden">
           <motion.div
             initial={{ opacity: 0, y: -20 }}

@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { products, productCategories } from '../data/products';
 import DeviceImage from '../components/DeviceImage';
+import Breadcrumb from '../components/Breadcrumb';
 
 export default function DisposablesPage() {
   const { isLoggedIn } = useAuth();
@@ -66,6 +67,12 @@ export default function DisposablesPage() {
       className={`min-h-screen pt-20 pb-12 bg-cream-50`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Disposables' },
+          ].filter((item) => item.label !== 'Home')}
+        />
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}

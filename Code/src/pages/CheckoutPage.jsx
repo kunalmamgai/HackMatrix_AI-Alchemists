@@ -5,6 +5,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { Trash2, Plus, Minus, ArrowLeft, CreditCard, HelpCircle, Check } from 'lucide-react';
 import DeviceImage from '../components/DeviceImage';
+import Breadcrumb from '../components/Breadcrumb';
 
 export default function CheckoutPage() {
   const { isLoggedIn } = useAuth();
@@ -98,13 +99,13 @@ export default function CheckoutPage() {
       className={`min-h-screen pt-20 pb-12 px-4 bg-cream-50`}
     >
       <div className="max-w-6xl mx-auto">
-        <button
-          onClick={() => navigate('/disposables')}
-          className={`flex items-center space-x-2 mb-8 px-4 py-2 rounded-lg transition-colors text-forest-600 hover:bg-sage-100`}
-        >
-          <ArrowLeft size={20} />
-          <span>Back to Products</span>
-        </button>
+        <Breadcrumb
+          items={[
+            { label: 'Home', href: '/' },
+            { label: 'Disposables', href: '/disposables' },
+            { label: 'Checkout' },
+          ].filter((item) => item.label !== 'Home')}
+        />
 
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Cart Items */}
