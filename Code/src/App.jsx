@@ -8,6 +8,7 @@ import ChatBot from './components/ChatBot';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { NotificationProvider, useNotification } from './context/NotificationContext';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Pages
 // Home stays eager for the fastest first paint; everything else is
@@ -61,6 +62,7 @@ function AppContent() {
         transition={{ duration: 0.5 }}
       >
         <main id="main-content">
+          <ErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -75,6 +77,7 @@ function AppContent() {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
+          </ErrorBoundary>
         </main>
       </motion.div>
 
