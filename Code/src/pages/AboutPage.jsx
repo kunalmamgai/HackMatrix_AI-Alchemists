@@ -129,7 +129,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            About E-Scrape Mart
+            About ReCircuit
           </motion.p>
           <motion.h1
             className="text-display text-white mb-6"
@@ -150,7 +150,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            E-Scrape Mart is a full-stack platform that turns e-waste confusion into action —
+            ReCircuit is a full-stack platform that turns e-waste confusion into action —
             guiding people from safe disposal to verified recyclers, doorstep pickups, and
             refurbished devices that deserve a second life.
           </motion.p>
@@ -208,7 +208,7 @@ export default function AboutPage() {
               {[
                 {
                   title: 'From confusion to action',
-                  body: 'Most people want to dispose of devices responsibly, but don’t know how, where, or what happens next. E-Scrape Mart answers those questions in one place — searchable disposal guides, verified recyclers on a map, and pickup scheduling, so the right choice is also the easy choice.',
+                  body: 'Most people want to dispose of devices responsibly, but don’t know how, where, or what happens next. ReCircuit answers those questions in one place — searchable disposal guides, verified recyclers on a map, and pickup scheduling, so the right choice is also the easy choice.',
                 },
                 {
                   title: 'Built for the circular economy',
@@ -402,7 +402,7 @@ export default function AboutPage() {
             </p>
             <h2 className="text-h1 text-ink-900 mb-6">Built by Team AI-Alchemists</h2>
             <p className="text-body text-ink-500 max-w-2xl mx-auto leading-relaxed mb-8">
-              E-Scrape Mart was designed and built for HackMatrix with one goal in mind: make
+              ReCircuit was designed and built for HackMatrix with one goal in mind: make
               sustainable e-waste behaviour practical, not preachy. It combines a modern React
               frontend with a FastAPI backend and MongoDB — proving that real-world impact and
               solid engineering can ship together in a single hackathon sprint.

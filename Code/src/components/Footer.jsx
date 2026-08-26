@@ -84,10 +84,10 @@ export default function Footer() {
               <div className="w-10 h-10 bg-gradient-forest rounded-xl flex items-center justify-center">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
-              <span className="text-2xl font-bold text-white">E-Scrape Mart</span>
+              <span className="text-2xl font-bold text-white">ReCircuit</span>
             </Link>
             <p className="text-sm text-forest-100/80 mt-4 mb-4">
-              Making e-waste disposal smart, accessible, and sustainable for everyone.
+              Reuse. Recycle. ReCircuit.
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((social, index) => (
@@ -136,7 +136,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           {[
-            { icon: Mail, title: 'Email', content: 'hello@escrapemart.app', href: 'mailto:hello@escrapemart.app' },
+            { icon: Mail, title: 'Email', content: 'hello@recircuit.app', href: 'mailto:hello@recircuit.app' },
             { icon: MapPin, title: 'Headquarters', content: 'Delhi, India' },
             { icon: Clock, title: 'Response Time', content: 'We reply within 48 hours' },
           ].map((contact, index) => (
@@ -174,7 +174,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <p className="text-sm text-forest-100/80">
-            © {currentYear} E-Scrape Mart. All rights reserved. | Our Mission: Dispose Smarter. Reuse Better. Save the Planet.
+            © {currentYear} ReCircuit. All rights reserved. | Reuse. Recycle. ReCircuit. — Electronics circular economy.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-sm hover:text-white transition-colors text-forest-100/80">

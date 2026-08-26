@@ -89,7 +89,7 @@ export const centers = [
   },
   {
     id: 8,
-    name: 'E-Scrape Mart Jaipur',
+    name: 'ReCircuit Jaipur',
     distance: 3.5,
     rating: 4.6,
     reviews: 267,

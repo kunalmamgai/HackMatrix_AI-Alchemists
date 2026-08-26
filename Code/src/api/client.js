@@ -1,5 +1,5 @@
 /**
- * Centralized API client for E-Scrape Mart backend.
+ * Centralized API client for ReCircuit backend.
  * Handles auth tokens, error normalization, and request/response interceptors.
  */
 

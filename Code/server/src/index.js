@@ -66,7 +66,7 @@ app.use((err, _req, res, _next) => {
 
 // ─── Start ───────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`🌱 E-Scrape Mart API running on http://localhost:${PORT}`);
+  console.log(`🌱 ReCircuit API running on http://localhost:${PORT}`);
 });
 
 // Graceful shutdown

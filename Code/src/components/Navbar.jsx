@@ -40,7 +40,7 @@ export default function Navbar() {
               <div className="w-10 h-10 bg-gradient-forest rounded-xl flex items-center justify-center">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-ink-900">E-Scrape Mart</span>
+              <span className="text-xl font-bold text-ink-900">ReCircuit</span>
             </motion.div>
           </Link>
 

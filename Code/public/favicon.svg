@@ -1,16 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="E-Scrape Mart favicon">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ReCircuit favicon">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#065f46" />
+      <stop offset="0%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#10b981" />
     </linearGradient>
     <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#34d399" />
       <stop offset="100%" stop-color="#22d3ee" />
     </linearGradient>
   </defs>
-
   <rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)" />
-  <path d="M20 19h25v7H28v6h14v7H28v6h17v7H20z" fill="url(#accent)" />
-  <circle cx="49" cy="49" r="4" fill="#34d399" />
+  <!-- Recycling loop arrows -->
+  <g transform="translate(32,30)" fill="none" stroke="url(#accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Top arrow -->
+    <path d="M-8,-12 L8,-12 L8,-6" />
+    <polyline points="4,-10 8,-14 12,-10" fill="none" />
+    <!-- Bottom arrow -->
+    <path d="M8,6 L-8,6 L-8,12" />
+    <polyline points="-4,10 -8,14 -12,10" fill="none" />
+    <!-- Vertical connectors -->
+    <path d="M-10,-10 L-10,-8" />
+    <path d="M10,10 L10,8" />
+    <!-- Center lightning bolt -->
+    <path d="M-2,-4 L2,-4 L0,0 L-2,0 L2,4" stroke="url(#accent)" stroke-width="2" fill="none" />
+  </g>
 </svg>

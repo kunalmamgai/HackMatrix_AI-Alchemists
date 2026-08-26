@@ -1,8 +1,8 @@
-![E-Scrape Mart Home Preview](Code/src/assets/page.png)
+![ReCircuit Home Preview](Code/src/assets/page.png)
 
-# E-Scrape Mart
+# ReCircuit
 
-E-Scrape Mart is a full-stack e-waste management platform that helps users:
+ReCircuit is a full-stack e-waste management platform that helps users:
 
 - find safe disposal guidance for common electronic devices,
 - discover verified recycling centers on an interactive map,
@@ -13,7 +13,7 @@ The project combines a modern React frontend with a FastAPI backend and MongoDB 
 
 ## Product Preview
 
-![E-Scrape Mart Home Preview](Code/src/assets/page.png)
+![ReCircuit Home Preview](Code/src/assets/page.png)
 
 ## Why This Project Exists
 
@@ -23,7 +23,7 @@ E-waste is one of the fastest-growing waste streams globally. Most users still d
 - where certified recycling centers exist,
 - and what alternatives to disposal (repair, refurbish, reuse) are available.
 
-E-Scrape Mart addresses this gap with one integrated user experience from awareness to action.
+ReCircuit addresses this gap with one integrated user experience from awareness to action.
 
 ## Core Objectives
 
@@ -37,7 +37,7 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 ### 1. Home Experience
 
 - Hero section with the campaign message:
-	- Dispose Smarter. Reuse Better. Save the Planet.
+	- Reuse. Recycle. ReCircuit.
 - Quick action entry points for searching devices and scheduling pickup.
 - Animated impact counters and modern visual design.
 
@@ -76,7 +76,8 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 
 ### 6. Disposables Marketplace
 
-- Refurbished products shown in responsive cards.
+- Refurbished electronics shown in responsive cards.
+- Live data from DummyJSON and FakeStore APIs (electronics only).
 - Current layout: 3 cards per row on large screens.
 - Wishlist-style interaction and product details.
 
@@ -84,11 +85,12 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 
 - Global cart state via context.
 - Add to cart, remove, quantity updates, total calculation.
-- Checkout screen with order summary and payment input flow.
+- Checkout screen with Stripe integration and payment input flow.
 
 ### 8. Login-Gated Purchase Rules
 
 - Users must be logged in to buy.
+- Google Sign-In authentication.
 - Guest users clicking Buy are redirected to login.
 - Checkout route is protected and shows login-required handling.
 
@@ -100,6 +102,9 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 - Toast notifications for feedback.
 - Floating chatbot for quick user assistance.
 - Mobile-responsive navigation and section layouts.
+- Breadcrumb navigation on all inner pages.
+- Error boundaries around all routes.
+- Form validation with Zod schemas.
 
 ## Tech Stack
 
@@ -112,17 +117,20 @@ E-Scrape Mart addresses this gap with one integrated user experience from awaren
 - React Router DOM
 - React Leaflet + Leaflet
 - Lucide React icons
+- Zod (form validation)
+- Stripe.js (payment processing)
 
 ### Backend
 
-- FastAPI
-- Pydantic models
-- PyMongo
-- MongoDB Atlas
+- Express.js
+- Prisma ORM
+- SQLite
+- Google JWT authentication
+- Stripe API integration
 
 ## Repository Structure
 
-```text
+```
 HackMatrix_AI-Alchemists/
 |- Backend/
 |  |- Main.py
@@ -144,14 +152,17 @@ HackMatrix_AI-Alchemists/
 |  |- src/
 |     |- App.jsx
 |     |- context/CartContext.jsx
+|     |- context/NotificationContext.jsx
 |     |- components/
 |     |- pages/
+|     |- api/
 ```
 
 ## Frontend Architecture Summary
 
 - App-level route orchestration lives in `Code/src/App.jsx`.
 - Global cart state is provided via `CartProvider`.
+- Notification system uses `NotificationContext`.
 - Pages are route-level wrappers.
 - Reusable feature modules are organized under `src/components`.
 - Local browser storage is used for lightweight persistence.
@@ -166,68 +177,18 @@ HackMatrix_AI-Alchemists/
 
 ### Layering
 
-- `Routes/` exposes API endpoints.
-- `Services/` contains database interaction logic.
-- `Models/` defines request payloads using Pydantic.
-- `schemas/` and `Schemes/` serialize Mongo documents.
+- `server/src/routes/` exposes API endpoints.
+- `server/src/middleware/` handles authentication.
+- `server/prisma/` defines database schema.
 
-### API Routers Mounted
+### API Routes
 
-- `/devices`
-- `/centers`
-
-## API Reference (Current)
-
-### Base
-
-- Local: `http://127.0.0.1:8000`
-
-### Health / Root
-
-- `GET /`
-- Response:
-
-```json
-{
-	"message": "E-Waste API Running 🚀"
-}
-```
-
-### Devices
-
-- `GET /devices/`
-	- Returns all device records.
-- `POST /devices/`
-	- Creates a device.
-
-Request body:
-
-```json
-{
-	"name": "Laptop",
-	"category": "Electronics",
-	"disposal_instructions": "Remove battery and hand over to certified e-waste recycler"
-}
-```
-
-### Centers
-
-- `GET /centers/`
-	- Returns all center records.
-- `POST /centers/`
-	- Creates a recycling center.
-
-Request body:
-
-```json
-{
-	"name": "Green Cycle Delhi",
-	"address": "Holambi Kalan, Delhi",
-	"latitude": 28.5921,
-	"longitude": 77.3693,
-	"verified": true
-}
-```
+- `/api/auth` - Google authentication, profile management
+- `/api/products` - Product CRUD with search and filtering
+- `/api/orders` - Order management with Stripe integration
+- `/api/centers` - Recycling center management
+- `/api/pickups` - Pickup request scheduling
+- `/api/reviews` - Product and center reviews
 
 ## Setup Guide
 
@@ -235,10 +196,8 @@ Request body:
 
 - Node.js 18+
 - npm 9+
-- Python 3.10+
-- MongoDB Atlas (or a MongoDB instance)
 
-### 1) Frontend Setup
+### Frontend Setup
 
 ```bash
 cd Code
@@ -248,77 +207,61 @@ npm run dev
 
 Vite will print the URL in terminal (typically `http://localhost:5173` or `http://localhost:5174`).
 
-### 2) Backend Setup
-
-From project root:
+### Backend Setup
 
 ```bash
-pip install fastapi uvicorn pymongo pydantic
-uvicorn Backend.Main:app --reload
+cd Code/server
+npm install
+npx prisma db push
+node src/utils/seed.js
+npm run dev
 ```
 
-Backend will run at `http://127.0.0.1:8000`.
+Backend will run at `http://localhost:3001`.
 
-### 3) Database Configuration
+### Environment Variables
 
-The MongoDB connection is read from the `MONGO_URI` environment variable in `Backend/Configrations/mongoDB.py`.
+**Frontend** (`Code/.env`):
+```
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+VITE_API_URL=http://localhost:3001/api
+VITE_STRIPE_PUBLISHABLE_KEY=your_stripe_key  # optional
+```
 
-- **Locally:** if `MONGO_URI` is not set, the code falls back to the placeholder URI in that file.
-- **In production (Vercel):** set `MONGO_URI` in Project → Settings → Environment Variables; never commit real credentials.
+**Backend** (`Code/server/.env`):
+```
+GOOGLE_CLIENT_ID=your_google_client_id
+STRIPE_SECRET_KEY=your_stripe_secret  # optional
+DATABASE_URL="file:./dev.db"
+```
 
 ## Run Both Together
 
-1. Start backend server.
-2. Start frontend dev server.
-3. Open frontend URL and use the UI; frontend and backend can evolve independently.
-
-## Deploying to Vercel
-
-The repo ships a root `vercel.json` that builds **both** apps in one project:
-
-- `Code/package.json` → `@vercel/static-build` (Vite frontend, `dist/` output).
-- `Backend/Main.py` → `@vercel/python` (FastAPI, served as an ASGI function).
-- Routes: `/devices/*` and `/centers/*` go to the API; everything else is rewritten to the SPA's `index.html`.
-
-Steps:
-
-1. Push the repo to GitHub and import it in Vercel (Root Directory stays `/`).
-2. In Project → Settings → Environment Variables, add `MONGO_URI` with your real Atlas connection string.
-3. Deploy. The API lives at `/devices/` and `/centers/` on the same origin as the frontend.
-
-Notes:
-
-- `Backend/Main.py` adds its own directory to `sys.path` so absolute imports (`Routes`, `Services`, `config`, …) work however Vercel loads the file.
-- The Mongo connection is lazy (`get_device_collection()` / `get_center_collection()` in `Configrations/mongoDB.py`), so a cold start never fails just because the database is unreachable.
+1. Start backend server (`cd Code/server && npm run dev`).
+2. Start frontend dev server (`cd Code`).
+3. Open frontend URL and use the UI.
 
 ## End-to-End User Flow
 
 1. User opens home page.
 2. Searches for a device and reads disposal guidance.
-3. Checks nearby recycling centers on map.
+3. Checks nearby recycling centers on map (live data from OpenStreetMap).
 4. Optionally schedules pickup.
-5. Browses disposables marketplace.
+5. Browses disposables marketplace (live electronics from DummyJSON/FakeStore).
 6. If not logged in, buy action redirects to login.
-7. Logged-in user adds items to cart and proceeds to checkout.
+7. Logged-in user adds items to cart and proceeds to checkout with Stripe.
 
 ## Branding and Assets
 
-- Product name: E-Scrape Mart
+- Product name: ReCircuit
+- Tagline: Reuse. Recycle. ReCircuit.
 - Favicon: SVG in `Code/public/favicon.svg`
 - Hero preview image used in this README: `Code/src/assets/hero.png`
 
 ## Known Notes
 
 - Frontend currently keeps user auth state in local storage for demo flow.
-- Backend API is focused on devices and centers; marketplace/order persistence is client-driven in current version.
-
-## Future Improvements
-
-- Add JWT-based authentication and protected backend endpoints.
-- Persist cart/orders to backend.
-- Add pagination/filter APIs for centers/devices.
-- Add automated tests (frontend + backend).
-- Add CI pipeline for lint/build/test.
+- Backend uses SQLite via Prisma for lightweight persistence.
 
 ## Quick Commands
 
@@ -334,9 +277,10 @@ npm run preview
 Backend:
 
 ```bash
-uvicorn Backend.Main:app --reload
+cd Code/server
+npm run dev
 ```
 
 ---
 
-Built for HackMatrix with a focus on practical sustainability and circular economy adoption.
+Built with a focus on practical sustainability and circular economy adoption.
