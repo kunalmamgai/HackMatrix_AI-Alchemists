@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { products as localProducts, productCategories } from '../data/products';
-import { fetchDummyProducts, fetchFakeStoreProducts, mergeProducts } from '../api/external';
+import { fetchDummyProducts, fetchFakeStoreProducts, searchDummyProducts, searchFakeStoreProducts, mergeProducts } from '../api/external';
 import DeviceImage from '../components/DeviceImage';
 import Breadcrumb from '../components/Breadcrumb';
 
@@ -20,11 +20,12 @@ export default function DisposablesPage() {
   const { addToCart } = useCart();
 
   // Fetch products from external APIs
+  // Fetch electronics products from external APIs
   const loadLiveProducts = useCallback(async () => {
     setLoading(true);
     try {
       const [dummyProducts, fakeStoreProducts] = await Promise.allSettled([
-        fetchDummyProducts('', 30),
+        fetchDummyProducts(8),
         fetchFakeStoreProducts(),
       ]);
 
