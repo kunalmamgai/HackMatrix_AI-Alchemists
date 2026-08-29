@@ -15,10 +15,9 @@ export default function HomeCta() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-h1 text-white mb-5">Ready to Make a Difference?</h2>
+          <h2 className="text-h1 text-white mb-5">Your Old Phone Could Power Someone's Education</h2>
           <p className="text-body text-white/80 max-w-2xl mx-auto mb-10">
-            Every device you recycle keeps toxic waste out of landfills and gives materials a second life.
-            Start today.
+            When you recycle with us, recovered materials fund digital literacy programs. One smartphone recycling = 10 hours of computer training for rural students.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button

@@ -43,7 +43,7 @@ export default function DrawerEstimator() {
             What's in Your <span className="text-forest-600">Drawer?</span>
           </h2>
           <p className="text-body text-ink-500 max-w-2xl mx-auto">
-            Tap the old devices you own and watch their recovery value and carbon savings add up.
+            The average Indian household has 4-6 unused electronics. Tap the devices you own to see their recovery value and environmental impact.
           </p>
         </motion.div>
 

@@ -7,10 +7,10 @@ import { products } from '../data/products';
 
 export default function ImpactStats() {
   const stats = [
-    { icon: MapPin, target: centers.length, suffix: '+', label: 'Recycling Centers', note: 'Certified locations across India' },
-    { icon: BookOpen, target: devices.length, label: 'Disposal Guides', note: 'Step-by-step instructions & safety tips' },
-    { icon: Package, target: products.length, suffix: '+', label: 'Refurbished Products', note: 'Ready for a second life' },
-    { icon: Recycle, target: 62, suffix: 'M', label: 'Tonnes of E-Waste', note: 'Generated worldwide every year' },
+    { icon: MapPin, target: centers.length, suffix: '+', label: 'Certified Recyclers', note: 'Verified partners across 12 cities in India' },
+    { icon: BookOpen, target: devices.length, label: 'Device Guides', note: 'Step-by-step instructions with safety ratings' },
+    { icon: Package, target: products.length, suffix: '+', label: 'Refurbished Products', note: 'Each tested with 6-month warranty' },
+    { icon: Recycle, target: 62, suffix: 'M', label: 'Tonnes of E-Waste', note: 'Generated globally — only 17.4% is recycled properly' },
   ];
 
   return (
@@ -24,10 +24,10 @@ export default function ImpactStats() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-h1 text-ink-900 mb-4">
-            Impact in <span className="text-forest-600">Numbers</span>
+            The E-Waste Problem is <span className="text-forest-600">Real</span>
           </h2>
           <p className="text-body text-ink-500 max-w-2xl mx-auto">
-            Real numbers from our network — and the scale of the e-waste challenge we are up against.
+            India generates 3.2 million tonnes of e-waste annually — the 3rd largest globally. Only 22% is formally recycled. Here's what we're doing about it.
           </p>
         </motion.div>
 

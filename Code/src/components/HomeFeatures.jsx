@@ -6,31 +6,31 @@ const features = [
   {
     icon: Search,
     title: 'Device Disposal Guide',
-    description: 'Search any device for step-by-step disposal steps, safety warnings, and recycling value.',
+    description: 'Search any of 16 devices for step-by-step disposal instructions, safety warnings for hazardous materials, and estimated recovery value in rupees.',
     href: '/device-search',
   },
   {
     icon: MapPin,
     title: 'Nearby Recycling Centers',
-    description: 'Find certified e-waste recyclers near you on an interactive map with filters.',
+ description: 'Find 17 certified e-waste recyclers near you on an interactive map. Filter by distance, accepted materials, and operating hours.',
     href: '/nearby-locations',
   },
   {
     icon: Truck,
-    title: 'Pickup & Reuse Network',
-    description: 'Schedule a doorstep pickup and connect with verified recyclers and repairers.',
+    title: 'Free Doorstep Pickup',
+    description: 'Schedule a free pickup from your home or office. Our verified partners collect, recycle, and give you a certificate of disposal.',
     href: '/pickup-network',
   },
   {
     icon: ShoppingBag,
     title: 'Refurbished Marketplace',
-    description: 'Shop tested, refurbished disposables at great prices — a second life for electronics.',
+    description: 'Buy tested, certified refurbished electronics at 40-60% off retail prices. Every product comes with a 6-month warranty.',
     href: '/disposables',
   },
   {
     icon: RotateCcw,
-    title: 'Circular Economy',
-    description: 'See how reduce → reuse → recycle keeps devices and materials in the loop.',
+    title: 'Track Your Impact',
+    description: "See exactly how much CO₂ you've avoided, how many trees you've equivalent saved, and your total recovery value — all in real time.",
     href: '/circular-economy',
   },
 ];
@@ -49,10 +49,10 @@ export default function HomeFeatures() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-h1 text-ink-900 mb-4">
-            Everything You Need to <span className="text-forest-600">Go Circular</span>
+            Everything You Need to <span className="text-forest-600">Dispose Responsibly</span>
           </h2>
           <p className="text-body text-ink-500 max-w-2xl mx-auto">
-            One platform for the whole e-waste journey — from finding a recycler to buying a second-life device.
+            From figuring out how to recycle your old phone to scheduling a free pickup — we handle the entire process.
           </p>
         </motion.div>
 
@@ -93,9 +93,9 @@ export default function HomeFeatures() {
           >
             <div>
               <Leaf className="w-8 h-8 mb-5" />
-              <h3 className="text-h3 text-white mb-3">Make Your E-Waste Count</h3>
+              <h3 className="text-h3 text-white mb-3">Have Old Devices?</h3>
               <p className="text-body text-white/80 mb-6">
-                Have old devices lying around? Turn them into pickups, repairs, and refurbished products.
+                The average household has 3-5 unused electronics. Each one you recycle keeps toxic materials out of landfills and recovers valuable metals.
               </p>
             </div>
             <button

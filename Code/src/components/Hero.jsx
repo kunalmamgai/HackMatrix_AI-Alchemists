@@ -129,19 +129,17 @@ export default function Hero({ transparentBackground = false }) {
             <div className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-forest-900/30 border border-forest-700/50">
               <Zap className="w-4 h-4 text-forest-300" />
               <Leaf className="w-4 h-4 text-gold-400" />
-              <span className="text-sm font-medium text-forest-100">Revolutionizing E-Waste</span>
+              <span className="text-sm font-medium text-forest-100">Trusted by 17 certified recycling partners</span>
             </div>
           </motion.div>            {/* Main Headline */}
             <motion.h1
               variants={itemVariants}
               className="text-display mb-6 text-white"
             >
-              Dispose Smarter. <br />
+              Your Old Laptop is Worth ₹3,500.<br />
               <span className="bg-gradient-to-r from-forest-300 to-gold-300 bg-clip-text text-transparent text-gradient-shimmer">
-                Reuse Better.
+                We'll Show You How.
               </span>
-              <br />
-              Save the Planet.
             </motion.h1>
 
             {/* Subheading */}
@@ -149,7 +147,7 @@ export default function Hero({ transparentBackground = false }) {
               variants={itemVariants}
               className="text-body text-forest-100/80 max-w-3xl mx-auto mb-10"
             >
-            Join millions in responsible e-waste disposal. Find recycling centers, schedule pickups, and participate in our circular economy network.
+            Step-by-step disposal guides for 16 device types. Find certified recyclers near you. Schedule free doorstep pickups. Track your environmental impact in real time.
           </motion.p>
 
           {/* Quick Search + CTA */}
@@ -207,9 +205,9 @@ export default function Hero({ transparentBackground = false }) {
               className="grid grid-cols-3 gap-5 max-w-2xl mx-auto"
             >
             {[
-              { number: '17', label: 'Verified Centers' },
-              { number: '6', label: 'Device Categories' },
-              { number: '₹2,500+', label: 'Recoverable Value' },              ].map((stat, index) => (
+              { number: '17', label: 'Certified Recyclers' },
+              { number: '16', label: 'Device Guides' },
+              { number: '₹2,500+', label: 'Avg. Recovery Value' },              ].map((stat, index) => (
                 <motion.div
                   key={index}
                   className="p-5 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md"
