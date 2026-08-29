@@ -131,26 +131,24 @@ export default function Hero({ transparentBackground = false }) {
               <Leaf className="w-4 h-4 text-gold-400" />
               <span className="text-sm font-medium text-forest-100">Revolutionizing E-Waste</span>
             </div>
-          </motion.div>
+          </motion.div>            {/* Main Headline */}
+            <motion.h1
+              variants={itemVariants}
+              className="text-display mb-6 text-white"
+            >
+              Dispose Smarter. <br />
+              <span className="bg-gradient-to-r from-forest-300 to-gold-300 bg-clip-text text-transparent text-gradient-shimmer">
+                Reuse Better.
+              </span>
+              <br />
+              Save the Planet.
+            </motion.h1>
 
-          {/* Main Headline */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-display mb-6 text-white"
-          >
-            Dispose Smarter. <br />
-            <span className="bg-gradient-to-r from-forest-300 to-gold-300 bg-clip-text text-transparent text-gradient-shimmer">
-              Reuse Better.
-            </span>
-            <br />
-            Save the Planet.
-          </motion.h1>
-
-          {/* Subheading */}
-          <motion.p
-            variants={itemVariants}
-            className={`text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-forest-100/90`}
-          >
+            {/* Subheading */}
+            <motion.p
+              variants={itemVariants}
+              className="text-body text-forest-100/80 max-w-3xl mx-auto mb-10"
+            >
             Join millions in responsible e-waste disposal. Find recycling centers, schedule pickups, and participate in our circular economy network.
           </motion.p>
 
@@ -203,31 +201,28 @@ export default function Hero({ transparentBackground = false }) {
             >
               Schedule Pickup
             </motion.button>
-          </motion.div>
-
-          {/* Featured Stats — real figures from the in-repo datasets */}
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-3 gap-4 max-w-2xl mx-auto"
-          >
+          </motion.div>            {/* Featured Stats — real figures from the in-repo datasets */}
+            <motion.div
+              variants={itemVariants}
+              className="grid grid-cols-3 gap-5 max-w-2xl mx-auto"
+            >
             {[
               { number: '17', label: 'Verified Centers' },
               { number: '6', label: 'Device Categories' },
-              { number: '₹2,500+', label: 'Recoverable Value' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className="p-4 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md"
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="text-stat text-forest-400 mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-forest-100/80">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
+              { number: '₹2,500+', label: 'Recoverable Value' },              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="p-5 rounded-xl bg-sage-100/50 border border-sage-200 backdrop-blur-md"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <div className="text-stat text-forest-400 mb-1">
+                    {stat.number}
+                  </div>
+                  <div className="text-small text-forest-100/70">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
           </motion.div>
 
         </motion.div>

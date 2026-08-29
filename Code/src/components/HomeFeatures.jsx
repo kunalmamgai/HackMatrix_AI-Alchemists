@@ -39,24 +39,24 @@ export default function HomeFeatures() {
   const navigate = useNavigate();
 
   return (
-    <section id="features" className={`py-16 lg:py-24 bg-white`}>
+    <section id="features" className="py-20 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-16 lg:mb-20"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
-            Everything You Need to <span className="text-forest-500">Go Circular</span>
+          <h2 className="text-h1 text-ink-900 mb-4">
+            Everything You Need to <span className="text-forest-600">Go Circular</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
+          <p className="text-body text-ink-500 max-w-2xl mx-auto">
             One platform for the whole e-waste journey — from finding a recycler to buying a second-life device.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => (
             <motion.button
               key={feature.title}
@@ -71,13 +71,13 @@ export default function HomeFeatures() {
               <div className="p-4 rounded-xl bg-gradient-forest w-fit mb-5">
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className={`text-xl font-bold mb-2 text-ink-900`}>
+              <h3 className="text-h3 text-ink-900 mb-3">
                 {feature.title}
               </h3>
-              <p className={`text-sm mb-4 text-ink-500`}>
+              <p className="text-body text-ink-500 mb-5">
                 {feature.description}
               </p>
-              <span className={`inline-flex items-center gap-1 text-sm font-semibold text-forest-600`}>
+              <span className="inline-flex items-center gap-1 text-small font-semibold text-forest-600">
                 Explore <ArrowRight size={16} />
               </span>
             </motion.button>
@@ -92,15 +92,15 @@ export default function HomeFeatures() {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <div>
-              <Leaf className="w-8 h-8 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Make Your E-Waste Count</h3>
-              <p className="text-sm text-white/85 mb-6">
+              <Leaf className="w-8 h-8 mb-5" />
+              <h3 className="text-h3 text-white mb-3">Make Your E-Waste Count</h3>
+              <p className="text-body text-white/80 mb-6">
                 Have old devices lying around? Turn them into pickups, repairs, and refurbished products.
               </p>
             </div>
             <button
               onClick={() => navigate('/pickup-network')}
-              className="w-full bg-white text-forest-700 font-semibold py-3 px-4 rounded-xl hover:bg-forest-50 transition-colors"
+              className="w-full bg-white text-forest-700 font-semibold py-3.5 px-4 rounded-xl hover:bg-forest-50 transition-colors"
             >
               Schedule a Pickup
             </button>

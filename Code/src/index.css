@@ -38,9 +38,9 @@ h1, h2, h3, h4, h5 {
 
 /* Smooth transitions */
 @layer components {
-  /* Section rhythm: py-16 mobile → py-24 desktop */
+  /* Section rhythm: py-20 mobile → py-32 desktop — premium whitespace */
   .section {
-    @apply py-16 lg:py-24;
+    @apply py-20 lg:py-32;
   }
 
   .btn-primary {

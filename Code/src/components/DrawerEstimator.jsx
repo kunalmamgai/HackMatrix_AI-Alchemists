@@ -30,19 +30,19 @@ export default function DrawerEstimator() {
   const kmDriven = Math.round(totalCarbon * KM_PER_KG);
 
   return (
-    <section id="drawer-estimator" className={`py-16 lg:py-24 bg-cream-50`}>
+    <section id="drawer-estimator" className="py-20 lg:py-32 bg-cream-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-16 lg:mb-20"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
-            What's in Your <span className="text-forest-500">Drawer?</span>
+          <h2 className="text-h1 text-ink-900 mb-4">
+            What's in Your <span className="text-forest-600">Drawer?</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
+          <p className="text-body text-ink-500 max-w-2xl mx-auto">
             Tap the old devices you own and watch their recovery value and carbon savings add up.
           </p>
         </motion.div>
@@ -79,15 +79,15 @@ export default function DrawerEstimator() {
                     <device.icon
                       className={`w-8 h-8 mb-3 ${isSelected ? 'text-forest-500' : 'text-forest-400'}`}
                     />
-                    <h3 className={`font-bold mb-0.5 text-ink-900`}>
+                    <h3 className="font-semibold text-ink-900 mb-1">
                       {device.name}
                     </h3>
-                    <p className={`text-xs mb-3 text-ink-500`}>
+                    <p className="text-small text-ink-500 mb-3">
                       {device.category}
                     </p>
-                    <div className={`flex items-center justify-between text-sm text-ink-700`}>
-                      <span className="font-semibold text-forest-500">₹{device.recoveryValue.toLocaleString('en-IN')}</span>
-                      <span className="text-xs">{device.carbonSaved} kg CO₂</span>
+                    <div className="flex items-center justify-between text-small text-ink-700">
+                      <span className="font-semibold text-forest-600">₹{device.recoveryValue.toLocaleString('en-IN')}</span>
+                      <span className="text-small text-ink-400">{device.carbonSaved} kg CO₂</span>
                     </div>
                   </motion.button>
                 );
@@ -107,15 +107,15 @@ export default function DrawerEstimator() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className={`text-xl font-bold mb-6 flex items-center gap-2 text-ink-900`}>
-              <Coins className="w-5 h-5 text-forest-500" />
+            <h3 className="text-h3 mb-6 flex items-center gap-2 text-ink-900">
+              <Coins className="w-5 h-5 text-forest-600" />
               Your Drawer's Worth
             </h3>
 
             {selectedDevices.length === 0 ? (
-              <div className={`text-center py-8 px-4 rounded-2xl border-2 border-dashed border-sage-200`}>
-                <Archive className="w-12 h-12 text-forest-300 mx-auto mb-3" />
-                <p className={`text-sm text-ink-500`}>
+              <div className="text-center py-10 px-4 rounded-2xl border-2 border-dashed border-sage-200">
+                <Archive className="w-14 h-14 text-forest-300 mx-auto mb-4" />
+                <p className="text-body text-ink-500">
                   Tap the devices you own to see their recovery value and carbon savings add up.
                 </p>
               </div>
@@ -123,47 +123,47 @@ export default function DrawerEstimator() {
               <>
                 <div className="space-y-5">
                   <div>
-                    <p className={`text-sm mb-1 text-ink-500`}>
+                    <p className="text-small mb-1 text-ink-500">
                       Devices selected
                     </p>
-                    <p className={`text-3xl font-bold text-ink-900`}>
+                    <p className="text-stat text-ink-900">
                       {selectedDevices.length}
-                      <span className="text-lg font-semibold text-ink-400"> / {devices.length}</span>
+                      <span className="text-h3 font-semibold text-ink-400"> / {devices.length}</span>
                     </p>
                   </div>
 
-                  <div className={`h-px bg-sage-100`} />
+                  <div className="h-px bg-sage-100" />
 
                   <div>
-                    <p className={`text-sm mb-1 text-ink-500`}>
+                    <p className="text-small mb-1 text-ink-500">
                       Recoverable material value
                     </p>
-                    <p className="text-3xl font-bold text-forest-500">
+                    <p className="text-stat text-forest-600">
                       <CountUp target={totalValue} prefix="₹" observe={false} />
                     </p>
                   </div>
 
                   <div>
-                    <p className={`text-sm mb-1 text-ink-500`}>
+                    <p className="text-small mb-1 text-ink-500">
                       Carbon emissions avoided
                     </p>
-                    <p className={`text-3xl font-bold text-ink-900`}>
+                    <p className="text-stat text-ink-900">
                       <CountUp target={totalCarbon} suffix=" kg" observe={false} />
-                      <span className="text-base font-semibold text-ink-400"> CO₂e</span>
+                      <span className="text-h3 font-semibold text-ink-400"> CO₂e</span>
                     </p>
                   </div>
 
-                  <div className={`rounded-2xl p-4 bg-cream-50`}>
-                    <p className={`text-sm font-semibold mb-2 flex items-center gap-1.5 text-forest-600`}>
+                  <div className="rounded-2xl p-5 bg-cream-50">
+                    <p className="text-small font-semibold mb-3 flex items-center gap-1.5 text-forest-600">
                       <Leaf className="w-4 h-4" />
                       That's roughly equivalent to:
                     </p>
-                    <div className="space-y-1.5 text-sm">
-                      <p className={`flex items-center gap-2 text-ink-700`}>
+                    <div className="space-y-2 text-small">
+                      <p className="flex items-center gap-2 text-ink-700">
                         <TreePine className="w-4 h-4 text-forest-500" />
                         <CountUp target={treeYears} observe={false} /> {treeYears === 1 ? 'tree' : 'trees'} absorbing CO₂ for a year
                       </p>
-                      <p className={`flex items-center gap-2 text-ink-700`}>
+                      <p className="flex items-center gap-2 text-ink-700">
                         <Car className="w-4 h-4 text-forest-500" />
                         <CountUp target={kmDriven} observe={false} /> km not driven by car
                       </p>
@@ -174,7 +174,7 @@ export default function DrawerEstimator() {
                 <button
                   type="button"
                   onClick={() => setSelected(new Set())}
-                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-semibold transition-colors border-sage-200 text-ink-500 hover:border-danger-500 hover:text-danger-400"
+                  className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl border-2 text-small font-semibold transition-colors border-sage-200 text-ink-500 hover:border-danger-500 hover:text-danger-400"
                 >
                   <RotateCcw size={16} />
                   Reset

@@ -14,42 +14,42 @@ export default function ImpactStats() {
   ];
 
   return (
-    <section id="impact" className={`py-16 lg:py-24 bg-cream-50`}>
+    <section id="impact" className="py-20 lg:py-32 bg-cream-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-16 lg:mb-20"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-ink-900`}>
-            Impact in <span className="text-forest-500">Numbers</span>
+          <h2 className="text-h1 text-ink-900 mb-4">
+            Impact in <span className="text-forest-600">Numbers</span>
           </h2>
-          <p className={`text-lg md:text-xl max-w-2xl mx-auto text-ink-500`}>
+          <p className="text-body text-ink-500 max-w-2xl mx-auto">
             Real numbers from our network — and the scale of the e-waste challenge we are up against.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className={`rounded-2xl p-8 text-center shadow-lg border-2 bg-white border-sage-200`}
+              className="rounded-2xl p-8 text-center shadow-lg border-2 bg-white border-sage-200"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="p-4 rounded-xl bg-gradient-forest w-fit mx-auto mb-4">
+              <div className="p-4 rounded-xl bg-gradient-forest w-fit mx-auto mb-5">
                 <stat.icon className="w-7 h-7 text-white" />
               </div>
-              <div className={`text-4xl font-bold mb-2 text-forest-600`}>
+              <div className="text-stat text-forest-700 mb-2">
                 <CountUp target={stat.target} suffix={stat.suffix} />
               </div>
-              <p className={`font-semibold mb-1 text-ink-900`}>{stat.label}</p>
-              <p className={`text-sm text-ink-500`}>{stat.note}</p>
+              <p className="font-semibold text-ink-900 mb-1">{stat.label}</p>
+              <p className="text-small text-ink-500">{stat.note}</p>
             </motion.div>
           ))}
         </div>

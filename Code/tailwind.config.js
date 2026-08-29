@@ -96,13 +96,13 @@ export default {
       },
       // Named type scale — components pick a role, not an ad hoc text-5xl
       fontSize: {
-        display: ['clamp(2.5rem, 6vw, 4rem)', { lineHeight: '1.08', fontWeight: '800', letterSpacing: '-0.02em' }], // hero H1 only
-        h1: ['clamp(2rem, 4.5vw, 2.75rem)', { lineHeight: '1.15', fontWeight: '700' }], // section titles
-        h2: ['clamp(1.5rem, 3vw, 1.875rem)', { lineHeight: '1.25', fontWeight: '700' }], // subsection / card group titles
-        h3: ['clamp(1.25rem, 2vw, 1.375rem)', { lineHeight: '1.35', fontWeight: '600' }], // card titles
-        body: ['1.0625rem', { lineHeight: '1.6' }], // paragraph copy (17px)
-        small: ['0.875rem', { lineHeight: '1.5', fontWeight: '500' }], // meta / helper text
-        stat: ['clamp(2rem, 4vw, 2.75rem)', { lineHeight: '1.1', fontWeight: '800', fontVariantNumeric: 'tabular-nums' }], // counters
+        display: ['clamp(2.75rem, 7vw, 4.5rem)', { lineHeight: '1.05', fontWeight: '800', letterSpacing: '-0.03em' }], // hero H1 only — tighter tracking, larger on desktop
+        h1: ['clamp(2rem, 5vw, 3rem)', { lineHeight: '1.1', fontWeight: '700', letterSpacing: '-0.02em' }], // section titles — more presence
+        h2: ['clamp(1.375rem, 3vw, 1.75rem)', { lineHeight: '1.3', fontWeight: '600', letterSpacing: '-0.01em' }], // subsection / card group titles
+        h3: ['clamp(1.125rem, 2vw, 1.375rem)', { lineHeight: '1.4', fontWeight: '600' }], // card titles — more breathing room
+        body: ['1.0625rem', { lineHeight: '1.7' }], // paragraph copy (17px) — increased line height for readability
+        small: ['0.875rem', { lineHeight: '1.6', fontWeight: '500' }], // meta / helper text
+        stat: ['clamp(2.25rem, 4.5vw, 3rem)', { lineHeight: '1.05', fontWeight: '800', fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }], // counters — tighter, more impactful
       },
       borderRadius: {
         xl: '1rem', // 16px — modals, drawers, large surfaces
