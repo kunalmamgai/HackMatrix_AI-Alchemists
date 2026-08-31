@@ -1,18 +1,38 @@
-![ReCircuit Logo](Code/public/favicon.svg)
+<p align="center">
+  <img src="Code/public/favicon.svg" alt="ReCircuit Logo" width="100">
+</p>
 
-# 🔋 ReCircuit — Sustainable Electronics Lifecycle Platform
+<h1 align="center">🔋 ReCircuit</h1>
 
-> **Reuse. Recycle. ReCircuit.**
+<p align="center">
+  <strong>Sustainable Electronics Lifecycle Platform</strong>
+  <br>
+  <em>Reuse. Recycle. ReCircuit.</em>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react&logoColor=white" alt="React">
+  <img src="https://img.shields.io/badge/Node.js-18-339933?style=flat&logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Tailwind-3-06B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind">
+  <img src="https://img.shields.io/badge/Prisma-6-2D3748?style=flat&logo=prisma&logoColor=white" alt="Prisma">
+  <img src="https://img.shields.io/badge/Stripe-Payment-635BFF?style=flat&logo=stripe&logoColor=white" alt="Stripe">
+</p>
+
+---
 
 A full-stack e-waste management platform that helps users dispose of electronics responsibly, discover certified recycling centers, schedule pickups, and purchase refurbished devices — all powered by real-time data from OpenStreetMap, DummyJSON, and FakeStore APIs.
 
 ---
 
-## 📸 Product Screenshots
+## 📸 Product Preview
 
-| Homepage | Device Guide | Recycling Map | Marketplace |
-|----------|--------------|---------------|-------------|
-| ![Homepage](Code/src/assets/page.png) | ![Device Guide](Code/src/assets/devices.png) | ![Map](Code/src/assets/map.png) | ![Marketplace](Code/src/assets/marketplace.png) |
+<p align="center">
+  <img src="Code/src/assets/page.png" alt="ReCircuit Homepage" width="800">
+</p>
+
+<p align="center">
+  <em>ReCircuit Homepage — Your Old Laptop is Worth ₹3,500. We'll Show You How.</em>
+</p>
 
 ---
 
