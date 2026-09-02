@@ -7,6 +7,7 @@ import DisposablesBar from '../components/DisposablesBar';
 import DrawerEstimator from '../components/DrawerEstimator';
 import HomeCta from '../components/HomeCta';
 import HeroAurora from '../components/HeroAurora';
+import WaveDivider from '../components/WaveDivider';
 
 // MapTeaser pulls in Leaflet (~150 KB) — keep it out of the first paint
 // by loading it as its own chunk once the page mounts.
@@ -55,14 +56,19 @@ export default function Home() {
       </div>
 
       {/* Below-the-fold sections */}
+      <WaveDivider variant="dark-to-light" />
       <HomeFeatures />
+      <WaveDivider variant="light-to-cream" />
       <ImpactStats />
       <Suspense fallback={<MapTeaserSkeleton />}>
         <MapTeaser />
       </Suspense>
       <DisposablesBar />
+      <WaveDivider variant="sage-to-cream" />
       <DrawerEstimator />
+      <WaveDivider variant="cream-to-white" flip />
       <HomeCta />
+      <WaveDivider variant="light-to-dark" flip />
     </motion.main>
   );
 }
